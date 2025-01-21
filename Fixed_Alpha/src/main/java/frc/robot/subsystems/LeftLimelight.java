@@ -14,12 +14,14 @@ public class LeftLimelight extends SubsystemBase {
    private double ty;
    private double tl;
    private double ts;
+   private double tAng;
 
    NetworkTableEntry prelimtx;
    NetworkTableEntry prelimty;
    NetworkTableEntry prelimta;
    NetworkTableEntry prelimtl;
    NetworkTableEntry prelimts;
+   NetworkTableEntry prelimtAng;
    NetworkTableEntry prelimCamtran;
    NetworkTable table;
    NetworkTableInstance Inst;
@@ -32,6 +34,8 @@ public class LeftLimelight extends SubsystemBase {
       prelimty = table.getEntry("ty");
       prelimtl = table.getEntry("tlong");
       prelimts = table.getEntry("tshort");
+      prelimtAng = table.getEntry("botpose");
+
    }
 
    public void updateGameState(){
@@ -40,6 +44,7 @@ public class LeftLimelight extends SubsystemBase {
       ty = prelimty.getDouble(ty);
       tl = prelimtl.getDouble(tl);
       ts = prelimts.getDouble(ts);
+      //tAng = prelimtAng.getDoubleArray(tAng[6]).getDouble(tAng);
    }
 
    public double getArea(){

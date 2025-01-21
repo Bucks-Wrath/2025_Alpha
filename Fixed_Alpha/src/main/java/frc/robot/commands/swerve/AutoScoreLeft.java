@@ -2,7 +2,6 @@ package frc.robot.commands.swerve;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,7 +23,7 @@ public class AutoScoreLeft extends Command {
 
     private double targetAngle = 0;
     private double targetStrafe = 0;
-    private double targetArea = 75; // needs to be tuned
+    private double targetArea = 40; // needs to be tuned
 
     public AutoScoreLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
