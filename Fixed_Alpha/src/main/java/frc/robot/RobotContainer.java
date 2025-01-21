@@ -74,14 +74,15 @@ public class RobotContainer {
     public RobotContainer() {
         coralIntake.setDefaultCommand(new StopCoralIntake());
         algaeIntake.setDefaultCommand(new StopAlgaeIntake());
-        //drivetrain.setDefaultCommand(
-        //    new TeleopDrive(
-        //        drivetrain, 
-        //        () -> -driverController.getRawAxis(translationAxis), 
-        //        () -> -driverController.getRawAxis(strafeAxis), 
-        //        () -> -driverController.getRawAxis(rotationAxis) 
-        //    )
-        //);
+        drivetrain.setDefaultCommand(
+            new TeleopDrive(
+                drivetrain, 
+                drive,
+                () -> -driverController.getRawAxis(translationAxis), 
+                () -> -driverController.getRawAxis(strafeAxis), 
+                () -> -driverController.getRawAxis(rotationAxis) 
+            )
+        );
 
         // Only Used For Testing
         // wrist.setDefaultCommand(new JoystickWrist());
@@ -119,15 +120,15 @@ public class RobotContainer {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
 
-
-        drivetrain.setDefaultCommand(
+        // this is working but we dont want to use it
+        //drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
-            drivetrain.applyRequest(() ->
-                drive.withVelocityX(-driverController.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(-driverController.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-                   .withRotationalRate(-driverController.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
-            )
-        );
+        //    drivetrain.applyRequest(() ->
+        //        drive.withVelocityX(-driverController.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
+        //            .withVelocityY(-driverController.getLeftX() * MaxSpeed) // Drive left with negative X (left)
+        //           .withRotationalRate(-driverController.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+        //    )
+        //);
 
         //driverController.a().whileTrue(drivetrain.applyRequest(() -> brake));
         //driverController.b().whileTrue(drivetrain.applyRequest(() ->
