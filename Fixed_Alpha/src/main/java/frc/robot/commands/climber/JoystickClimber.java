@@ -19,10 +19,11 @@ public class JoystickClimber extends Command {
 	public void execute() {
 
 		// joystick control
-        double signal = RobotContainer.climber.JoystickClimber();
+        double pivotJoystickSignal = RobotContainer.climber.PivotJoystickInput();
+		double climberJoystickSignal = RobotContainer.climber.ClimberJoystickInput();
 
-        RobotContainer.climber.incrementTargetPosition((double) (signal * positionIncrement));
-
+        RobotContainer.climber.incrementTargetPosition((double) (pivotJoystickSignal * positionIncrement));
+		RobotContainer.climber.setClimberSpeed(climberJoystickSignal);
 		RobotContainer.climber.motionMagicControl();
 
 	}

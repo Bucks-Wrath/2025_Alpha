@@ -55,12 +55,12 @@ public class AlgaeIntake extends SubsystemBase {
 		return this.IntakeFalcon.getSupplyCurrent().getValueAsDouble();
 	}
 
-	public void resetShooterEncoder() {
+	public void resetAlgaeEncoder() {
         try {
 			IntakeFalcon.getConfigurator().setPosition(0.0);
         }
         catch (Exception e) {
-            DriverStation.reportError("Shooter.resetShooterEncoders exception.  You're Screwed! : " + e.toString(), false);
+            DriverStation.reportError("Algae.resetShooterEncoders exception.  You're Screwed! : " + e.toString(), false);
         }
 	}
 

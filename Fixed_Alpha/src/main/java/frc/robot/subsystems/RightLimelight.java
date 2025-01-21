@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.DoubleArrayEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -14,12 +15,15 @@ public class RightLimelight extends SubsystemBase {
    private double ty;
    private double tl;
    private double ts;
+   private double[] tAng;
+   private DoubleArrayEntry tAngArray;
 
    NetworkTableEntry prelimtx;
    NetworkTableEntry prelimty;
    NetworkTableEntry prelimta;
    NetworkTableEntry prelimtl;
    NetworkTableEntry prelimts;
+   NetworkTableEntry prelimtAng;
    NetworkTableEntry prelimCamtran;
    NetworkTable table;
    NetworkTableInstance Inst;
@@ -32,6 +36,7 @@ public class RightLimelight extends SubsystemBase {
       prelimty = table.getEntry("ty");
       prelimtl = table.getEntry("tlong");
       prelimts = table.getEntry("tshort");
+      prelimtAng = table.getEntry("botpose");
    }
 
    public void updateGameState(){
@@ -40,6 +45,7 @@ public class RightLimelight extends SubsystemBase {
       ty = prelimty.getDouble(ty);
       tl = prelimtl.getDouble(tl);
       ts = prelimts.getDouble(ts);
+      tAng = prelimtAng.getDoubleArray(new double[6]);
    }
 
    public double getArea(){
@@ -67,6 +73,12 @@ public class RightLimelight extends SubsystemBase {
       return tl;
    }
 
+   public double gettAng() {
+      tAng = prelimtAng.getDoubleArray(new double[6]);
+      double actAng = tAng[5];
+      return actAng;
+   }
+
    public void visionMode(){
       NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(3);
       NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(0);
@@ -83,7 +95,7 @@ public class RightLimelight extends SubsystemBase {
       SmartDashboard.putNumber("Right ty", getY());
       SmartDashboard.putNumber("Right tl", getLong());
       SmartDashboard.putNumber("Right ts", getShort());
-
+      SmartDashboard.putNumber("Right tAng", gettAng());
 
 	}
 }

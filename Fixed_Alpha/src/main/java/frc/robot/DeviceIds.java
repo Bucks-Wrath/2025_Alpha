@@ -22,7 +22,7 @@ public final class DeviceIds {
     }
     public static final class Climber {
         public static final int PivotMotorId = 24;
-        public static final int DriveMotorId = 25;
+        public static final int ClimberMotorId = 25;
     }
     public static final class Limelight {
         public static final String LeftTableName = "limelight-left";

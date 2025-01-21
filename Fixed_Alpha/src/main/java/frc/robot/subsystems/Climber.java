@@ -31,11 +31,69 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
 
 	private final static double onTargetThreshold = 0.1;
 		
-	private TalonFX ClimberFalcon = new TalonFX(DeviceIds.Climber.PivotMotorId, "rio");
+	private TalonFX PivotFalcon = new TalonFX(DeviceIds.Climber.PivotMotorId, "rio");
+
+    private TalonFXConfiguration PivotFXConfig = new TalonFXConfiguration();
+
+	private TalonFX ClimberFalcon = new TalonFX(DeviceIds.Climber.ClimberMotorId, "rio");
 
     private TalonFXConfiguration ClimberFXConfig = new TalonFXConfiguration();
 
+
 	public Climber() {
+		this.configurePivotMotor();
+		this.configureClimberMotor();
+    }
+
+	public void motionMagicControl() {
+		this.manageMotion(targetPosition);
+        targetPositionDutyCycle.withPosition(targetPosition);
+        targetPositionDutyCycle.withFeedForward(feedForward);
+		this.PivotFalcon.setControl(targetPositionDutyCycle);
+	}
+
+	private void configurePivotMotor() {
+
+		// Clear Sticky Faults
+		this.PivotFalcon.clearStickyFaults();
+		
+        /** Climber Motor Configuration */
+        /* Motor Inverts and Neutral Mode */
+		PivotFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+        PivotFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+        /* Current Limiting */
+        //ClimberFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+        //ClimberFXConfig.CurrentLimits.SupplyCurrentLimit = 35;
+        //ClimberFXConfig.CurrentLimits.SupplyCurrentThreshold = 60;
+        //ClimberFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
+
+		PivotFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+        PivotFXConfig.CurrentLimits.StatorCurrentLimit = 35;
+
+        /* PID Config */
+        PivotFXConfig.Slot0.kP = 0.2;
+        PivotFXConfig.Slot0.kI = 0;
+        PivotFXConfig.Slot0.kD = 0.01;
+
+        /* Open and Closed Loop Ramping */
+        PivotFXConfig.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.25;
+        PivotFXConfig.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.25;
+
+        PivotFXConfig.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0;
+        PivotFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0;
+
+        //Config Acceleration and Velocity
+        PivotFXConfig.MotionMagic.withMotionMagicAcceleration(300);
+        PivotFXConfig.MotionMagic.withMotionMagicCruiseVelocity(300);
+
+        // Config Motor
+        PivotFalcon.getConfigurator().apply(PivotFXConfig);
+        PivotFalcon.getConfigurator().setPosition(0.0);
+	}
+
+	private void configureClimberMotor() {
+
 		// Clear Sticky Faults
 		this.ClimberFalcon.clearStickyFaults();
 		
@@ -72,21 +130,14 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
         // Config Motor
         ClimberFalcon.getConfigurator().apply(ClimberFXConfig);
         ClimberFalcon.getConfigurator().setPosition(0.0);
-    }
-
-	public void motionMagicControl() {
-		this.manageMotion(targetPosition);
-        targetPositionDutyCycle.withPosition(targetPosition);
-        targetPositionDutyCycle.withFeedForward(feedForward);
-		this.ClimberFalcon.setControl(targetPositionDutyCycle);
 	}
-
+	
 	public double getCurrentPosition() {
-		return this.ClimberFalcon.getRotorPosition().getValueAsDouble();
+		return this.PivotFalcon.getRotorPosition().getValueAsDouble();
 	}
 
 	public double getCurrentDraw() {
-		return this.ClimberFalcon.getSupplyCurrent().getValueAsDouble();
+		return this.PivotFalcon.getSupplyCurrent().getValueAsDouble();
 	}
 
 	public boolean isHoldingPosition() {
@@ -142,19 +193,24 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
 
 	public void resetClimberEncoder() {
         try {
-			ClimberFalcon.getConfigurator().setPosition(0.0);
+			PivotFalcon.getConfigurator().setPosition(0.0);
         }
         catch (Exception e) {
             DriverStation.reportError("Climber.resetClimberEncoders exception.  You're Screwed! : " + e.toString(), false);
         }
 	}
 
-	public double JoystickClimber(){
+	public double PivotJoystickInput(){
 		double value = 0;
 		value = -Robot.m_robotContainer.getOperatorRightStickY();
 		return value;
 	}
 
+	public double ClimberJoystickInput(){
+		double value = 0;
+		value = Robot.m_robotContainer.getOperatorLeftStickY();
+		return value;
+	}
 	public double getPositionError() {
 		double currentPosition = this.getCurrentPosition();
 		double targetPosition = this.getTargetPosition();
@@ -176,6 +232,10 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
 		targetPosition = 0;
 	}
 
+	public void setClimberSpeed(double speed) {
+        this.ClimberFalcon.set(speed);
+	}
+
 	public void updateDashboard() {
 		SmartDashboard.putNumber("Climber Position", this.getCurrentPosition());
 		SmartDashboard.putNumber("Climber Target Position", this.getTargetPosition());
@@ -186,7 +246,7 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
 
 	@Override
 	public double getCurrentVelocity() {
-		double currentVelocity = this.ClimberFalcon.getVelocity().getValueAsDouble();
+		double currentVelocity = this.PivotFalcon.getVelocity().getValueAsDouble();
 		return currentVelocity;
 	}
 

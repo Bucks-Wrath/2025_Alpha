@@ -13,17 +13,18 @@ public class AutoScoreLeft extends Command {
 
     private double tx;
     private double ta;
+    private double tAng;
     private double rotationVal;
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(0.0065, 0, 0.0001); // needs to be tuned
-    private final PIDController strafeController = new PIDController(0.0065, 0, 0.0001);
-    private final PIDController distanceController = new PIDController(0.0065, 0, 0.0001);
+    private final PIDController angleController = new PIDController(1.0, 0, 0.0001); // needs to be tuned
+    private final PIDController strafeController = new PIDController(0.05, 0, 0.0001);
+    private final PIDController distanceController = new PIDController(0.1, 0, 0.0001);
 
     private double targetAngle = 0;
     private double targetStrafe = 0;
-    private double targetArea = 40; // needs to be tuned
+    private double targetArea = 8; // needs to be tuned
 
     public AutoScoreLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
@@ -35,6 +36,7 @@ public class AutoScoreLeft extends Command {
     public void initialize() {
         tx = RobotContainer.rightLimelight.getX();
         ta = RobotContainer.rightLimelight.getArea();
+        tAng = RobotContainer.rightLimelight.gettAng();
         angleController.setTolerance(0.05);  // needs to be tuned
         strafeController.setTolerance(0.05);
         distanceController.setTolerance(0.05);
@@ -45,9 +47,10 @@ public class AutoScoreLeft extends Command {
         // find target location
         tx = RobotContainer.rightLimelight.getX();
         ta = RobotContainer.rightLimelight.getArea();
+        tAng = RobotContainer.rightLimelight.gettAng();
  
         // Uses PID to point at target
-        rotationVal = angleController.calculate(tx,targetAngle);
+        rotationVal = angleController.calculate(tAng, targetAngle);
         strafeVal = strafeController.calculate(tx, targetStrafe);
         distanceVal = distanceController.calculate(ta, targetArea);
 

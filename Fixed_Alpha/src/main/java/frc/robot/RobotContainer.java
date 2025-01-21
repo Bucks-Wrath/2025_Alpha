@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.algae.ReverseAlgaeIntake;
 import frc.robot.commands.algae.RunAlgaeIntake;
 import frc.robot.commands.algae.StopAlgaeIntake;
+import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
 import frc.robot.commands.coral.RunCoralIntake;
@@ -47,7 +48,7 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
     private final SwerveRequest.RobotCentric visionDrive = new SwerveRequest.RobotCentric()
-            .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1); // Add a 10% deadband
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
 
     //private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
     //private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
@@ -86,12 +87,11 @@ public class RobotContainer {
                 () -> -driverController.getRawAxis(rotationAxis) 
             )
         );
-
         // Only Used For Testing
         // wrist.setDefaultCommand(new JoystickWrist());
         // elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
-
+        climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
     }

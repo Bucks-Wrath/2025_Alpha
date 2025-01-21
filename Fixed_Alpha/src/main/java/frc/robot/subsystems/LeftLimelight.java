@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.DoubleArrayEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -14,7 +15,8 @@ public class LeftLimelight extends SubsystemBase {
    private double ty;
    private double tl;
    private double ts;
-   private double tAng;
+   private double[] tAng;
+   private DoubleArrayEntry tAngArray;
 
    NetworkTableEntry prelimtx;
    NetworkTableEntry prelimty;
@@ -44,7 +46,7 @@ public class LeftLimelight extends SubsystemBase {
       ty = prelimty.getDouble(ty);
       tl = prelimtl.getDouble(tl);
       ts = prelimts.getDouble(ts);
-      //tAng = prelimtAng.getDoubleArray(tAng[6]).getDouble(tAng);
+      tAng = prelimtAng.getDoubleArray(new double[6]);
    }
 
    public double getArea(){
@@ -72,6 +74,12 @@ public class LeftLimelight extends SubsystemBase {
       return tl;
    }
 
+   public double gettAng() {
+      tAng = prelimtAng.getDoubleArray(new double[6]);
+      double actAng = tAng[5];
+      return actAng;
+   }
+
    public void visionMode(){
       NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(3);
       NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(0);
@@ -88,7 +96,6 @@ public class LeftLimelight extends SubsystemBase {
       SmartDashboard.putNumber("Left ty", getY());
       SmartDashboard.putNumber("Left tl", getLong());
       SmartDashboard.putNumber("Left ts", getShort());
-
-
+      SmartDashboard.putNumber("Left tAng", gettAng());
 	}
 }
