@@ -26,9 +26,6 @@ public class TeleopDrive extends Command {
     private DoubleSupplier strafeSup;
     private DoubleSupplier rotationSup;
 
-	//private final Telemetry logger = new Telemetry(MaxSpeed);
-
-
 	/* Setting up bindings for necessary control of the swerve drive platform */
 	//private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
     //    .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -45,8 +42,8 @@ public class TeleopDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		double translationVal = -MathUtil.applyDeadband(translationSup.getAsDouble(), 0.1);
-        double strafeVal = -MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.1);
+		double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), 0.1);
+        double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.1);
         double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), 0.1);
 
 		elevatorPosition = RobotContainer.elevator.getCurrentPosition();
@@ -60,13 +57,11 @@ public class TeleopDrive extends Command {
 			MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond);
 		}
 		
-		drivetrain.applyRequest(() -> 
+		drivetrain.setControl(
 			drive.withVelocityX(translationVal * MaxSpeed) // Drive forward with negative Y (forward)
 			.withVelocityY(strafeVal * MaxSpeed) // Drive left with negative X (left)
 			.withRotationalRate(rotationVal * MaxAngularRate) // Drive counterclockwise with negative X (left)
 		);
-
-		//drivetrain.registerTelemetry(logger::telemeterize);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

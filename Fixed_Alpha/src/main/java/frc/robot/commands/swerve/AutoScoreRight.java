@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 
 public class AutoScoreRight extends Command {    
-    private CommandSwerveDrivetrain drivetrain;    
+    private CommandSwerveDrivetrain drivetrain; 
+    private SwerveRequest.RobotCentric visionDrive;   
 
     private double tx;
     private double ta;
@@ -25,11 +26,9 @@ public class AutoScoreRight extends Command {
     private double targetStrafe = 0;
     private double targetArea = 75; // needs to be tuned
 
-    private final SwerveRequest.RobotCentric drive = new SwerveRequest.RobotCentric()
-            .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
-
-    public AutoScoreRight(CommandSwerveDrivetrain drivetrain) {
+    public AutoScoreRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
+        this.visionDrive = visionDrive;
         addRequirements(drivetrain);
         addRequirements(RobotContainer.leftLimelight);
     }
@@ -54,10 +53,10 @@ public class AutoScoreRight extends Command {
         distanceVal = distanceController.calculate(ta, targetArea);
 
         /* Drive */
-        drivetrain.applyRequest(() ->
-                drive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
+        drivetrain.setControl(
+                visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
                     .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
-                    .withRotationalRate(rotationVal * 10) // Drive counterclockwise with negative X (left)
-            );
+                    .withRotationalRate(rotationVal * 0.75) // Drive counterclockwise with negative X (left)
+        );
     }
 }
