@@ -1,21 +1,21 @@
 [
   {
     "type": "java",
-    "name": "jar (in project 2025_HELP)",
+    "name": "jar (in project 2025_Alpha)",
     "extensions": [
       {
         "name": "Sim GUI",
-        "libName": "/Users/theboyntons/Documents/GitHub/2025_HELP/build/jni/release/libhalsim_gui.dylib",
+        "libName": "/Users/theboyntons/Documents/GitHub/2025_Alpha/build/jni/release/libhalsim_gui.dylib",
         "defaultEnabled": true
       },
       {
         "name": "Use Real DriverStation",
-        "libName": "/Users/theboyntons/Documents/GitHub/2025_HELP/build/jni/release/libhalsim_ds_socket.dylib",
+        "libName": "/Users/theboyntons/Documents/GitHub/2025_Alpha/build/jni/release/libhalsim_ds_socket.dylib",
         "defaultEnabled": false
       }
     ],
     "environment": {},
-    "libraryDir": "/Users/theboyntons/Documents/GitHub/2025_HELP/build/jni/release",
+    "libraryDir": "/Users/theboyntons/Documents/GitHub/2025_Alpha/build/jni/release",
     "mainClassName": "frc.robot.Main"
   }
 ]
