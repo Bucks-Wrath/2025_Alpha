@@ -20,10 +20,10 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
 
     // Set Different Heights
 	private double homePosition = 0;
-	private double maxUpTravelPosition = 100;
+	private double maxUpTravelPosition = 1000;
 
 	public double upPositionLimit = maxUpTravelPosition;
-	public double downPositionLimit = 0;
+	public double downPositionLimit = -1000;
 	private double targetPosition = 0;
     private MotionMagicDutyCycle targetPositionDutyCycle = new MotionMagicDutyCycle(0);
 	private double feedForward = 0.0;

@@ -17,6 +17,7 @@ public class LeftLimelight extends SubsystemBase {
    private double ts;
    private double[] tAng;
    private DoubleArrayEntry tAngArray;
+   private int tv;
 
    NetworkTableEntry prelimtx;
    NetworkTableEntry prelimty;
@@ -24,6 +25,7 @@ public class LeftLimelight extends SubsystemBase {
    NetworkTableEntry prelimtl;
    NetworkTableEntry prelimts;
    NetworkTableEntry prelimtAng;
+   NetworkTableEntry prelimtv;
    NetworkTableEntry prelimCamtran;
    NetworkTable table;
    NetworkTableInstance Inst;
@@ -36,7 +38,8 @@ public class LeftLimelight extends SubsystemBase {
       prelimty = table.getEntry("ty");
       prelimtl = table.getEntry("tlong");
       prelimts = table.getEntry("tshort");
-      prelimtAng = table.getEntry("botpose");
+      prelimtAng = table.getEntry("botpose_targetspace");
+      prelimtv = table.getEntry("tv");
 
    }
 
@@ -76,18 +79,18 @@ public class LeftLimelight extends SubsystemBase {
 
    public double gettAng() {
       tAng = prelimtAng.getDoubleArray(new double[6]);
-      double actAng = tAng[5];
+      double actAng = tAng[4];
       return actAng;
    }
 
    public void visionMode(){
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(3);
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(0);
+      NetworkTableInstance.getDefault().getTable("limelight-left").getEntry("ledMode").setNumber(3);
+      NetworkTableInstance.getDefault().getTable("limelight-left").getEntry("camMode").setNumber(0);
    }
 
    public void cameraMode(){
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(1);
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight-left").getEntry("ledMode").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight-left").getEntry("camMode").setNumber(1);
    }
 
    public void updateDashboard() {

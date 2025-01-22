@@ -22,7 +22,7 @@ public class CoralIntake extends SubsystemBase {
 	public CoralIntake() {
         /** Shooter Motor Configuration */
         /* Motor Inverts and Neutral Mode */
-		IntakeFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+		IntakeFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         IntakeFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         // Set Followers

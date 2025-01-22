@@ -18,7 +18,7 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(1.0, 0, 0.0001); // needs to be tuned
+    private final PIDController angleController = new PIDController(0.15, 0, 0.0001); // needs to be tuned
     private final PIDController strafeController = new PIDController(0.05, 0, 0.0001);
     private final PIDController distanceController = new PIDController(0.1, 0, 0.0001);
 
@@ -58,7 +58,7 @@ public class AutoScoreLeft extends Command {
         drivetrain.setControl(
                 visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
                     .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
-                    .withRotationalRate(rotationVal * 0.75) // Drive counterclockwise with negative X (left)
+                    .withRotationalRate(-rotationVal * 0.75) // Drive counterclockwise with negative X (left)
         );
     }
 }

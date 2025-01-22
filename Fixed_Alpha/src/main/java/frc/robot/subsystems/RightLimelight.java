@@ -36,7 +36,7 @@ public class RightLimelight extends SubsystemBase {
       prelimty = table.getEntry("ty");
       prelimtl = table.getEntry("tlong");
       prelimts = table.getEntry("tshort");
-      prelimtAng = table.getEntry("botpose");
+      prelimtAng = table.getEntry("botpose_targetspace");
    }
 
    public void updateGameState(){
@@ -75,18 +75,18 @@ public class RightLimelight extends SubsystemBase {
 
    public double gettAng() {
       tAng = prelimtAng.getDoubleArray(new double[6]);
-      double actAng = tAng[5];
+      double actAng = tAng[4];
       return actAng;
    }
 
    public void visionMode(){
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(3);
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(0);
+      NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("ledMode").setNumber(3);
+      NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("camMode").setNumber(0);
    }
 
    public void cameraMode(){
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("ledMode").setNumber(1);
-      NetworkTableInstance.getDefault().getTable("limelight-shooter").getEntry("camMode").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("ledMode").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("camMode").setNumber(1);
    }
 
    public void updateDashboard() {

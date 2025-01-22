@@ -22,7 +22,7 @@ public class RunCoralIntake extends Command {
 		//	RobotContainer.coralIntake.setSpeed(0);
 		//}
 		//else {
-    		RobotContainer.coralIntake.setSpeed(0.3);
+    		RobotContainer.coralIntake.setSpeed(0.4);
 		//}
 	}
 
