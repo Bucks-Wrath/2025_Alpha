@@ -4,8 +4,15 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -75,7 +82,18 @@ public class RobotContainer {
     public static Ramp ramp = new Ramp();
     public static Climber climber = new Climber();
 
+    /* Path follower */
+    private SendableChooser<Command> autoChooser = new SendableChooser<>();
+
     public RobotContainer() {
+        registerNamedCommands();
+
+        ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
+        autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
+        autoChooser.addOption("Drive Six Feet", new PathPlannerAuto("Drive Six Feet"));
+
+        autoTab.add("Mode", autoChooser);
+
         coralIntake.setDefaultCommand(new StopCoralIntake());
         algaeIntake.setDefaultCommand(new StopAlgaeIntake());
         drivetrain.setDefaultCommand(
@@ -166,6 +184,12 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+        return autoChooser.getSelected();
+    }
+
+    public void registerNamedCommands() {
+        /* Command registration for PathPlanner */     
+        //NamedCommands.registerCommand("IntakeCommandGroup", new IntakeCommandGroup(swerve));
+
     }
 }

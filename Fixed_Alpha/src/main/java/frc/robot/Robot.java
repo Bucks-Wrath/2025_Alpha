@@ -19,6 +19,7 @@ public class Robot extends TimedRobot {
     RobotContainer.elevator.updateDashboard();
     RobotContainer.wrist.updateDashboard();
     RobotContainer.ramp.updateDashboard();
+    RobotContainer.climber.updateDashboard();
     RobotContainer.leftLimelight.updateDashboard();
     RobotContainer.rightLimelight.updateDashboard();
 
