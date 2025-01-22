@@ -17,6 +17,7 @@ public class RightLimelight extends SubsystemBase {
    private double ts;
    private double[] tAng;
    private DoubleArrayEntry tAngArray;
+   private int tv;
 
    NetworkTableEntry prelimtx;
    NetworkTableEntry prelimty;
@@ -24,6 +25,7 @@ public class RightLimelight extends SubsystemBase {
    NetworkTableEntry prelimtl;
    NetworkTableEntry prelimts;
    NetworkTableEntry prelimtAng;
+   NetworkTableEntry prelimtv;
    NetworkTableEntry prelimCamtran;
    NetworkTable table;
    NetworkTableInstance Inst;
@@ -37,6 +39,7 @@ public class RightLimelight extends SubsystemBase {
       prelimtl = table.getEntry("tlong");
       prelimts = table.getEntry("tshort");
       prelimtAng = table.getEntry("botpose_targetspace");
+      prelimtv = table.getEntry("tv");
    }
 
    public void updateGameState(){
@@ -45,6 +48,7 @@ public class RightLimelight extends SubsystemBase {
       ty = prelimty.getDouble(ty);
       tl = prelimtl.getDouble(tl);
       ts = prelimts.getDouble(ts);
+      tv = (int) prelimtv.getInteger(tv);
       tAng = prelimtAng.getDoubleArray(new double[6]);
    }
 
@@ -79,6 +83,17 @@ public class RightLimelight extends SubsystemBase {
       return actAng;
    }
 
+   public boolean ifValidTag() {
+      tv = (int) prelimtv.getInteger(tv);
+      if (tv == 1) {
+         return true;   
+      }
+      else {
+         return false;
+      }
+      
+   }
+
    public void visionMode(){
       NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("ledMode").setNumber(3);
       NetworkTableInstance.getDefault().getTable("limelight-right").getEntry("camMode").setNumber(0);
@@ -96,6 +111,7 @@ public class RightLimelight extends SubsystemBase {
       SmartDashboard.putNumber("Right tl", getLong());
       SmartDashboard.putNumber("Right ts", getShort());
       SmartDashboard.putNumber("Right tAng", gettAng());
+      SmartDashboard.putBoolean("Right tv", ifValidTag());
 
 	}
 }

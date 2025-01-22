@@ -14,6 +14,7 @@ public class AutoScoreRight extends Command {
     private double tx;
     private double ta;
     private double tAng;
+    private boolean tv;
     private double rotationVal;
     private double strafeVal;
     private double distanceVal;
@@ -37,6 +38,8 @@ public class AutoScoreRight extends Command {
         tx = RobotContainer.leftLimelight.getX();
         ta = RobotContainer.leftLimelight.getArea();
         tAng = RobotContainer.leftLimelight.gettAng();
+        tv = RobotContainer.leftLimelight.ifValidTag();
+
         angleController.setTolerance(0.05);  // needs to be tuned
         strafeController.setTolerance(0.05);
         distanceController.setTolerance(0.05);
@@ -48,17 +51,36 @@ public class AutoScoreRight extends Command {
         tx = RobotContainer.leftLimelight.getX();
         ta = RobotContainer.leftLimelight.getArea();
         tAng = RobotContainer.leftLimelight.gettAng();
- 
+        tv = RobotContainer.leftLimelight.ifValidTag();
+
         // Uses PID to point at target
         rotationVal = angleController.calculate(tAng, targetAngle);
         strafeVal = strafeController.calculate(tx, targetStrafe);
         distanceVal = distanceController.calculate(ta, targetArea);
 
         /* Drive */
-        drivetrain.setControl(
-                visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
-                    .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
-                    .withRotationalRate(-rotationVal * 0.75) // Drive counterclockwise with negative X (left)
-        );
+        if (tv == true){ 
+            drivetrain.setControl(
+                    visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
+                        .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
+                        .withRotationalRate(-rotationVal * 0.75) // Drive counterclockwise with negative X (left)
+            );
+        }
+        
     }
+      // Make this return true when this Command no longer needs to run execute()
+	public boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+        end(); 
+	}
+
 }

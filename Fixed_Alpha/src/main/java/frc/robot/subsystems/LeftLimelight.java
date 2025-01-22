@@ -49,7 +49,9 @@ public class LeftLimelight extends SubsystemBase {
       ty = prelimty.getDouble(ty);
       tl = prelimtl.getDouble(tl);
       ts = prelimts.getDouble(ts);
+      tv = (int) prelimtv.getInteger(tv);
       tAng = prelimtAng.getDoubleArray(new double[6]);
+
    }
 
    public double getArea(){
@@ -76,6 +78,17 @@ public class LeftLimelight extends SubsystemBase {
       tl = prelimtl.getDouble(tl);
       return tl;
    }
+   
+   public boolean ifValidTag() {
+      tv = (int) prelimtv.getInteger(tv);
+      if (tv == 1) {
+         return true;   
+      }
+      else {
+         return false;
+      }
+      
+   }
 
    public double gettAng() {
       tAng = prelimtAng.getDoubleArray(new double[6]);
@@ -100,5 +113,6 @@ public class LeftLimelight extends SubsystemBase {
       SmartDashboard.putNumber("Left tl", getLong());
       SmartDashboard.putNumber("Left ts", getShort());
       SmartDashboard.putNumber("Left tAng", gettAng());
+      SmartDashboard.putBoolean("Left tv", ifValidTag());
 	}
 }
