@@ -51,7 +51,7 @@ public class RobotContainer {
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
-            .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
+            .withDeadband(MaxSpeed * 0.01).withRotationalDeadband(MaxAngularRate * 0.03) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
     private final SwerveRequest.RobotCentric visionDrive = new SwerveRequest.RobotCentric()
@@ -109,7 +109,7 @@ public class RobotContainer {
         // wrist.setDefaultCommand(new JoystickWrist());
         // elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
-        climber.setDefaultCommand(new JoystickClimber());
+        //climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
     }
@@ -130,7 +130,7 @@ public class RobotContainer {
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new StopCoralIntake().withTimeout(0.1).andThen(new SetElevatorPosition(0))));
         operatorController.b().onTrue(new SetElevatorPosition(10.7).alongWith(new SetWristPosition(-9)));
         operatorController.x().onTrue(new SetElevatorPosition(26.3).alongWith(new SetWristPosition(-9)));
-        operatorController.y().onTrue(new SetElevatorPosition(48.5).alongWith(new StopCoralIntake()).withTimeout(0.45).andThen(new SetWristPosition(-15.4)));
+        operatorController.y().onTrue(new SetElevatorPosition(49.5).alongWith(new StopCoralIntake()).withTimeout(0.45).andThen(new SetWristPosition(-15.4)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(50));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));

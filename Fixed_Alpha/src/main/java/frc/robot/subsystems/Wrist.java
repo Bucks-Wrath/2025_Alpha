@@ -41,7 +41,7 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
 		
         /** Wrist Motor Configuration */
         /* Motor Inverts and Neutral Mode */
-		WristFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+		WristFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         WristFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */

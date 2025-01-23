@@ -19,9 +19,9 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(0.15, 0, 0.0001); // needs to be tuned
-    private final PIDController strafeController = new PIDController(0.05, 0, 0.0001);
-    private final PIDController distanceController = new PIDController(0.1, 0, 0.0001);
+    private final PIDController angleController = new PIDController(0.1, 0, 0.0001); // needs to be tuned
+    private final PIDController strafeController = new PIDController(0.01, 0, 0.00001);
+    private final PIDController distanceController = new PIDController(0.04, 0, 0.00001);
 
     private double targetAngle = 0;
     private double targetStrafe = 0;
@@ -40,9 +40,9 @@ public class AutoScoreLeft extends Command {
         tAng = RobotContainer.rightLimelight.gettAng();
         tv =  RobotContainer.rightLimelight.ifValidTag();
 
-        angleController.setTolerance(0.05);  // needs to be tuned
-        strafeController.setTolerance(0.05);
-        distanceController.setTolerance(0.05);
+        angleController.setTolerance(5);  // needs to be tuned
+        strafeController.setTolerance(3);
+        distanceController.setTolerance(3);
     }
     
     @Override

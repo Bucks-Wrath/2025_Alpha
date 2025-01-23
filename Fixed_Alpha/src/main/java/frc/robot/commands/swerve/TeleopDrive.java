@@ -40,9 +40,9 @@ public class TeleopDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), 0.1);
-        double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.1);
-        double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), 0.1);
+		double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), 0.01);
+        double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.01);
+        double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), 0.01);
 
 		elevatorPosition = RobotContainer.elevator.getCurrentPosition();
 
