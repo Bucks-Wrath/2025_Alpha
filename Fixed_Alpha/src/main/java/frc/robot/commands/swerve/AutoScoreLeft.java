@@ -19,13 +19,13 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(0.1, 0, 0.0001); // needs to be tuned
+    private final PIDController angleController = new PIDController(0.1, 0, 0.00001); // needs to be tuned
     private final PIDController strafeController = new PIDController(0.01, 0, 0.00001);
-    private final PIDController distanceController = new PIDController(0.04, 0, 0.00001);
+    private final PIDController distanceController = new PIDController(0.015, 0, 0.001);
 
     private double targetAngle = 0;
-    private double targetStrafe = 0;
-    private double targetArea = 8; // needs to be tuned
+    private double targetStrafe = -13.5;
+    private double targetArea = 23.9; // needs to be tuned
 
     public AutoScoreLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
@@ -40,9 +40,9 @@ public class AutoScoreLeft extends Command {
         tAng = RobotContainer.rightLimelight.gettAng();
         tv =  RobotContainer.rightLimelight.ifValidTag();
 
-        angleController.setTolerance(5);  // needs to be tuned
-        strafeController.setTolerance(3);
-        distanceController.setTolerance(3);
+        angleController.setTolerance(2);  // needs to be tuned
+        strafeController.setTolerance(0.25);
+        distanceController.setTolerance(0.25);
     }
     
     @Override
@@ -57,6 +57,13 @@ public class AutoScoreLeft extends Command {
         rotationVal = angleController.calculate(tAng, targetAngle);
         strafeVal = strafeController.calculate(tx, targetStrafe);
         distanceVal = distanceController.calculate(ta, targetArea);
+
+        if(distanceController.atSetpoint())
+            distanceVal = 0;
+        if (strafeController.atSetpoint())
+            strafeVal = 0;
+        if (angleController.atSetpoint())
+            rotationVal = 0;
 
         /* Drive */
         if(tv == true) {
