@@ -24,6 +24,7 @@ import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
 import frc.robot.commands.coral.RunCoralIntake;
 import frc.robot.commands.coral.ShootCoralIntake;
+import frc.robot.commands.coral.ShootCoralIntakeTrough;
 import frc.robot.commands.coral.StopCoralIntake;
 import frc.robot.commands.elevator.JoystickElevator;
 import frc.robot.commands.elevator.SetElevatorPosition;
@@ -117,7 +118,8 @@ public class RobotContainer {
     private void configureBindings() { 
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
-        driverController.rightBumper().whileTrue(new ShootCoralIntake().withTimeout(0.2).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake())));
+        driverController.rightBumper().whileTrue(new ShootCoralIntake().withTimeout(0.2).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()))); 
+        driverController.x().whileTrue(new ShootCoralIntakeTrough().withTimeout(0.2).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntakeTrough())));
         driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2)));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
@@ -131,6 +133,7 @@ public class RobotContainer {
         operatorController.b().onTrue(new SetElevatorPosition(10.7).alongWith(new SetWristPosition(-9)));
         operatorController.x().onTrue(new SetElevatorPosition(26.3).alongWith(new SetWristPosition(-9)));
         operatorController.y().onTrue(new SetElevatorPosition(49.5).alongWith(new StopCoralIntake()).withTimeout(0.45).andThen(new SetWristPosition(-15.4)));
+        operatorController.rightTrigger().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(-9)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(50));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));

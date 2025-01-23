@@ -14,9 +14,9 @@ import frc.robot.DeviceIds;
 
 public class CoralIntake extends SubsystemBase {
 
-	private TalonFX IntakeFalcon = new TalonFX(DeviceIds.CoralIntake.LeadMotorId, "canivore");
+	private TalonFX IntakeFalconOne = new TalonFX(DeviceIds.CoralIntake.LeadMotorId, "canivore");
     private TalonFXConfiguration IntakeFXConfig = new TalonFXConfiguration();
-    private TalonFX IntakeFalconFollower = new TalonFX(DeviceIds.CoralIntake.FollowerMotorId, "canivore");
+    private TalonFX IntakeFalconTwo = new TalonFX(DeviceIds.CoralIntake.FollowerMotorId, "canivore");
     private CANrange IntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId, "canivore"); 
 
 	public CoralIntake() {
@@ -24,9 +24,6 @@ public class CoralIntake extends SubsystemBase {
         /* Motor Inverts and Neutral Mode */
 		IntakeFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         IntakeFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-
-        // Set Followers
-		IntakeFalconFollower.setControl(new Follower(IntakeFalcon.getDeviceID(), true));
 
         /* Current Limiting */
         //IntakeFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
@@ -50,30 +47,32 @@ public class CoralIntake extends SubsystemBase {
         IntakeFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.1;
 
         // Config Motor
-        IntakeFalcon.getConfigurator().apply(IntakeFXConfig);
-        IntakeFalcon.getConfigurator().setPosition(0.0);
-        IntakeFalconFollower.getConfigurator().setPosition(0.0);
+        IntakeFalconOne.getConfigurator().apply(IntakeFXConfig);
+        IntakeFalconTwo.getConfigurator().apply(IntakeFXConfig);
+        IntakeFalconOne.getConfigurator().setPosition(0.0);
+        IntakeFalconTwo.getConfigurator().setPosition(0.0);
 	}
     public double getRange() {
         return IntakeRangeSensor.getDistance().getValueAsDouble();
 
     }
-	public void setSpeed(double speed) {
-        this.IntakeFalcon.set(speed);
+	public void setSpeed(double motorOneSpeed, double motorTwoSpeed) {
+        this.IntakeFalconOne.set(motorOneSpeed);
+        this.IntakeFalconTwo.set(motorTwoSpeed);
+	}
+   
+	public double getCurrentDrawOne() {
+		return this.IntakeFalconOne.getSupplyCurrent().getValueAsDouble();
 	}
 
-	public double getCurrentDrawLeader() {
-		return this.IntakeFalcon.getSupplyCurrent().getValueAsDouble();
-	}
-
-    public double getCurrentDrawFollower() {
-		return this.IntakeFalconFollower.getSupplyCurrent().getValueAsDouble();
+    public double getCurrentDrawTwo() {
+		return this.IntakeFalconTwo.getSupplyCurrent().getValueAsDouble();
 	}
 
 	public void resetShooterEncoder() {
         try {
-			IntakeFalcon.getConfigurator().setPosition(0.0);
-            IntakeFalconFollower.getConfigurator().setPosition(0.0);
+			IntakeFalconOne.getConfigurator().setPosition(0.0);
+            IntakeFalconTwo.getConfigurator().setPosition(0.0);
         }
         catch (Exception e) {
             DriverStation.reportError("Coral.resetIntakeEncoders exception.  You're Screwed! : " + e.toString(), false);
@@ -81,8 +80,8 @@ public class CoralIntake extends SubsystemBase {
 	}
 
 	public void updateDashboard() {
-		SmartDashboard.putNumber("Intake Current", this.getCurrentDrawLeader());
-        SmartDashboard.putNumber("Intake Follower Current", this.getCurrentDrawFollower());
+		SmartDashboard.putNumber("Intake Coral One Current", this.getCurrentDrawOne());
+        SmartDashboard.putNumber("Intake Coral Two Current", this.getCurrentDrawTwo());
         SmartDashboard.putNumber("Intake Sensor Range", this.getRange());
 
 	}

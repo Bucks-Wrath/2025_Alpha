@@ -15,7 +15,7 @@ public class StopCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.coralIntake.setSpeed(0.0);
+        RobotContainer.coralIntake.setSpeed(0.0, 0.0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

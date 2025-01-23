@@ -22,7 +22,7 @@ public class ReverseCoralIntake extends Command {
 		//	RobotContainer.coralIntake.setSpeed(0);
 		//}
 		//else {
-    		RobotContainer.coralIntake.setSpeed(-0.1);
+    		RobotContainer.coralIntake.setSpeed(-0.1, -0.1);
 		//}
 	}
 
@@ -34,7 +34,7 @@ public class ReverseCoralIntake extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		RobotContainer.coralIntake.setSpeed(0);
+		RobotContainer.coralIntake.setSpeed(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same
