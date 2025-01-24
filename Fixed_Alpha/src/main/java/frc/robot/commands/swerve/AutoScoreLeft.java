@@ -47,6 +47,10 @@ public class AutoScoreLeft extends Command {
         ta = limelight.getArea();
         tAng = limelight.gettAng();
         tv =  limelight.ifValidTag();
+
+        targetStrafe = 14*(Math.pow(0.9, ta)) - 13;
+        limelight.strafeController.setSetpoint(targetStrafe);
+
          
         // Uses PID to point at target
         rotationVal = limelight.angleController.calculate(tAng, targetAngle);
