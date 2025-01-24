@@ -32,6 +32,7 @@ import frc.robot.commands.ramp.JoystickRamp;
 import frc.robot.commands.ramp.SetRampPosition;
 import frc.robot.commands.wrist.JoystickWrist;
 import frc.robot.commands.wrist.SetWristPosition;
+import frc.robot.dashboard.AutoScoreLeftDashboard;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.CoralIntake;
@@ -113,6 +114,8 @@ public class RobotContainer {
         //climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
+
+        AutoScoreLeftDashboard.AddDashboard();
     }
 
     private void configureBindings() { 
