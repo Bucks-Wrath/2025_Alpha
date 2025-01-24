@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.DoubleArrayEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -30,6 +31,10 @@ public class RightLimelight extends SubsystemBase {
    NetworkTable table;
    NetworkTableInstance Inst;
 
+   public final PIDController angleController = new PIDController(0.1, 0, 0.00001); // needs to be tuned
+   public final PIDController strafeController = new PIDController(0.01, 0, 0.00001);
+   public final PIDController distanceController = new PIDController(0.015, 0, 0.001);
+
    public RightLimelight() {
       Inst = NetworkTableInstance.getDefault();
       table = Inst.getTable(DeviceIds.Limelight.RightTableName);
@@ -40,6 +45,10 @@ public class RightLimelight extends SubsystemBase {
       prelimts = table.getEntry("tshort");
       prelimtAng = table.getEntry("botpose_targetspace");
       prelimtv = table.getEntry("tv");
+
+      angleController.setTolerance(2);  // needs to be tuned
+      strafeController.setTolerance(0.25);
+      distanceController.setTolerance(0.25);
    }
 
    public void updateGameState(){

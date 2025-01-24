@@ -2,10 +2,10 @@ package frc.robot.commands.swerve;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import com.ctre.phoenix6.swerve.SwerveRequest;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.RightLimelight;
 
+import com.ctre.phoenix6.swerve.SwerveRequest;
+import edu.wpi.first.wpilibj2.command.Command;
 
 public class AutoScoreLeft extends Command {    
     private CommandSwerveDrivetrain drivetrain; 
@@ -19,50 +19,45 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(0.1, 0, 0.00001); // needs to be tuned
-    private final PIDController strafeController = new PIDController(0.01, 0, 0.00001);
-    private final PIDController distanceController = new PIDController(0.015, 0, 0.001);
-
     private double targetAngle = 0;
     private double targetStrafe = -13.5;
     private double targetArea = 23.9; // needs to be tuned
 
+    private RightLimelight limelight; 
+
     public AutoScoreLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
         this.visionDrive = visionDrive;
+        this.limelight = RobotContainer.rightLimelight;
         addRequirements(drivetrain);
         addRequirements(RobotContainer.rightLimelight);
     }
 
     public void initialize() {
-        tx = RobotContainer.rightLimelight.getX();
-        ta = RobotContainer.rightLimelight.getArea();
-        tAng = RobotContainer.rightLimelight.gettAng();
-        tv =  RobotContainer.rightLimelight.ifValidTag();
-
-        angleController.setTolerance(2);  // needs to be tuned
-        strafeController.setTolerance(0.25);
-        distanceController.setTolerance(0.25);
+        tx = limelight.getX();
+        ta = limelight.getArea();
+        tAng = limelight.gettAng();
+        tv =  limelight.ifValidTag();
     }
     
     @Override
     public void execute() {
         // find target location
-        tx = RobotContainer.rightLimelight.getX();
-        ta = RobotContainer.rightLimelight.getArea();
-        tAng = RobotContainer.rightLimelight.gettAng();
-        tv =  RobotContainer.rightLimelight.ifValidTag();
+        tx = limelight.getX();
+        ta = limelight.getArea();
+        tAng = limelight.gettAng();
+        tv =  limelight.ifValidTag();
          
         // Uses PID to point at target
-        rotationVal = angleController.calculate(tAng, targetAngle);
-        strafeVal = strafeController.calculate(tx, targetStrafe);
-        distanceVal = distanceController.calculate(ta, targetArea);
+        rotationVal = limelight.angleController.calculate(tAng, targetAngle);
+        strafeVal = limelight.strafeController.calculate(tx, targetStrafe);
+        distanceVal = limelight.distanceController.calculate(ta, targetArea);
 
-        if(distanceController.atSetpoint())
+        if(limelight.distanceController.atSetpoint())
             distanceVal = 0;
-        if (strafeController.atSetpoint())
+        if (limelight.strafeController.atSetpoint())
             strafeVal = 0;
-        if (angleController.atSetpoint())
+        if (limelight.angleController.atSetpoint())
             rotationVal = 0;
 
         /* Drive */
