@@ -1,6 +1,7 @@
 package frc.robot.commands.swerve;
 
 import frc.robot.RobotContainer;
+import frc.robot.config.AutoScoreLeftConfig;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.RightLimelight;
 
@@ -14,14 +15,13 @@ public class AutoScoreLeft extends Command {
     private double tx;
     private double ta;
     private double tAng;
-    private boolean tv;
     private double rotationVal;
     private double strafeVal;
     private double distanceVal;
 
-    private double targetAngle = 0;
-    private double targetStrafe = -13.5;
-    private double targetArea = 23.9; // needs to be tuned
+    private double targetAngle = AutoScoreLeftConfig.DistanceTarget;
+    private double targetStrafe = AutoScoreLeftConfig.CalculateStrafeTarget(0);
+    private double targetArea = AutoScoreLeftConfig.DistanceTarget; // needs to be tuned
 
     private RightLimelight limelight; 
 
@@ -34,23 +34,23 @@ public class AutoScoreLeft extends Command {
     }
 
     public void initialize() {
-        tx = limelight.getX();
-        ta = limelight.getArea();
-        tAng = limelight.gettAng();
-        tv =  limelight.ifValidTag();
+        limelight.strafeController.setSetpoint(targetStrafe);
+        limelight.distanceController.setSetpoint(targetArea);
+        limelight.angleController.setSetpoint(targetAngle);
     }
     
     @Override
     public void execute() {
+        // If we don't see a target, don't do anything
+        if (!limelight.ifValidTag()) return;
+
         // find target location
         tx = limelight.getX();
         ta = limelight.getArea();
         tAng = limelight.gettAng();
-        tv =  limelight.ifValidTag();
 
-        targetStrafe = 14*(Math.pow(0.9, ta)) - 13;
-        limelight.strafeController.setSetpoint(targetStrafe);
-
+        // calculate strafe target based on distance from tag
+        targetStrafe = AutoScoreLeftConfig.CalculateStrafeTarget(ta);
          
         // Uses PID to point at target
         rotationVal = limelight.angleController.calculate(tAng, targetAngle);
@@ -65,19 +65,19 @@ public class AutoScoreLeft extends Command {
             rotationVal = 0;
 
         /* Drive */
-        if(tv == true) {
-            drivetrain.setControl(
-                    visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
+        drivetrain.setControl(
+                visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
                         .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
                         .withRotationalRate(-rotationVal * 0.75) // Drive counterclockwise with negative X (left)
-
-            );
-        }
+        );
     }
 
     // Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-		return false;
+        // If all 3 PIDs are at their target, we're done
+		return limelight.distanceController.atSetpoint() 
+            && limelight.strafeController.atSetpoint() 
+            && limelight.angleController.atSetpoint();
 	}
 
 	// Called once after isFinished returns true

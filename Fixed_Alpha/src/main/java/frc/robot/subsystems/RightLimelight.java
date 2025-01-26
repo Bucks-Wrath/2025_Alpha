@@ -1,13 +1,13 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.networktables.DoubleArrayEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIds;
+import frc.robot.config.AutoScoreLeftConfig;
 
 public class RightLimelight extends SubsystemBase {
 
@@ -17,7 +17,6 @@ public class RightLimelight extends SubsystemBase {
    private double tl;
    private double ts;
    private double[] tAng;
-   private DoubleArrayEntry tAngArray;
    private int tv;
 
    NetworkTableEntry prelimtx;
@@ -31,9 +30,9 @@ public class RightLimelight extends SubsystemBase {
    NetworkTable table;
    NetworkTableInstance Inst;
 
-   public final PIDController angleController = new PIDController(0.1, 0, 0.00001); // needs to be tuned
-   public final PIDController strafeController = new PIDController(0.01, 0, 0.00001);
-   public final PIDController distanceController = new PIDController(0.015, 0, 0.001);
+   public final PIDController angleController = new PIDController(AutoScoreLeftConfig.AnglePID.P, AutoScoreLeftConfig.AnglePID.I,AutoScoreLeftConfig.AnglePID.D); // needs to be tuned
+   public final PIDController strafeController = new PIDController(AutoScoreLeftConfig.StrafePID.P,AutoScoreLeftConfig.StrafePID.I,AutoScoreLeftConfig.StrafePID.D);
+   public final PIDController distanceController = new PIDController(AutoScoreLeftConfig.DistancePID.P, AutoScoreLeftConfig.DistancePID.I,AutoScoreLeftConfig.DistancePID.D);
 
    public RightLimelight() {
       Inst = NetworkTableInstance.getDefault();
@@ -46,9 +45,9 @@ public class RightLimelight extends SubsystemBase {
       prelimtAng = table.getEntry("botpose_targetspace");
       prelimtv = table.getEntry("tv");
 
-      angleController.setTolerance(2);  // needs to be tuned
-      strafeController.setTolerance(0.25);
-      distanceController.setTolerance(0.25);
+      angleController.setTolerance(AutoScoreLeftConfig.AngleTolerance);  // needs to be tuned
+      strafeController.setTolerance(AutoScoreLeftConfig.StrafeTolerance);
+      distanceController.setTolerance(AutoScoreLeftConfig.DistanceTolerance);
    }
 
    public void updateGameState(){
