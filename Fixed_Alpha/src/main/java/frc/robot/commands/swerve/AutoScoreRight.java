@@ -1,11 +1,12 @@
 package frc.robot.commands.swerve;
 
 import frc.robot.RobotContainer;
+import frc.robot.config.AutoScoreRightConfig;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import com.ctre.phoenix6.swerve.SwerveRequest;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.LeftLimelight;
 
+import com.ctre.phoenix6.swerve.SwerveRequest;
+import edu.wpi.first.wpilibj2.command.Command;
 
 public class AutoScoreRight extends Command {    
     private CommandSwerveDrivetrain drivetrain; 
@@ -14,64 +15,68 @@ public class AutoScoreRight extends Command {
     private double tx;
     private double ta;
     private double tAng;
-    private boolean tv;
     private double rotationVal;
     private double strafeVal;
     private double distanceVal;
 
-    private final PIDController angleController = new PIDController(0.15, 0, 0.0001); // needs to be tuned
-    private final PIDController strafeController = new PIDController(0.05, 0, 0.0001);
-    private final PIDController distanceController = new PIDController(0.1, 0, 0.0001);
+    private double targetAngle = AutoScoreRightConfig.AngleTarget; //0;
+    private double targetStrafe = AutoScoreRightConfig.CalculateStrafeTarget(0); //0;
+    private double targetArea = AutoScoreRightConfig.DistanceTarget; //8; // needs to be tuned
 
-    private double targetAngle = 0;
-    private double targetStrafe = 0;
-    private double targetArea = 8; // needs to be tuned
-
+    LeftLimelight limelight;
     public AutoScoreRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
         this.drivetrain = drivetrain;
         this.visionDrive = visionDrive;
+        this.limelight = RobotContainer.leftLimelight;
         addRequirements(drivetrain);
         addRequirements(RobotContainer.leftLimelight);
     }
 
     public void initialize() {
-        tx = RobotContainer.leftLimelight.getX();
-        ta = RobotContainer.leftLimelight.getArea();
-        tAng = RobotContainer.leftLimelight.gettAng();
-        tv = RobotContainer.leftLimelight.ifValidTag();
-
-        angleController.setTolerance(0.05);  // needs to be tuned
-        strafeController.setTolerance(0.05);
-        distanceController.setTolerance(0.05);
+        limelight.strafeController.setSetpoint(targetStrafe);
+        limelight.distanceController.setSetpoint(targetArea);
+        limelight.angleController.setSetpoint(targetAngle);
     }
     
     @Override
     public void execute() {
+        if(!limelight.ifValidTag()) return; 
+
         // find target location
-        tx = RobotContainer.leftLimelight.getX();
-        ta = RobotContainer.leftLimelight.getArea();
-        tAng = RobotContainer.leftLimelight.gettAng();
-        tv = RobotContainer.leftLimelight.ifValidTag();
+        tx = limelight.getX();
+        ta = limelight.getArea();
+        tAng = limelight.gettAng();
+
+        // calculate strafe target based on distance from tag
+        targetStrafe = AutoScoreRightConfig.CalculateStrafeTarget(ta);
 
         // Uses PID to point at target
-        rotationVal = angleController.calculate(tAng, targetAngle);
-        strafeVal = strafeController.calculate(tx, targetStrafe);
-        distanceVal = distanceController.calculate(ta, targetArea);
+        rotationVal = limelight.angleController.calculate(tAng, targetAngle);
+        strafeVal = limelight.strafeController.calculate(tx, targetStrafe);
+        distanceVal = limelight.distanceController.calculate(ta, targetArea);
+
+        if (limelight.distanceController.atSetpoint())
+            distanceVal = 0;
+        if (limelight.strafeController.atSetpoint())
+            strafeVal = 0;
+        if (limelight.angleController.atSetpoint())
+            rotationVal = 0;
 
         /* Drive */
-        if (tv == true){ 
             drivetrain.setControl(
                     visionDrive.withVelocityX(distanceVal * 5.2) // Drive forward with negative Y (forward)
                         .withVelocityY(strafeVal * 5.2) // Drive left with negative X (left)
                         .withRotationalRate(-rotationVal * 0.75) // Drive counterclockwise with negative X (left)
             );
-        }
         
     }
       // Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-		return false;
-	}
+        // If all 3 PIDs are at their target, we're done
+		return limelight.distanceController.atSetpoint() 
+            && limelight.strafeController.atSetpoint() 
+            && limelight.angleController.atSetpoint();
+    }
 
 	// Called once after isFinished returns true
 	protected void end() {

@@ -33,6 +33,7 @@ import frc.robot.commands.ramp.SetRampPosition;
 import frc.robot.commands.wrist.JoystickWrist;
 import frc.robot.commands.wrist.SetWristPosition;
 import frc.robot.dashboard.AutoScoreLeftDashboard;
+import frc.robot.dashboard.AutoScoreRightDashboard;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.CoralIntake;
@@ -116,6 +117,7 @@ public class RobotContainer {
         configureBindings();
 
         AutoScoreLeftDashboard.AddDashboard();
+        AutoScoreRightDashboard.AddDashboard();
     }
 
     private void configureBindings() { 

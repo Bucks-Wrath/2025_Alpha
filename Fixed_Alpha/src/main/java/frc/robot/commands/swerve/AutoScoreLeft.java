@@ -19,7 +19,7 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private double targetAngle = AutoScoreLeftConfig.DistanceTarget;
+    private double targetAngle = AutoScoreLeftConfig.AngleTarget;
     private double targetStrafe = AutoScoreLeftConfig.CalculateStrafeTarget(0);
     private double targetArea = AutoScoreLeftConfig.DistanceTarget; // needs to be tuned
 

@@ -2,7 +2,6 @@ package frc.robot.dashboard;
 import edu.wpi.first.networktables.DoubleEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
 import frc.robot.config.AutoScoreLeftConfig;
@@ -29,9 +28,9 @@ public class AutoScoreLeftDashboard {
         SmartDashboard.putData("AutoScoreLeft Strafe PID",RobotContainer.rightLimelight.strafeController);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreLeftConfig.StrafeTolerance);
         //strafeTarget = A * (B ^ target_area) + C
-        StrafeCalcAEntry = addEntryWithValue("Strafe TargetCalc A", AutoScoreLeftConfig.StrafeTolerance);
-        StrafeCalcBEntry = addEntryWithValue("Strafe TargetCalc B", AutoScoreLeftConfig.StrafeTolerance);
-        StrafeCalcCEntry = addEntryWithValue("Strafe TargetCalc C", AutoScoreLeftConfig.StrafeTolerance);
+        StrafeCalcAEntry = addEntryWithValue("Strafe TargetCalc A", AutoScoreLeftConfig.StrafeFunctionAValue);
+        StrafeCalcBEntry = addEntryWithValue("Strafe TargetCalc B", AutoScoreLeftConfig.StrafeFunctionBValue);
+        StrafeCalcCEntry = addEntryWithValue("Strafe TargetCalc C", AutoScoreLeftConfig.StrafeFunctionCValue);
 
         //ANGLE CONFIG
         SmartDashboard.putData("AutoScoreLeft Angle PID", RobotContainer.rightLimelight.angleController);

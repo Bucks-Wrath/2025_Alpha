@@ -1,12 +1,13 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.DoubleArrayEntry;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIds;
+import frc.robot.config.AutoScoreRightConfig;
 
 public class LeftLimelight extends SubsystemBase {
 
@@ -16,7 +17,6 @@ public class LeftLimelight extends SubsystemBase {
    private double tl;
    private double ts;
    private double[] tAng;
-   private DoubleArrayEntry tAngArray;
    private int tv;
 
    NetworkTableEntry prelimtx;
@@ -30,6 +30,10 @@ public class LeftLimelight extends SubsystemBase {
    NetworkTable table;
    NetworkTableInstance Inst;
 
+   public final PIDController angleController = new PIDController(AutoScoreRightConfig.AnglePID.P, AutoScoreRightConfig.AnglePID.I,AutoScoreRightConfig.AnglePID.D); // needs to be tuned
+   public final PIDController strafeController = new PIDController(AutoScoreRightConfig.StrafePID.P,AutoScoreRightConfig.StrafePID.I,AutoScoreRightConfig.StrafePID.D);
+   public final PIDController distanceController = new PIDController(AutoScoreRightConfig.DistancePID.P, AutoScoreRightConfig.DistancePID.I,AutoScoreRightConfig.DistancePID.D);
+
    public LeftLimelight() {
       Inst = NetworkTableInstance.getDefault();
       table = Inst.getTable(DeviceIds.Limelight.LeftTableName);
@@ -41,6 +45,9 @@ public class LeftLimelight extends SubsystemBase {
       prelimtAng = table.getEntry("botpose_targetspace");
       prelimtv = table.getEntry("tv");
 
+      angleController.setTolerance(AutoScoreRightConfig.AngleTolerance);  // needs to be tuned
+      strafeController.setTolerance(AutoScoreRightConfig.StrafeTolerance);
+      distanceController.setTolerance(AutoScoreRightConfig.DistanceTolerance);
    }
 
    public void updateGameState(){
