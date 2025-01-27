@@ -112,7 +112,7 @@ public class RobotContainer {
         // wrist.setDefaultCommand(new JoystickWrist());
         // elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
-        //climber.setDefaultCommand(new JoystickClimber());
+        // climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
 
