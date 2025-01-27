@@ -25,7 +25,7 @@ public class AutoScoreRightDashboard {
 
 
         //STRAFE CONFIG
-        SmartDashboard.putData("AutoScoreRight Strafe PID",RobotContainer.rightLimelight.strafeController);
+        SmartDashboard.putData("AutoScoreRight Strafe PID",RobotContainer.leftLimelight.strafeController);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreRightConfig.StrafeTolerance);
         //strafeTarget = A * (B ^ target_area) + C
         StrafeCalcAEntry = addEntryWithValue("Strafe TargetCalc A", AutoScoreRightConfig.StrafeFunctionAValue);
@@ -33,12 +33,12 @@ public class AutoScoreRightDashboard {
         StrafeCalcCEntry = addEntryWithValue("Strafe TargetCalc C", AutoScoreRightConfig.StrafeFunctionCValue);
 
         //ANGLE CONFIG
-        SmartDashboard.putData("AutoScoreRight Angle PID", RobotContainer.rightLimelight.angleController);
+        SmartDashboard.putData("AutoScoreRight Angle PID", RobotContainer.leftLimelight.angleController);
         AngleTargetEntry = addEntryWithValue("Angle Target",AutoScoreRightConfig.AngleTarget);
         AngleToleranceEntry = addEntryWithValue("Angle Tolerance", AutoScoreRightConfig.AngleTolerance);
 
         //DISTANCE CONFIG
-        SmartDashboard.putData("AutoScoreRight Distance PID",RobotContainer.rightLimelight.distanceController);
+        SmartDashboard.putData("AutoScoreRight Distance PID",RobotContainer.leftLimelight.distanceController);
         DistanceTargetEntry = addEntryWithValue("Distance Target", AutoScoreRightConfig.DistanceTarget);
         DistanceToleranceEntry = addEntryWithValue("Distance Tolerance", AutoScoreRightConfig.DistanceTolerance);
     }
