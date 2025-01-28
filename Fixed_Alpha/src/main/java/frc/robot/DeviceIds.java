@@ -6,6 +6,7 @@ public final class DeviceIds {
         public static final int LeadMotorId = 17;
         public static final int FollowerMotorId = 18;
         public static final int CANrangeId = 26;
+        public static final int CANrangeId2 = 27;
     }
     public static final class AlgaeIntake {
         public static final int MotorId = 19;

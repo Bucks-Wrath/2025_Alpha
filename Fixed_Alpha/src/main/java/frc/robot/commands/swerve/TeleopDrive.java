@@ -40,15 +40,15 @@ public class TeleopDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), 0.01);
-        double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.01);
-        double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), 0.01);
+		double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), 0.05);
+        double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), 0.05);
+        double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), 0.05);
 
 		elevatorPosition = RobotContainer.elevator.getCurrentPosition();
 
 		if (elevatorPosition > 10) {  
-			MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond) * 0.2;
-			MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond) * 0.2; 
+			MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond) * 1;
+			MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond) * 1; 
 		}
 		else {
 			MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond);

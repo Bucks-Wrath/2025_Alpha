@@ -29,7 +29,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
 	private double feedForward = 0.0;
 	public double shooterAddValue;
 
-	private final static double onTargetThreshold = 0.1;
+	private final static double onTargetThreshold = 0.05;
 		
 	private TalonFX RampFalcon = new TalonFX(DeviceIds.Ramp.MotorId, "rio");
 
@@ -54,9 +54,9 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
         RampFXConfig.CurrentLimits.StatorCurrentLimit = 35;
 
         /* PID Config */
-        RampFXConfig.Slot0.kP = 0.2;
+        RampFXConfig.Slot0.kP = 1;
         RampFXConfig.Slot0.kI = 0;
-        RampFXConfig.Slot0.kD = 0.01;
+        RampFXConfig.Slot0.kD = 0;
 
         /* Open and Closed Loop Ramping */
         RampFXConfig.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.25;
@@ -66,8 +66,8 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
         RampFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0;
 
         //Config Acceleration and Velocity
-        RampFXConfig.MotionMagic.withMotionMagicAcceleration(300);
-        RampFXConfig.MotionMagic.withMotionMagicCruiseVelocity(300);
+        RampFXConfig.MotionMagic.withMotionMagicAcceleration(10);
+        RampFXConfig.MotionMagic.withMotionMagicCruiseVelocity(10);
 
         // Config Motor
         RampFalcon.getConfigurator().apply(RampFXConfig);

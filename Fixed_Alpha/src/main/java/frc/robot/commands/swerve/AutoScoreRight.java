@@ -19,9 +19,9 @@ public class AutoScoreRight extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private double targetAngle = AutoScoreRightConfig.AngleTarget; //0;
-    private double targetStrafe = AutoScoreRightConfig.CalculateStrafeTarget(0); //0;
-    private double targetArea = AutoScoreRightConfig.DistanceTarget; //8; // needs to be tuned
+    private double targetAngle = AutoScoreRightConfig.AngleTarget;
+    private double targetStrafe = AutoScoreRightConfig.StrafeTarget;
+    private double targetArea = AutoScoreRightConfig.DistanceTarget;
 
     LeftLimelight limelight;
     public AutoScoreRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
@@ -43,17 +43,14 @@ public class AutoScoreRight extends Command {
         if(!limelight.ifValidTag()) return; 
 
         // find target location
-        tx = limelight.getX();
-        ta = limelight.getArea();
+        tx = limelight.gettx();
+        ta = limelight.gettz();
         tAng = limelight.gettAng();
 
-        // calculate strafe target based on distance from tag
-        targetStrafe = AutoScoreRightConfig.CalculateStrafeTarget(ta);
-
         // Uses PID to point at target
-        rotationVal = limelight.angleController.calculate(tAng, targetAngle);
+        rotationVal = -limelight.angleController.calculate(tAng, targetAngle);
         strafeVal = limelight.strafeController.calculate(tx, targetStrafe);
-        distanceVal = limelight.distanceController.calculate(ta, targetArea);
+        distanceVal = -limelight.distanceController.calculate(ta, targetArea);
 
         if (limelight.distanceController.atSetpoint())
             distanceVal = 0;

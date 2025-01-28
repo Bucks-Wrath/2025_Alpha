@@ -40,9 +40,7 @@ public class RightLimelight extends SubsystemBase {
       prelimta = table.getEntry("ta");
       prelimtx = table.getEntry("tx");
       prelimty = table.getEntry("ty");
-      prelimtl = table.getEntry("tlong");
-      prelimts = table.getEntry("tshort");
-      prelimtAng = table.getEntry("botpose_targetspace");
+      prelimtAng = table.getEntry("targetpose_robotspace");
       prelimtv = table.getEntry("tv");
 
       angleController.setTolerance(AutoScoreLeftConfig.AngleTolerance);  // needs to be tuned
@@ -54,8 +52,6 @@ public class RightLimelight extends SubsystemBase {
       ta = prelimta.getDouble(ta);
       tx = prelimtx.getDouble(0);
       ty = prelimty.getDouble(ty);
-      tl = prelimtl.getDouble(tl);
-      ts = prelimts.getDouble(ts);
       tv = (int) prelimtv.getInteger(tv);
       tAng = prelimtAng.getDoubleArray(new double[6]);
    }
@@ -75,20 +71,28 @@ public class RightLimelight extends SubsystemBase {
       return ty;
    }
 
-   public double getShort() {
-      ts = prelimts.getDouble(ts);
-      return ts;
-   }
-
-   public double getLong() {
-      tl = prelimtl.getDouble(tl);
-      return tl;
-   }
-
    public double gettAng() {
       tAng = prelimtAng.getDoubleArray(new double[6]);
       double actAng = tAng[4];
       return actAng;
+   }
+
+   public double gettx() {
+      tAng = prelimtAng.getDoubleArray(new double[6]);
+      double actX = tAng[0];
+      return actX;
+   }
+
+   public double getty() {
+      tAng = prelimtAng.getDoubleArray(new double[6]);
+      double actY = tAng[1];
+      return actY;
+   }
+
+   public double gettz() {
+      tAng = prelimtAng.getDoubleArray(new double[6]);
+      double actZ = tAng[2];
+      return actZ;
    }
 
    public boolean ifValidTag() {
@@ -116,9 +120,10 @@ public class RightLimelight extends SubsystemBase {
 	   SmartDashboard.putNumber("Right ta", getArea());
       SmartDashboard.putNumber("Right tx", getX());
       SmartDashboard.putNumber("Right ty", getY());
-      SmartDashboard.putNumber("Right tl", getLong());
-      SmartDashboard.putNumber("Right ts", getShort());
       SmartDashboard.putNumber("Right tAng", gettAng());
+      SmartDashboard.putNumber("Right tX", gettx());
+      SmartDashboard.putNumber("Right tY", getty());
+      SmartDashboard.putNumber("Right tZ", gettz());
       SmartDashboard.putBoolean("Right tv", ifValidTag());
 
 	}

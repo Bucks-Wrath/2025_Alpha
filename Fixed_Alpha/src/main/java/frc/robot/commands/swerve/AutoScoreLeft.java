@@ -20,8 +20,8 @@ public class AutoScoreLeft extends Command {
     private double distanceVal;
 
     private double targetAngle = AutoScoreLeftConfig.AngleTarget;
-    private double targetStrafe = AutoScoreLeftConfig.CalculateStrafeTarget(0);
-    private double targetArea = AutoScoreLeftConfig.DistanceTarget; // needs to be tuned
+    private double targetStrafe = AutoScoreLeftConfig.StrafeTarget;
+    private double targetArea = AutoScoreLeftConfig.DistanceTarget;
 
     private RightLimelight limelight; 
 
@@ -45,17 +45,14 @@ public class AutoScoreLeft extends Command {
         if (!limelight.ifValidTag()) return;
 
         // find target location
-        tx = limelight.getX();
-        ta = limelight.getArea();
+        tx = limelight.gettx();
+        ta = limelight.gettz();
         tAng = limelight.gettAng();
-
-        // calculate strafe target based on distance from tag
-        targetStrafe = AutoScoreLeftConfig.CalculateStrafeTarget(ta);
          
         // Uses PID to point at target
-        rotationVal = limelight.angleController.calculate(tAng, targetAngle);
+        rotationVal = -limelight.angleController.calculate(tAng, targetAngle);
         strafeVal = limelight.strafeController.calculate(tx, targetStrafe);
-        distanceVal = limelight.distanceController.calculate(ta, targetArea);
+        distanceVal = -limelight.distanceController.calculate(ta, targetArea);
 
         if(limelight.distanceController.atSetpoint())
             distanceVal = 0;

@@ -10,9 +10,6 @@ public class AutoScoreRightDashboard {
     
 
     private static DoubleEntry StrafeToleranceEntry;
-    private static DoubleEntry StrafeCalcAEntry;
-    private static DoubleEntry StrafeCalcBEntry;
-    private static DoubleEntry StrafeCalcCEntry;
     private static DoubleEntry AngleTargetEntry;
     private static DoubleEntry AngleToleranceEntry;
     private static DoubleEntry DistanceTargetEntry;
@@ -27,10 +24,6 @@ public class AutoScoreRightDashboard {
         //STRAFE CONFIG
         SmartDashboard.putData("AutoScoreRight Strafe PID",RobotContainer.leftLimelight.strafeController);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreRightConfig.StrafeTolerance);
-        //strafeTarget = A * (B ^ target_area) + C
-        StrafeCalcAEntry = addEntryWithValue("Strafe TargetCalc A", AutoScoreRightConfig.StrafeFunctionAValue);
-        StrafeCalcBEntry = addEntryWithValue("Strafe TargetCalc B", AutoScoreRightConfig.StrafeFunctionBValue);
-        StrafeCalcCEntry = addEntryWithValue("Strafe TargetCalc C", AutoScoreRightConfig.StrafeFunctionCValue);
 
         //ANGLE CONFIG
         SmartDashboard.putData("AutoScoreRight Angle PID", RobotContainer.leftLimelight.angleController);
@@ -45,9 +38,6 @@ public class AutoScoreRightDashboard {
 
     public static void syncDashboard() {
         AutoScoreRightConfig.StrafeTolerance = StrafeToleranceEntry.get(AutoScoreRightConfig.StrafeTolerance);
-        AutoScoreRightConfig.StrafeFunctionAValue = StrafeCalcAEntry.get(AutoScoreRightConfig.StrafeFunctionAValue);
-        AutoScoreRightConfig.StrafeFunctionBValue = StrafeCalcBEntry.get(AutoScoreRightConfig.StrafeFunctionBValue);
-        AutoScoreRightConfig.StrafeFunctionCValue = StrafeCalcCEntry.get(AutoScoreRightConfig.StrafeFunctionCValue);
         AutoScoreRightConfig.AngleTarget = AngleTargetEntry.get(AutoScoreRightConfig.AngleTarget);
         AutoScoreRightConfig.AngleTolerance = AngleToleranceEntry.get(AutoScoreRightConfig.AngleTolerance);
         AutoScoreRightConfig.DistanceTarget = DistanceTargetEntry.get(AutoScoreRightConfig.DistanceTarget);

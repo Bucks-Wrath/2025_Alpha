@@ -5,7 +5,7 @@ import frc.robot.RobotContainer;
 
 public class JoystickRamp extends Command {
 
-	private double positionIncrement = 0.05;
+	private double positionIncrement = 0.005;
     
     public JoystickRamp() {
         addRequirements(RobotContainer.ramp);

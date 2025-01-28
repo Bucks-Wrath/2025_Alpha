@@ -1,39 +1,53 @@
 package frc.robot.commands.coral;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class RunCoralIntake extends Command {
-    private double RangeThreshold = 0.14;
-	private double canRangeValue = 1;
+    private double RangeThreshold = 0.05;
+	private double canRangeValue1 = 0;
+	private double canRangeValue2 = 0;
+	private boolean done;
+
 
     public RunCoralIntake() {
         addRequirements(RobotContainer.coralIntake);
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
+		done = false;
 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		canRangeValue = RobotContainer.coralIntake.getRange();
-		//if (RobotContainer.coralIntake.getRange() < RangeThreshold) {
-		//	RobotContainer.coralIntake.setSpeed(0);
-		//}
-		//else {
-    		RobotContainer.coralIntake.setSpeed(0.5, 0.5);
-		//}
+		canRangeValue1 = RobotContainer.coralIntake.getRange1();
+		canRangeValue2 = RobotContainer.coralIntake.getRange2();
+
+		if (canRangeValue2 < RangeThreshold && canRangeValue2 > 0) {
+			RobotContainer.coralIntake.setSpeed(0.1, 0.1);
+		}
+		else {
+    		RobotContainer.coralIntake.setSpeed(0.3, 0.3);
+		}
+
+		if (canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
+			Timer.delay(0.15);
+			done = true;
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-		return canRangeValue < RangeThreshold && canRangeValue > 0;
-		//return false;
+		//return canRangeValue1 < RangeThreshold && canRangeValue1 > 0;
+		return done == true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		//new StopAlgaeIntake().withTimeout(0.5).andThen(new StopCoralIntake());
 		RobotContainer.coralIntake.setSpeed(0, 0);
 	}
 
