@@ -35,6 +35,12 @@ public class RunCoralIntake extends Command {
 
 		if (canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
 			Timer.delay(0.15);
+			RobotContainer.coralIntake.setSpeed(0,0);
+			while(!(RobotContainer.coralIntake.getRange2() < RangeThreshold && RobotContainer.coralIntake.getRange2() > 0)){
+				RobotContainer.coralIntake.setSpeed(-0.02,-0.02);
+				Timer.delay(0.1);
+			}
+			RobotContainer.coralIntake.setSpeed(0,0);
 			done = true;
 		}
 	}
