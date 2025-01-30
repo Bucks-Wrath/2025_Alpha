@@ -123,7 +123,7 @@ public class RobotContainer {
     private void configureBindings() { 
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
-        driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.5).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()))); 
+        driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.5).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(1))); 
         driverController.x().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(0)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
         driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2)));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));

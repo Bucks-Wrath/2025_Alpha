@@ -29,7 +29,7 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
 	private double feedForward = 0.0;
 	public double shooterAddValue;
 
-	private final static double onTargetThreshold = 0.1;
+	private final static double onTargetThreshold = 0.25;
 		
 	private TalonFX WristFalcon = new TalonFX(DeviceIds.Wrist.MotorId, "canivore");
 

@@ -6,7 +6,7 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class RunCoralIntake extends Command {
-    private double RangeThreshold = 0.05;
+    private double RangeThreshold = 0.1;
 	private double canRangeValue1 = 0;
 	private double canRangeValue2 = 0;
 	private boolean done;
@@ -26,23 +26,19 @@ public class RunCoralIntake extends Command {
 		canRangeValue1 = RobotContainer.coralIntake.getRange1();
 		canRangeValue2 = RobotContainer.coralIntake.getRange2();
 
-		if (canRangeValue2 < RangeThreshold && canRangeValue2 > 0) {
-			RobotContainer.coralIntake.setSpeed(0.1, 0.1);
+		if ((canRangeValue1 > RangeThreshold || canRangeValue1 == 0) && (canRangeValue2 > RangeThreshold || canRangeValue2 == 0)) {
+			RobotContainer.coralIntake.setSpeed(0.5, 0.5);
 		}
-		else {
-    		RobotContainer.coralIntake.setSpeed(0.3, 0.3);
+		
+		else if ((canRangeValue1 > RangeThreshold || canRangeValue1 == 0) && (canRangeValue2 < RangeThreshold && canRangeValue2 > 0)) {
+			RobotContainer.coralIntake.setSpeed(0.125, 0.125);
 		}
 
-		if (canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
+		else if (canRangeValue2 < RangeThreshold && canRangeValue2 > 0 && canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
 			Timer.delay(0.15);
-			RobotContainer.coralIntake.setSpeed(0,0);
-			while(!(RobotContainer.coralIntake.getRange2() < RangeThreshold && RobotContainer.coralIntake.getRange2() > 0)){
-				RobotContainer.coralIntake.setSpeed(-0.02,-0.02);
-				Timer.delay(0.1);
-			}
-			RobotContainer.coralIntake.setSpeed(0,0);
 			done = true;
 		}
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -53,7 +49,6 @@ public class RunCoralIntake extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		//new StopAlgaeIntake().withTimeout(0.5).andThen(new StopCoralIntake());
 		RobotContainer.coralIntake.setSpeed(0, 0);
 	}
 
