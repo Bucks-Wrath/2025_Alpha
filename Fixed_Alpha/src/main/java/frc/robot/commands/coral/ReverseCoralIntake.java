@@ -17,7 +17,7 @@ public class ReverseCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		canRangeValue = RobotContainer.coralIntake.getRange1();
+		canRangeValue = RobotContainer.coralIntake.getFirstSensorRange();
 		//if (RobotContainer.coralIntake.getRange() < RangeThreshold) {
 		//	RobotContainer.coralIntake.setSpeed(0);
 		//}

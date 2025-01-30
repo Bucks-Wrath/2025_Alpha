@@ -6,9 +6,8 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class RunCoralIntake extends Command {
-    private double RangeThreshold = 0.1;
-	private double canRangeValue1 = 0;
-	private double canRangeValue2 = 0;
+	private boolean firstSensorSeesCoral = false;
+	private boolean secondSensorSeesCoral = false;
 	private boolean done;
 
 
@@ -23,21 +22,23 @@ public class RunCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		canRangeValue1 = RobotContainer.coralIntake.getRange1();
-		canRangeValue2 = RobotContainer.coralIntake.getRange2();
+		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
+		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 
-		if ((canRangeValue1 > RangeThreshold || canRangeValue1 == 0) && (canRangeValue2 > RangeThreshold || canRangeValue2 == 0)) {
-			RobotContainer.coralIntake.setSpeed(0.5, 0.5);
-		}
-		
-		else if ((canRangeValue1 > RangeThreshold || canRangeValue1 == 0) && (canRangeValue2 < RangeThreshold && canRangeValue2 > 0)) {
+		// when the first sensor sees the coral, run the intake
+		if(firstSensorSeesCoral) {
 			RobotContainer.coralIntake.setSpeed(0.125, 0.125);
 		}
 
-		else if (canRangeValue2 < RangeThreshold && canRangeValue2 > 0 && canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
-			Timer.delay(0.15);
+		else if (secondSensorSeesCoral) {
+			Timer.delay(0.02);
 			done = true;
 		}
+
+		else {
+			RobotContainer.coralIntake.setSpeed(0.5, 0.5);
+		}
+
 
 	}
 

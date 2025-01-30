@@ -6,10 +6,7 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class StopCoralIntake extends Command {
-    private double RangeThreshold = 0.1;
-	private double canRangeValue1 = 0;
-	private double canRangeValue2 = 0;
-	private boolean done;
+	private boolean secondSensorSeesCoral = false;
 
 
     public StopCoralIntake() {
@@ -17,22 +14,20 @@ public class StopCoralIntake extends Command {
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
-		done = false;
+	
 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		canRangeValue1 = RobotContainer.coralIntake.getRange1();
-		canRangeValue2 = RobotContainer.coralIntake.getRange2();
+		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 
-	    if ((canRangeValue2 > RangeThreshold || canRangeValue2 == 0) && (canRangeValue1 < RangeThreshold && canRangeValue1 > 0)) {
-			RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
+	    if (secondSensorSeesCoral)  {
+			RobotContainer.coralIntake.setSpeed( 0, 0);
 		}
 
-		else if (canRangeValue2 < RangeThreshold && canRangeValue2 > 0 && canRangeValue1 < RangeThreshold && canRangeValue1 > 0) {
-			RobotContainer.coralIntake.setSpeed(0, 0);
-
+		else  {
+			RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
 		}
 
 	}
