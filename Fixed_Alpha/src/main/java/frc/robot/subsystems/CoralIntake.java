@@ -20,7 +20,9 @@ public class CoralIntake extends SubsystemBase {
     private TalonFX IntakeFalconTwo = new TalonFX(DeviceIds.CoralIntake.FollowerMotorId, "canivore");
     private CANrange FirstIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId, "canivore");
     private CANrange SecondIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId2, "canivore");
+    private CANrange ThirdIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId3, "rio");
     private double RangeThreshold = 0.1;
+    private double LongRangeThreshold = 0.2;
 
     public CoralIntake() {
         /** Shooter Motor Configuration */
@@ -73,6 +75,10 @@ public class CoralIntake extends SubsystemBase {
         return SecondIntakeRangeSensor.getDistance().getValueAsDouble();
     }
 
+    public double getThirdSensorRange() {
+        return ThirdIntakeRangeSensor.getDistance().getValueAsDouble();
+    }
+
     public boolean FirstSensorSeesCoral() {
         return WithinThreshold(getFirstSensorRange());
 
@@ -81,10 +87,17 @@ public class CoralIntake extends SubsystemBase {
         return WithinThreshold(getSecondSensorRange());
 
     }
+    public boolean ThirdSensorSeesCoral() {
+        return WithinLongThreshold(getThirdSensorRange());
+
+    }
 
     public boolean WithinThreshold(double currentValue) {
         return currentValue < RangeThreshold && currentValue > 0;
+    }
 
+    public boolean WithinLongThreshold(double currentValue) {
+        return currentValue < LongRangeThreshold && currentValue > 0;
     }
 
     public void setSpeed(double motorOneSpeed, double motorTwoSpeed) {
@@ -114,6 +127,7 @@ public class CoralIntake extends SubsystemBase {
         SmartDashboard.putNumber("Intake Coral Two Current", this.getCurrentDrawTwo());
         SmartDashboard.putNumber("Intake Sensor Range", this.getFirstSensorRange());
         SmartDashboard.putNumber("Intake Sensor Range2", this.getSecondSensorRange());
-
+        SmartDashboard.putNumber("Intake Sensor Range3", this.getThirdSensorRange());
+        SmartDashboard.putBoolean("Intake Third Sensor", this.ThirdSensorSeesCoral());
     }
 }

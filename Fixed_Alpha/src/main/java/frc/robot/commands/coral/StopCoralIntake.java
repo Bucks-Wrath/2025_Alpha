@@ -6,7 +6,9 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class StopCoralIntake extends Command {
+	private boolean firstSensorSeesCoral = false;
 	private boolean secondSensorSeesCoral = false;
+	private boolean thirdSensorSeesCoral = false;
 
 
     public StopCoralIntake() {
@@ -20,21 +22,28 @@ public class StopCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
+		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
+		thirdSensorSeesCoral = RobotContainer.coralIntake.ThirdSensorSeesCoral();
 
-	    if (secondSensorSeesCoral)  {
-			RobotContainer.coralIntake.setSpeed( 0, 0);
+		if (thirdSensorSeesCoral)  {
+			RobotContainer.coralIntake.setSpeed( 0.1, 0.1);
 		}
 
-		else  {
-			RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
+	    else {
+			if (secondSensorSeesCoral && firstSensorSeesCoral )  {
+				RobotContainer.coralIntake.setSpeed( 0, 0);
+			}
+
+			else if (!secondSensorSeesCoral && firstSensorSeesCoral){
+				RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
+			}
 		}
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-		//return canRangeValue1 < RangeThreshold && canRangeValue1 > 0;
 		return false;
 	}
 

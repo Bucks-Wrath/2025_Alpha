@@ -8,6 +8,7 @@ import frc.robot.commands.algae.StopAlgaeIntake;
 public class RunCoralIntake extends Command {
 	private boolean firstSensorSeesCoral = false;
 	private boolean secondSensorSeesCoral = false;
+	private boolean thirdSensorSeesCoral = false;
 	private boolean done;
 
 
@@ -26,12 +27,12 @@ public class RunCoralIntake extends Command {
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 
 		// when the first sensor sees the coral, run the intake
-		if(firstSensorSeesCoral) {
-			RobotContainer.coralIntake.setSpeed(0.125, 0.125);
+		if(secondSensorSeesCoral) {
+			RobotContainer.coralIntake.setSpeed(0.1, 0.1);
 		}
 
-		else if (secondSensorSeesCoral) {
-			Timer.delay(0.02);
+		else if (firstSensorSeesCoral) {
+			//Timer.delay(0.02);
 			done = true;
 		}
 
