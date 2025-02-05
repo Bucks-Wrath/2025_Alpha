@@ -20,6 +20,7 @@ import frc.robot.commands.algae.ReverseAlgaeIntake;
 import frc.robot.commands.algae.RunAlgaeIntake;
 import frc.robot.commands.algae.StopAlgaeIntake;
 import frc.robot.commands.auto.AutoHome;
+import frc.robot.commands.auto.AutoL4Score;
 import frc.robot.commands.auto.AutoScore;
 import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.auto.L4AutoScore;
@@ -136,7 +137,7 @@ public class RobotContainer {
         driverController.leftBumper().onFalse(new ReverseAlgaeIntake().withTimeout(0.5).andThen(new SetWristPosition(0)));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
-        driverController.start().whileTrue(new SetClimberPosition(160).andThen(new SetRampPosition(1)));
+        driverController.start().whileTrue(new SetClimberPosition(146).withTimeout(5).andThen(new SetRampPosition(1)));
 
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new StopCoralIntake().withTimeout(0.1).andThen(new SetElevatorPosition(0))));
@@ -205,6 +206,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("AutoScore", new AutoScore());
+        NamedCommands.registerCommand("AutoL4Score", new AutoL4Score());
         NamedCommands.registerCommand("AutoHome", new AutoHome());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore().withTimeout(2));
         NamedCommands.registerCommand("L4AutoScore", new L4AutoScore().withTimeout(2));
