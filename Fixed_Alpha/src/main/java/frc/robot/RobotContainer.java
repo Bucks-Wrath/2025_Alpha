@@ -22,6 +22,7 @@ import frc.robot.commands.algae.StopAlgaeIntake;
 import frc.robot.commands.auto.AutoHome;
 import frc.robot.commands.auto.AutoScore;
 import frc.robot.commands.auto.L3AutoScore;
+import frc.robot.commands.auto.L4AutoScore;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
@@ -206,6 +207,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("AutoScore", new AutoScore());
         NamedCommands.registerCommand("AutoHome", new AutoHome());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore().withTimeout(2));
+        NamedCommands.registerCommand("L4AutoScore", new L4AutoScore().withTimeout(2));
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
     }
