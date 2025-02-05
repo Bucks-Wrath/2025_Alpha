@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.algae.ReverseAlgaeIntake;
 import frc.robot.commands.algae.RunAlgaeIntake;
 import frc.robot.commands.algae.StopAlgaeIntake;
+import frc.robot.commands.auto.AutoHome;
+import frc.robot.commands.auto.AutoScore;
+import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
@@ -93,7 +96,8 @@ public class RobotContainer {
 
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
-        autoChooser.addOption("Drive Six Feet", new PathPlannerAuto("Drive Six Feet"));
+        autoChooser.addOption("Turn 90 Degrees", new PathPlannerAuto("Turn 90 Degrees"));
+        autoChooser.addOption("Left Three L3", new PathPlannerAuto("Left Three L3"));
 
         autoTab.add("Mode", autoChooser);
 
@@ -197,7 +201,12 @@ public class RobotContainer {
 
     public void registerNamedCommands() {
         /* Command registration for PathPlanner */     
-        //NamedCommands.registerCommand("IntakeCommandGroup", new IntakeCommandGroup(swerve));
-
+        NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1));
+        NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1));
+        NamedCommands.registerCommand("AutoScore", new AutoScore());
+        NamedCommands.registerCommand("AutoHome", new AutoHome());
+        NamedCommands.registerCommand("L3AutoScore", new L3AutoScore().withTimeout(2));
+        NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
+        NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
     }
 }
