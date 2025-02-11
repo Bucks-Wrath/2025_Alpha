@@ -31,7 +31,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
 
 	private final static double onTargetThreshold = 0.05;
 		
-	private TalonFX RampFalcon = new TalonFX(DeviceIds.Ramp.MotorId, "rio");
+	private TalonFX RampFalcon = new TalonFX(DeviceIds.Ramp.MotorId, "canivore");
 
     private TalonFXConfiguration RampFXConfig = new TalonFXConfiguration();
 

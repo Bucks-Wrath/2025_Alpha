@@ -9,6 +9,7 @@ public class L3AutoScore extends SequentialCommandGroup {
     
     public L3AutoScore() {
         addCommands(
-            new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9)));
+            new ShootCoralIntake().withTimeout(0.5)
+            .andThen(new SetElevatorPosition(0).alongWith(new SetWristPosition(0))));
     }
 }

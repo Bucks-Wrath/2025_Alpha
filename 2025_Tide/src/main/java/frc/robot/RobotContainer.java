@@ -20,10 +20,10 @@ import frc.robot.commands.algae.ReverseAlgaeIntake;
 import frc.robot.commands.algae.RunAlgaeIntake;
 import frc.robot.commands.algae.StopAlgaeIntake;
 import frc.robot.commands.auto.AutoHome;
-import frc.robot.commands.auto.AutoL4Score;
-import frc.robot.commands.auto.AutoScore;
-import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.auto.L4AutoScore;
+import frc.robot.commands.auto.L3AutoScore;
+import frc.robot.commands.auto.L3SetHeight;
+import frc.robot.commands.auto.L4SetHeight;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
@@ -46,6 +46,7 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Ramp;
 import frc.robot.subsystems.Wrist;
 import frc.robot.subsystems.AlgaeIntake;
+import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.swerve.AutoScoreLeft;
 import frc.robot.commands.swerve.AutoScoreRight;
@@ -89,6 +90,8 @@ public class RobotContainer {
     public static Elevator elevator = new Elevator();
     public static Ramp ramp = new Ramp();
     public static Climber climber = new Climber();
+    public static CANdleSubsystem candleSubsystem = new CANdleSubsystem();
+
 
     /* Path follower */
     private SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -99,7 +102,9 @@ public class RobotContainer {
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
         autoChooser.addOption("Turn 90 Degrees", new PathPlannerAuto("Turn 90 Degrees"));
-        autoChooser.addOption("Left Three L3", new PathPlannerAuto("Left Three L3"));
+        autoChooser.addOption("Processor Three L4", new PathPlannerAuto("Processor Three L4"));
+        autoChooser.addOption("Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4"));
+
 
         autoTab.add("Mode", autoChooser);
 
@@ -205,11 +210,11 @@ public class RobotContainer {
         /* Command registration for PathPlanner */     
         NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1));
-        NamedCommands.registerCommand("AutoScore", new AutoScore());
-        NamedCommands.registerCommand("AutoL4Score", new AutoL4Score());
+        NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());
+        NamedCommands.registerCommand("L4AutoScore", new L4AutoScore());
         NamedCommands.registerCommand("AutoHome", new AutoHome());
-        NamedCommands.registerCommand("L3AutoScore", new L3AutoScore().withTimeout(2));
-        NamedCommands.registerCommand("L4AutoScore", new L4AutoScore().withTimeout(2));
+        NamedCommands.registerCommand("L3SetHeight", new L3SetHeight().withTimeout(2));
+        NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
     }

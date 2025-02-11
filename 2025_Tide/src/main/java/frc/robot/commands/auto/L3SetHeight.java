@@ -5,11 +5,10 @@ import frc.robot.commands.coral.ShootCoralIntake;
 import frc.robot.commands.elevator.SetElevatorPosition;
 import frc.robot.commands.wrist.SetWristPosition;
 
-public class AutoL4Score extends SequentialCommandGroup {   
+public class L3SetHeight extends SequentialCommandGroup {   
     
-    public AutoL4Score() {
+    public L3SetHeight() {
         addCommands(
-            new ShootCoralIntake().withTimeout(0.5).andThen(new SetWristPosition(0))
-            .andThen(new SetElevatorPosition(0)));
-        }
+            new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9)));
+    }
 }

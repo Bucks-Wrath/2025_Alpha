@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 1"
+                  "pathName": "Left Three Pt 1"
                 }
               },
               {
@@ -30,13 +30,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "AutoScoreRight"
+                  "name": "AutoScoreLeft"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "L3AutoScore"
+                  "name": "L4SetHeight"
                 }
               }
             ]
@@ -45,7 +45,7 @@
         {
           "type": "named",
           "data": {
-            "name": "AutoScore"
+            "name": "L4AutoScore"
           }
         },
         {
@@ -55,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 2"
+                  "pathName": "Left Three Pt 2"
                 }
               },
               {
@@ -87,96 +87,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 3"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "AutoScoreRight"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "L3AutoScore"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoScore"
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Right Three Pt 4"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Right Three Pt 3"
+                  "pathName": "Left Three Pt 3"
                 }
               },
               {
@@ -214,7 +125,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L3AutoScore"
+                  "name": "L4SetHeight"
                 }
               }
             ]
@@ -223,7 +134,7 @@
         {
           "type": "named",
           "data": {
-            "name": "AutoScore"
+            "name": "L4AutoScore"
           }
         },
         {
@@ -233,7 +144,96 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 6"
+                  "pathName": "Left Three Pt 4"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Left Three Pt 3"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoScoreRight"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "L4SetHeight"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4AutoScore"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Left Three Pt 6"
                 }
               },
               {
