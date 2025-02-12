@@ -36,7 +36,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L4AutoScore"
+                  "name": "L4SetHeight"
                 }
               }
             ]
@@ -45,11 +45,11 @@
         {
           "type": "named",
           "data": {
-            "name": "AutoL4Score"
+            "name": "L4AutoScore"
           }
         },
         {
-          "type": "deadline",
+          "type": "parallel",
           "data": {
             "commands": [
               {
@@ -66,12 +66,6 @@
                       "type": "named",
                       "data": {
                         "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
                       }
                     }
                   ]
@@ -125,7 +119,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L3AutoScore"
+                  "name": "L4SetHeight"
                 }
               }
             ]
@@ -134,11 +128,11 @@
         {
           "type": "named",
           "data": {
-            "name": "AutoScore"
+            "name": "L4AutoScore"
           }
         },
         {
-          "type": "deadline",
+          "type": "parallel",
           "data": {
             "commands": [
               {
@@ -155,12 +149,6 @@
                       "type": "named",
                       "data": {
                         "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
                       }
                     }
                   ]
@@ -214,7 +202,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L3AutoScore"
+                  "name": "L4SetHeight"
                 }
               }
             ]
@@ -223,7 +211,7 @@
         {
           "type": "named",
           "data": {
-            "name": "AutoScore"
+            "name": "L4AutoScore"
           }
         },
         {

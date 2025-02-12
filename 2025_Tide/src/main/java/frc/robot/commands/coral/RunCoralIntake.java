@@ -18,6 +18,7 @@ public class RunCoralIntake extends Command {
 	// Called just before this Command runs the first time
 	public void initialize() {
 		done = false;
+		RobotContainer.candleSubsystem.setAnimate("Purple");
 
 	}
 

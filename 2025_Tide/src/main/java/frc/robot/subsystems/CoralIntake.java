@@ -20,9 +20,9 @@ public class CoralIntake extends SubsystemBase {
     private TalonFX IntakeFalconTwo = new TalonFX(DeviceIds.CoralIntake.FollowerMotorId, "canivore");
     private CANrange FirstIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId, "canivore");
     private CANrange SecondIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId2, "canivore");
-    private CANrange ThirdIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId3, "rio");
+    private CANrange ThirdIntakeRangeSensor = new CANrange(DeviceIds.CoralIntake.CANrangeId3, "canivore");
     private double RangeThreshold = 0.1;
-    private double LongRangeThreshold = 0.2;
+    private double LongRangeThreshold = 0.25;
 
     public CoralIntake() {
         /** Shooter Motor Configuration */
