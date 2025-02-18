@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.132684426229508,
-        "y": 0.6504610655737701
+        "x": 2.84108606557377,
+        "y": 3.8511782786885242
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.692213114754098,
-        "y": 1.0220799180327818
+        "x": 2.6612704918032786,
+        "y": 4.894108606557377
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.3,
-        "y": 4.0
+        "x": 1.0549180327868852,
+        "y": 6.93201844262295
       },
       "prevControl": {
-        "x": 2.085860655737705,
-        "y": 1.4056864754098304
+        "x": 2.2896516393442625,
+        "y": 6.920030737704917
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,22 +33,22 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.0,
-    "maxAcceleration": 5.0,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 2.0,
-    "rotation": 0.0
+    "velocity": 0,
+    "rotation": -55.0
   },
   "reversed": false,
   "folder": "Processor Center",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
