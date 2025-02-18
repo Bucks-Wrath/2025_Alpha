@@ -66,8 +66,8 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
         WristFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0;
 
         //Config Acceleration and Velocity
-        WristFXConfig.MotionMagic.withMotionMagicAcceleration(300);
-        WristFXConfig.MotionMagic.withMotionMagicCruiseVelocity(300);
+        WristFXConfig.MotionMagic.withMotionMagicAcceleration(500);
+        WristFXConfig.MotionMagic.withMotionMagicCruiseVelocity(500);
 
         // Config Motor
         WristFalcon.getConfigurator().apply(WristFXConfig);

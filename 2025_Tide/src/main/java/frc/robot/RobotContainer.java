@@ -24,6 +24,7 @@ import frc.robot.commands.auto.L4AutoScore;
 import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.auto.L3SetHeight;
 import frc.robot.commands.auto.L4SetHeight;
+import frc.robot.commands.auto.SetAqua;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
@@ -134,24 +135,24 @@ public class RobotContainer {
     private void configureBindings() { 
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
-        driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.5).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(1))); 
+        driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.x().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(0)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
-        driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2)));
+        driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2)));//.alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
         driverController.leftBumper().onFalse(new ReverseAlgaeIntake().withTimeout(0.5).andThen(new SetWristPosition(0)));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
-        driverController.start().whileTrue(new SetClimberPosition(146).withTimeout(5).andThen(new SetRampPosition(1)));
+        driverController.start().onTrue(new SetClimberPosition(215).alongWith(new StopAlgaeIntake()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));
 
         // Operator Buttons
-        operatorController.a().onTrue(new SetWristPosition(0).alongWith(new StopCoralIntake().withTimeout(0.1).andThen(new SetElevatorPosition(0).andThen(new RunCoralIntake()))));
+        operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0).andThen(new RunCoralIntake())));
         operatorController.b().onTrue(new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9))); // 11.2
         operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
         operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new StopCoralIntake()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
         operatorController.rightTrigger().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(-9)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
-        operatorController.rightBumper().onTrue(new SetRampPosition(50));
+        operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));
         operatorController.back().onFalse(new SetWristPosition(0));
         operatorController.start().whileTrue(new SetElevatorPosition(15.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));

@@ -6,11 +6,13 @@ import frc.robot.DeviceIds;
 import com.ctre.phoenix.led.*;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
 import com.ctre.phoenix.led.CANdle.VBatOutputMode;
+import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
+import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 
 public class CANdleSubsystem extends SubsystemBase {
 
     private final CANdle m_candle = new CANdle(DeviceIds.CANdle.CANdleId, "rio");
-    private final int LedCount = 100;
+    private final int LedCount = 110;
     public String color;
 
 
@@ -42,20 +44,27 @@ public class CANdleSubsystem extends SubsystemBase {
          m_candle.animate(m_toAnimate);
     }
 
-    public void setAnimate(String color){
+    public void setAnimate(String color){  // green is red
         this.color = color;
         switch(color) {
-            case "Orange":
-                m_toAnimate = new SingleFadeAnimation(255, 165, 0, 0, 0.7, LedCount);
-                break;
             case "Purple":
-                m_toAnimate = new SingleFadeAnimation(128, 0, 128, 0, 0.7, LedCount);
+                m_toAnimate = new SingleFadeAnimation(128, 128, 0, 0, 0.7, LedCount);
                 break;
-            case "Strobe Orange":
-                m_toAnimate = new StrobeAnimation(255, 165, 0, 0, 0.4, LedCount);
+            case "Aqua":
+                m_toAnimate = new SingleFadeAnimation(0, 200, 40, 0, 0.7, LedCount);
                 break;
             case "Rainbow":
                 m_toAnimate = new RainbowAnimation(0.8, 0.7, LedCount);
+                break;
+            case "ColorFlow":
+                m_toAnimate = new ColorFlowAnimation(128, 128, 0, 0, 0.7, LedCount, Direction.Forward, 7);
+                break;
+            case "Fire":
+                m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.8, 0.5, false, 7);
+                break;
+            case "Larson":
+                m_toAnimate = new LarsonAnimation(0, 128, 128, 0, 0.3, LedCount, BounceMode.Center, 7, 7);
+                break;
             }   
     }
 }

@@ -20,7 +20,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
 
     // Set Different Heights
 	private double homePosition = 0;
-	private double maxUpTravelPosition = 1;
+	private double maxUpTravelPosition = 2;
 
 	public double upPositionLimit = maxUpTravelPosition;
 	public double downPositionLimit = 0;
@@ -29,7 +29,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
 	private double feedForward = 0.0;
 	public double shooterAddValue;
 
-	private final static double onTargetThreshold = 0.05;
+	private final static double onTargetThreshold = 0.25;
 		
 	private TalonFX RampFalcon = new TalonFX(DeviceIds.Ramp.MotorId, "canivore");
 
@@ -41,7 +41,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
 		
         /** Ramp Motor Configuration */
         /* Motor Inverts and Neutral Mode */
-		RampFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+		RampFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         RampFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
@@ -51,7 +51,7 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
         //RampFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
 
 		RampFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-        RampFXConfig.CurrentLimits.StatorCurrentLimit = 35;
+        RampFXConfig.CurrentLimits.StatorCurrentLimit = 50;
 
         /* PID Config */
         RampFXConfig.Slot0.kP = 1;

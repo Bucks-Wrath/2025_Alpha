@@ -3,9 +3,9 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class SetDefaultPurple extends Command {
+public class SetAqua extends Command {
     
-    public SetDefaultPurple() {
+    public SetAqua() {
         addRequirements(RobotContainer.candleSubsystem);
     }
 

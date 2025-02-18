@@ -16,7 +16,7 @@ public class StopCoralIntake extends Command {
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
-		RobotContainer.candleSubsystem.setAnimate("Orange");
+		RobotContainer.candleSubsystem.setAnimate("Color Flow");
 
 	}
 
