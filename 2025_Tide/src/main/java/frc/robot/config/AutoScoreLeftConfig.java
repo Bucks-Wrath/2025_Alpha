@@ -18,7 +18,7 @@ public class AutoScoreLeftConfig {
         public static double I = 0.0;
         public static double D = 0.0;
     }
-    public static double StrafeTarget = 0.13;  // left is positive
+    public static double StrafeTarget = 0.14;  // left is positive
     public static double StrafeTolerance = 0.01;
 
     //Configurations for ANGLE component of left auto-positioning at the Reef
