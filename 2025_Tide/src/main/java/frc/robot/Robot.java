@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    RobotContainer.candleSubsystem.setAnimate("Aqua");
+    RobotContainer.candleSubsystem.setAnimate("Rainbow");
   }
 
   @Override

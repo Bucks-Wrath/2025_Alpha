@@ -3,14 +3,14 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class SetAqua extends Command {
+public class SetRainbow extends Command {
     
-    public SetAqua() {
+    public SetRainbow() {
         addRequirements(RobotContainer.candleSubsystem);
     }
 
     public void initialize() {
-        RobotContainer.candleSubsystem.setAnimate("Aqua");
+        RobotContainer.candleSubsystem.setAnimate("Rainbow");
     }
 
     public void execute() {

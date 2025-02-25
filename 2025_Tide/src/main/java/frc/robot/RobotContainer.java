@@ -105,6 +105,8 @@ public class RobotContainer {
         autoChooser.addOption("Turn 90 Degrees", new PathPlannerAuto("Turn 90 Degrees"));
         autoChooser.addOption("Processor Three L4", new PathPlannerAuto("Processor Three L4"));
         autoChooser.addOption("Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4"));
+        autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));
+
 
 
         autoTab.add("Mode", autoChooser);
@@ -137,7 +139,7 @@ public class RobotContainer {
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.x().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(0)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
-        driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2)));//.alongWith(new SetAqua())));
+        driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2).alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
         driverController.leftBumper().onFalse(new ReverseAlgaeIntake().withTimeout(0.5).andThen(new SetWristPosition(0)));
@@ -154,27 +156,12 @@ public class RobotContainer {
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));
-        operatorController.back().onFalse(new SetWristPosition(0));
+        operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         operatorController.start().whileTrue(new SetElevatorPosition(15.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));
-        operatorController.start().onFalse(new SetWristPosition(0));
+        operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
-
-        // this is working but we dont want to use it
-        //drivetrain.setDefaultCommand(
-            // Drivetrain will execute this command periodically
-        //    drivetrain.applyRequest(() ->
-        //        drive.withVelocityX(-driverController.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-        //            .withVelocityY(-driverController.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-        //           .withRotationalRate(-driverController.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
-        //    )
-        //);
-
-        //driverController.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        //driverController.b().whileTrue(drivetrain.applyRequest(() ->
-        //    point.withModuleDirection(new Rotation2d(-driverController.getLeftY(), -driverController.getLeftX()))
-        //));
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
@@ -212,6 +199,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());
+        //NamedCommands.registerCommand("L2", getAutonomousCommand());
         NamedCommands.registerCommand("L4AutoScore", new L4AutoScore());
         NamedCommands.registerCommand("AutoHome", new AutoHome());
         NamedCommands.registerCommand("L3SetHeight", new L3SetHeight().withTimeout(2));

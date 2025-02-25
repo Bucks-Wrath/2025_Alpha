@@ -1,14 +1,11 @@
 package frc.robot.commands.coral;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class RunCoralIntake extends Command {
 	private boolean firstSensorSeesCoral = false;
 	private boolean secondSensorSeesCoral = false;
-	private boolean thirdSensorSeesCoral = false;
 	private boolean done;
 
 
@@ -18,8 +15,9 @@ public class RunCoralIntake extends Command {
 	// Called just before this Command runs the first time
 	public void initialize() {
 		done = false;
+		firstSensorSeesCoral = false;
+		secondSensorSeesCoral = false;
 		RobotContainer.candleSubsystem.setAnimate("Purple");
-
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -33,7 +31,6 @@ public class RunCoralIntake extends Command {
 		}
 
 		else if (firstSensorSeesCoral) {
-			//Timer.delay(0.02);
 			done = true;
 		}
 

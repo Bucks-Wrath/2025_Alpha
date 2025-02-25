@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Processor Center Pt 1"
+                  "pathName": "Non-Processor Center Pt 1"
                 }
               },
               {
@@ -55,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Processor Center Pt 2"
+                  "pathName": "Non-Processor Center Pt 2"
                 }
               },
               {
@@ -81,7 +81,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Processor Center Pt 3"
+                  "pathName": "Non-Processor Center Pt 3"
                 }
               },
               {
@@ -138,7 +138,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Processor Center Pt 4"
+                  "pathName": "Non-Processor Center Pt 4"
                 }
               },
               {
@@ -164,64 +164,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Processor Center Pt 3"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "AutoScoreRight"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "L4SetHeight"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "L4AutoScore"
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Processor Center Pt 2"
+                  "pathName": "Non-Processor Center Pt 3"
                 }
               },
               {

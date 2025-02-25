@@ -1,9 +1,10 @@
 {
-  "robotWidth": 0.9,
-  "robotLength": 0.9,
+  "robotWidth": 0.840232,
+  "robotLength": 0.840232,
   "holonomicMode": true,
   "pathFolders": [
     "Processor Center",
+    "Non-Processor Center",
     "Non-Processor Three (L4)",
     "Processor Three (L4)"
   ],

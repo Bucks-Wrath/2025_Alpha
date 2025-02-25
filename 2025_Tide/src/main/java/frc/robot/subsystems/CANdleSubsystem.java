@@ -7,7 +7,6 @@ import com.ctre.phoenix.led.*;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
 import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
-import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 
 public class CANdleSubsystem extends SubsystemBase {
 
@@ -48,7 +47,7 @@ public class CANdleSubsystem extends SubsystemBase {
         this.color = color;
         switch(color) {
             case "Purple":
-                m_toAnimate = new SingleFadeAnimation(128, 128, 0, 0, 0.7, LedCount);
+                m_toAnimate = new SingleFadeAnimation(128, 0, 128, 0, 0.7, LedCount);
                 break;
             case "Aqua":
                 m_toAnimate = new SingleFadeAnimation(0, 200, 40, 0, 0.7, LedCount);
@@ -59,11 +58,11 @@ public class CANdleSubsystem extends SubsystemBase {
             case "ColorFlow":
                 m_toAnimate = new ColorFlowAnimation(128, 128, 0, 0, 0.7, LedCount, Direction.Forward, 7);
                 break;
-            case "Fire":
-                m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.8, 0.5, false, 7);
+            case "Strobe Purple":
+                m_toAnimate = new StrobeAnimation(128, 0, 128, 0, 0.4, LedCount);
                 break;
-            case "Larson":
-                m_toAnimate = new LarsonAnimation(0, 128, 128, 0, 0.3, LedCount, BounceMode.Center, 7, 7);
+            case "Strobe Yellow":
+                m_toAnimate = new StrobeAnimation(255, 255, 0, 0, 0.4, LedCount);
                 break;
             }   
     }

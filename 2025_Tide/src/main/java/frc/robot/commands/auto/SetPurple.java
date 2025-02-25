@@ -3,14 +3,14 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class SetDefaultPurple extends Command {
+public class SetPurple extends Command {
     
-    public SetDefaultPurple() {
+    public SetPurple() {
         addRequirements(RobotContainer.candleSubsystem);
     }
 
     public void initialize() {
-        RobotContainer.candleSubsystem.setAnimate("Rainbow");
+        RobotContainer.candleSubsystem.setAnimate("Purple");
     }
 
     public void execute() {

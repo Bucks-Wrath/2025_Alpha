@@ -72,9 +72,9 @@ public class AutoScoreLeft extends Command {
     // Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
         // If all 3 PIDs are at their target, we're done
-		return limelight.distanceController.atSetpoint() 
+		return !limelight.ifValidTag() || (limelight.distanceController.atSetpoint() 
             && limelight.strafeController.atSetpoint() 
-            && limelight.angleController.atSetpoint();
+            && limelight.angleController.atSetpoint());
 	}
 
 	// Called once after isFinished returns true
