@@ -25,6 +25,7 @@ import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.auto.L3SetHeight;
 import frc.robot.commands.auto.L4SetHeight;
 import frc.robot.commands.auto.SetAqua;
+import frc.robot.commands.CANdle.WatchClock;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
 import frc.robot.commands.coral.ReverseCoralIntake;
@@ -110,7 +111,7 @@ public class RobotContainer {
 
 
         autoTab.add("Mode", autoChooser);
-
+        candleSubsystem.setDefaultCommand(new WatchClock());
         coralIntake.setDefaultCommand(new StopCoralIntake());
         algaeIntake.setDefaultCommand(new StopAlgaeIntake());
         drivetrain.setDefaultCommand(
