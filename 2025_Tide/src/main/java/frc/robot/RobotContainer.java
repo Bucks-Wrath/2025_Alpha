@@ -139,7 +139,7 @@ public class RobotContainer {
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
-        driverController.x().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(0)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
+        driverController.x().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
         driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2).alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
