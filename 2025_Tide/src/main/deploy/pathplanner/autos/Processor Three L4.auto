@@ -43,19 +43,26 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "L4AutoScore"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "sequential",
                 "data": {
-                  "pathName": "Left Three Pt 2"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4AutoScore"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -65,7 +72,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "RunCoralIntake"
+                        "name": "DoNothing"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Left Three Pt 2"
                       }
                     }
                   ]
@@ -126,19 +139,26 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "L4AutoScore"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "sequential",
                 "data": {
-                  "pathName": "Left Three Pt 4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4AutoScore"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -148,7 +168,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "RunCoralIntake"
+                        "name": "DoNothing"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Left Three Pt 4"
                       }
                     }
                   ]
@@ -209,25 +235,19 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "L4AutoScore"
-          }
-        },
-        {
-          "type": "deadline",
+          "type": "parallel",
           "data": {
             "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Left Three Pt 6"
-                }
-              },
               {
                 "type": "sequential",
                 "data": {
                   "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4AutoScore"
+                      }
+                    },
                     {
                       "type": "named",
                       "data": {
@@ -238,6 +258,25 @@
                       "type": "named",
                       "data": {
                         "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "DoNothing"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Left Three Pt 6"
                       }
                     }
                   ]

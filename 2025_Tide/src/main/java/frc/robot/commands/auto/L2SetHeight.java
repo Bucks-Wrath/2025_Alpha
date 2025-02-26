@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.elevator.SetElevatorPosition;
 import frc.robot.commands.wrist.SetWristPosition;
 
-public class L3SetHeight extends SequentialCommandGroup {   
+public class L2SetHeight extends SequentialCommandGroup {   
     
-    public L3SetHeight() {
+    public L2SetHeight() {
         addCommands(
-            new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9)));
+            new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9)));
     }
 }

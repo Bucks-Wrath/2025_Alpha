@@ -20,11 +20,14 @@ import frc.robot.commands.algae.ReverseAlgaeIntake;
 import frc.robot.commands.algae.RunAlgaeIntake;
 import frc.robot.commands.algae.StopAlgaeIntake;
 import frc.robot.commands.auto.AutoHome;
+import frc.robot.commands.auto.DoNothing;
 import frc.robot.commands.auto.L4AutoScore;
 import frc.robot.commands.auto.L3AutoScore;
 import frc.robot.commands.auto.L3SetHeight;
+import frc.robot.commands.auto.L2AutoScore;
+import frc.robot.commands.auto.L2SetHeight;
 import frc.robot.commands.auto.L4SetHeight;
-import frc.robot.commands.auto.SetAqua;
+import frc.robot.commands.CANdle.SetAqua;
 import frc.robot.commands.CANdle.WatchClock;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
@@ -139,20 +142,20 @@ public class RobotContainer {
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
-        driverController.x().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)).andThen(new ShootCoralIntakeTrough().withTimeout(1.5)));
+        driverController.x().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)).andThen(new ShootCoralIntakeTrough().withTimeout(0.5)));
         driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2).alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
         driverController.leftBumper().onFalse(new ReverseAlgaeIntake().withTimeout(0.5).andThen(new SetWristPosition(0)));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
-        driverController.start().onTrue(new SetClimberPosition(215).alongWith(new StopAlgaeIntake()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));
+        driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));
 
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0).andThen(new RunCoralIntake())));
         operatorController.b().onTrue(new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9))); // 11.2
         operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
-        operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new StopCoralIntake()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
+        operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new DoNothing()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
         operatorController.rightTrigger().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(-9)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
@@ -199,13 +202,15 @@ public class RobotContainer {
         /* Command registration for PathPlanner */     
         NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1));
         NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1));
+        NamedCommands.registerCommand("L2AutoScore", new L2AutoScore());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());
-        //NamedCommands.registerCommand("L2", getAutonomousCommand());
         NamedCommands.registerCommand("L4AutoScore", new L4AutoScore());
         NamedCommands.registerCommand("AutoHome", new AutoHome());
+        NamedCommands.registerCommand("L2SetHeight", new L2SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L3SetHeight", new L3SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
+        NamedCommands.registerCommand("DoNothing", new DoNothing().withTimeout(1.1));
     }
 }
