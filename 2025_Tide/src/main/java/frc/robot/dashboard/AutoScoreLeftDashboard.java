@@ -8,7 +8,7 @@ import frc.robot.config.AutoScoreLeftConfig;
 
 public class AutoScoreLeftDashboard {
     
-
+    private static DoubleEntry StrafeTargetEntry;
     private static DoubleEntry StrafeToleranceEntry;
     private static DoubleEntry AngleTargetEntry;
     private static DoubleEntry AngleToleranceEntry;
@@ -23,6 +23,7 @@ public class AutoScoreLeftDashboard {
 
         //STRAFE CONFIG
         SmartDashboard.putData("AutoScoreLeft Strafe PID",RobotContainer.rightLimelight.strafeController);
+        StrafeTargetEntry = addEntryWithValue("Strafe Target",AutoScoreLeftConfig.StrafeTarget);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreLeftConfig.StrafeTolerance);
 
         //ANGLE CONFIG
@@ -37,6 +38,7 @@ public class AutoScoreLeftDashboard {
     }
 
     public static void syncDashboard() {
+        AutoScoreLeftConfig.StrafeTarget = StrafeTargetEntry.get(AutoScoreLeftConfig.StrafeTarget);
         AutoScoreLeftConfig.StrafeTolerance = StrafeToleranceEntry.get(AutoScoreLeftConfig.StrafeTolerance);
         AutoScoreLeftConfig.AngleTarget = AngleTargetEntry.get(AutoScoreLeftConfig.AngleTarget);
         AutoScoreLeftConfig.AngleTolerance = AngleToleranceEntry.get(AutoScoreLeftConfig.AngleTolerance);

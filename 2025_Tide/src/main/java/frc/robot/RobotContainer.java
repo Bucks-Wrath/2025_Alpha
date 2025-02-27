@@ -106,7 +106,6 @@ public class RobotContainer {
 
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
-        autoChooser.addOption("Turn 90 Degrees", new PathPlannerAuto("Turn 90 Degrees"));
         autoChooser.addOption("Processor Three L4", new PathPlannerAuto("Processor Three L4"));
         autoChooser.addOption("Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4"));
         autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));

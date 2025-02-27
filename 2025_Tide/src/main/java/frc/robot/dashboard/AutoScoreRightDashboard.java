@@ -4,11 +4,12 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
+import frc.robot.config.AutoScoreLeftConfig;
 import frc.robot.config.AutoScoreRightConfig;
 
 public class AutoScoreRightDashboard {
     
-
+    private static DoubleEntry StrafeTargetEntry;
     private static DoubleEntry StrafeToleranceEntry;
     private static DoubleEntry AngleTargetEntry;
     private static DoubleEntry AngleToleranceEntry;
@@ -23,6 +24,7 @@ public class AutoScoreRightDashboard {
 
         //STRAFE CONFIG
         SmartDashboard.putData("AutoScoreRight Strafe PID",RobotContainer.leftLimelight.strafeController);
+        StrafeTargetEntry = addEntryWithValue("Strafe Target",AutoScoreRightConfig.StrafeTarget);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreRightConfig.StrafeTolerance);
 
         //ANGLE CONFIG
@@ -37,6 +39,7 @@ public class AutoScoreRightDashboard {
     }
 
     public static void syncDashboard() {
+        AutoScoreRightConfig.StrafeTarget = StrafeTargetEntry.get(AutoScoreRightConfig.StrafeTarget);
         AutoScoreRightConfig.StrafeTolerance = StrafeToleranceEntry.get(AutoScoreRightConfig.StrafeTolerance);
         AutoScoreRightConfig.AngleTarget = AngleTargetEntry.get(AutoScoreRightConfig.AngleTarget);
         AutoScoreRightConfig.AngleTolerance = AngleToleranceEntry.get(AutoScoreRightConfig.AngleTolerance);
