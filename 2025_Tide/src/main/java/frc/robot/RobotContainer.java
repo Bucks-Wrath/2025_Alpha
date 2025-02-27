@@ -126,10 +126,10 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-        // wrist.setDefaultCommand(new JoystickWrist());
-        // elevator.setDefaultCommand(new JoystickElevator());
+         wrist.setDefaultCommand(new JoystickWrist());
+         elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
-         climber.setDefaultCommand(new JoystickClimber());
+        // climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
 
@@ -155,7 +155,7 @@ public class RobotContainer {
         operatorController.b().onTrue(new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9))); // 11.2
         operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
         operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new DoNothing()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
-        operatorController.rightTrigger().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)));
+        operatorController.rightTrigger().onTrue(new SetElevatorPosition(4.4));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));

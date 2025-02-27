@@ -39,8 +39,8 @@ public class CoralIntake extends SubsystemBase {
 
         IntakeFXConfig1.CurrentLimits.StatorCurrentLimitEnable = true;
         IntakeFXConfig2.CurrentLimits.StatorCurrentLimitEnable = true;
-        IntakeFXConfig1.CurrentLimits.StatorCurrentLimit = 25;
-        IntakeFXConfig2.CurrentLimits.StatorCurrentLimit = 25;
+        IntakeFXConfig1.CurrentLimits.StatorCurrentLimit = 40;
+        IntakeFXConfig2.CurrentLimits.StatorCurrentLimit = 40;
         /* PID Config */
         IntakeFXConfig1.Slot0.kP = 0.2;
         IntakeFXConfig1.Slot0.kI = 0;

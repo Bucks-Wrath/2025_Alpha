@@ -23,7 +23,7 @@ public class AutoScoreLeftDashboard {
 
         //STRAFE CONFIG
         SmartDashboard.putData("AutoScoreLeft Strafe PID",RobotContainer.rightLimelight.strafeController);
-        StrafeTargetEntry = addEntryWithValue("Strafe Target",AutoScoreLeftConfig.StrafeTarget);
+        StrafeTargetEntry = addEntryWithValue("Strafe Target", AutoScoreLeftConfig.StrafeTarget);
         StrafeToleranceEntry = addEntryWithValue("Strafe Tolerance", AutoScoreLeftConfig.StrafeTolerance);
 
         //ANGLE CONFIG
