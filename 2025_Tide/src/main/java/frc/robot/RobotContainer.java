@@ -141,7 +141,7 @@ public class RobotContainer {
         // Driver Buttons
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
-        driverController.x().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)).andThen(new ShootCoralIntakeTrough().withTimeout(0.5)));
+        driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
         driverController.leftTrigger().whileTrue(new RunAlgaeIntake().alongWith(new SetWristPosition(-35.2).alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new StopAlgaeIntake().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().whileTrue(new SetWristPosition(-10.3));
@@ -155,7 +155,7 @@ public class RobotContainer {
         operatorController.b().onTrue(new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9))); // 11.2
         operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
         operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new DoNothing()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
-        operatorController.rightTrigger().onTrue(new SetElevatorPosition(5).alongWith(new SetWristPosition(-9)));
+        operatorController.rightTrigger().onTrue(new SetElevatorPosition(6).alongWith(new SetWristPosition(-9)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));

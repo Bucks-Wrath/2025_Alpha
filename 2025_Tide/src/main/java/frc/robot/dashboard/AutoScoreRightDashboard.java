@@ -4,7 +4,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
-import frc.robot.config.AutoScoreLeftConfig;
 import frc.robot.config.AutoScoreRightConfig;
 
 public class AutoScoreRightDashboard {
