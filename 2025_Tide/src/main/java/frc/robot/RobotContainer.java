@@ -211,6 +211,6 @@ public class RobotContainer {
         NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
-        NamedCommands.registerCommand("DoNothing", new DoNothing().withTimeout(1.1));
+        NamedCommands.registerCommand("DoNothing", new StopAlgaeIntake().withTimeout(0.9));
     }
 }
