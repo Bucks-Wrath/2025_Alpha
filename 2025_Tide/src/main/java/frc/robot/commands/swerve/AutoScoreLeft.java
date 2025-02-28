@@ -19,10 +19,6 @@ public class AutoScoreLeft extends Command {
     private double strafeVal;
     private double distanceVal;
 
-    private double targetAngle = AutoScoreLeftConfig.AngleTarget;
-    private double targetStrafe = AutoScoreLeftConfig.StrafeTarget;
-    private double targetArea = AutoScoreLeftConfig.DistanceTarget;
-
     private RightLimelight limelight; 
 
     public AutoScoreLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
@@ -34,9 +30,9 @@ public class AutoScoreLeft extends Command {
     }
 
     public void initialize() {
-        limelight.strafeController.setSetpoint(targetStrafe);
-        limelight.distanceController.setSetpoint(targetArea);
-        limelight.angleController.setSetpoint(targetAngle);
+        limelight.strafeController.setSetpoint(AutoScoreLeftConfig.StrafeTarget);
+        limelight.distanceController.setSetpoint(AutoScoreLeftConfig.DistanceTarget);
+        limelight.angleController.setSetpoint(AutoScoreLeftConfig.AngleTarget);
     }
     
     @Override
@@ -50,9 +46,9 @@ public class AutoScoreLeft extends Command {
         tAng = limelight.gettAng();
          
         // Uses PID to point at target
-        rotationVal = -limelight.angleController.calculate(tAng, targetAngle);
-        strafeVal = limelight.strafeController.calculate(tx, targetStrafe);
-        distanceVal = -limelight.distanceController.calculate(ta, targetArea);
+        rotationVal = -limelight.angleController.calculate(tAng, AutoScoreLeftConfig.AngleTarget);
+        strafeVal = limelight.strafeController.calculate(tx, AutoScoreLeftConfig.StrafeTarget);
+        distanceVal = -limelight.distanceController.calculate(ta, AutoScoreLeftConfig.DistanceTarget);
 
         if(limelight.distanceController.atSetpoint())
             distanceVal = 0;
