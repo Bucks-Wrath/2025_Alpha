@@ -107,7 +107,9 @@ public class RobotContainer {
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
         autoChooser.addOption("Processor Three L4", new PathPlannerAuto("Processor Three L4"));
+        autoChooser.addOption("Processor Three Low", new PathPlannerAuto("Processor Three Low"));
         autoChooser.addOption("Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4"));
+        autoChooser.addOption("Non-Processor Three Low", new PathPlannerAuto("Non-Processor Three Low"));
         autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));
 
 
@@ -126,10 +128,12 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-         wrist.setDefaultCommand(new JoystickWrist());
-         elevator.setDefaultCommand(new JoystickElevator());
+        // wrist.setDefaultCommand(new JoystickWrist());
+        // elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
-        // climber.setDefaultCommand(new JoystickClimber());
+
+        // Turn on for comp
+        climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
 
