@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 1"
+                  "pathName": "Left Three Pt 1"
                 }
               },
               {
@@ -30,13 +30,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "AutoScoreRight"
+                  "name": "AutoScoreLeft"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "L3SetHeight"
+                  "name": "L2SetHeight"
                 }
               }
             ]
@@ -53,7 +53,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "L3AutoScore"
+                        "name": "L2AutoScore"
                       }
                     },
                     {
@@ -78,7 +78,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Right Three Pt 2"
+                        "pathName": "Left Three Pt 2"
                       }
                     }
                   ]
@@ -94,103 +94,19 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 3"
+                  "pathName": "Left Three Pt 3"
                 }
               },
               {
                 "type": "sequential",
                 "data": {
                   "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "AutoScoreRight"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "L3SetHeight"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "L3AutoScore"
-                      }
-                    },
                     {
                       "type": "named",
                       "data": {
                         "name": "RunCoralIntake"
                       }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "DoNothing"
-                      }
                     },
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Right Three Pt 4"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Right Three Pt 5"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
                     {
                       "type": "named",
                       "data": {
@@ -241,6 +157,102 @@
                       "data": {
                         "name": "RunCoralIntake"
                       }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "DoNothing"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Left Three Pt 4"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Left Three Pt 5"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoScoreRight"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "L3SetHeight"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L3AutoScore"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
                     },
                     {
                       "type": "named",
@@ -264,7 +276,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Right Three Pt 6"
+                        "pathName": "Left Three Pt 6"
                       }
                     }
                   ]
