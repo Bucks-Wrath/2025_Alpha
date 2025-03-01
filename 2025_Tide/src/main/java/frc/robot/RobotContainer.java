@@ -156,7 +156,7 @@ public class RobotContainer {
 
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0).andThen(new RunCoralIntake())));
-        operatorController.b().onTrue(new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9))); // 11.2
+        operatorController.b().onTrue(new SetElevatorPosition(13.2).alongWith(new SetWristPosition(-9))); // 11.2
         operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
         operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new DoNothing()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
         operatorController.rightTrigger().onTrue(new SetElevatorPosition(4.4));

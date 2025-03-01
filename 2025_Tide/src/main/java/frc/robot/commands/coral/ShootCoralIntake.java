@@ -1,6 +1,7 @@
 package frc.robot.commands.coral;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class ShootCoralIntake extends Command {
@@ -17,8 +18,10 @@ public class ShootCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-    		RobotContainer.coralIntake.setSpeed(1.0, 1.0);
-			RobotContainer.algaeIntake.setSpeed(-1.0);
+		double elevatorHeight = RobotContainer.elevator.getCurrentPosition();
+		double speed = elevatorHeight > 35 ? 1.0 : 0.3;
+    		RobotContainer.coralIntake.setSpeed(speed, speed);
+			RobotContainer.algaeIntake.setSpeed(-0.3);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
