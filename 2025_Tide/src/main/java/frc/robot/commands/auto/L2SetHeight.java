@@ -8,6 +8,6 @@ public class L2SetHeight extends SequentialCommandGroup {
     
     public L2SetHeight() {
         addCommands(
-            new SetElevatorPosition(12.2).alongWith(new SetWristPosition(-9)));
+            new SetElevatorPosition(13.2).alongWith(new SetWristPosition(-9)));
     }
 }
