@@ -164,7 +164,7 @@ public class RobotContainer {
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));
         operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
-        operatorController.start().whileTrue(new SetElevatorPosition(15.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));
+        operatorController.start().whileTrue(new SetElevatorPosition(16.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));
         operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         
         // Note that X is defined as forward according to WPILib convention,
