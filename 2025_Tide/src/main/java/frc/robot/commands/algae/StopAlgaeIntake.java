@@ -15,7 +15,7 @@ public class StopAlgaeIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.algaeIntake.setSpeed(0.1);
+        RobotContainer.algaeIntake.setSpeed(0.2);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
