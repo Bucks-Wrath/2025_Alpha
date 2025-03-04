@@ -162,7 +162,7 @@ public class RobotContainer {
         operatorController.rightTrigger().onTrue(new SetElevatorPosition(4.4));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
-        operatorController.back().whileTrue(new SetElevatorPosition(32.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-21.4))));
+        operatorController.back().whileTrue(new SetElevatorPosition(31.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-19.4))));
         operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         operatorController.start().whileTrue(new SetElevatorPosition(16.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));
         operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
