@@ -12,4 +12,64 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+  public static class Algae{
+    public static class Intake{
+      public static class Processor{
+        public static final double IntakeSpeed = 0.4;
+        public static final double HoldSpeed = 0.2;
+        
+        public static class L2 {
+          public static final double ElevatorPosition = 16.6;
+          public static final double WristPosition = -15.8;
+        
+        }
+        public static class L3 {
+          public static final double ElevatorPosition = 31.7;
+          public static final double WristPosition = -19.4;
+        }
+      }
+      public static class Barge{
+
+        public static class L2 {
+          public static final double ElevatorPosition = 16.6;
+          public static final double WristPosition = -15.8;
+        
+        }
+        public static class L3 {
+          public static final double ElevatorPosition = 31.7;
+          public static final double WristPosition = -19.4;
+        }
+      }
+    }
+  }
+
+  public static class Coral { 
+    public static class Shoot {
+      public static final double DefaultWristPosition = -9;
+      public static final double DefaultShooterSpeed = 0.3;
+      public static final double AutoDelay = 0.25; // Use this to speed up auto.
+      public static class L1 {
+        public static final double ElevatorPosition = 4.4;
+        public static final double ShooterMotorOneSpeed = 1;
+        public static final double ShooterMotorTwoSpeed = 0.1;
+
+      }
+      public static class L2 {
+        public static final double ElevatorPosition = 13.2; 
+
+      }
+      public static class L3 {
+        public static final double ElevatorPosition = 27.3;
+
+      }
+      public static class L4 {
+        public static final double ElevatorPosition = 50.5;
+        public static final double WristPosition = -16.4;
+        public static final double WristDelay = 0.45;
+        public static final double ShooterSpeed = 1; 
+
+      }
+    }
+  }
+  
 }

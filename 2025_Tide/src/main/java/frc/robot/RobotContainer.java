@@ -156,15 +156,15 @@ public class RobotContainer {
 
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0).andThen(new RunCoralIntake())));
-        operatorController.b().onTrue(new SetElevatorPosition(13.2).alongWith(new SetWristPosition(-9))); // 11.2
-        operatorController.x().onTrue(new SetElevatorPosition(27.3).alongWith(new SetWristPosition(-9))); // 26.3
-        operatorController.y().onTrue(new SetElevatorPosition(50.5).alongWith(new DoNothing()).withTimeout(0.45).andThen(new SetWristPosition(-16.4)));  //49.5 and -15.4
-        operatorController.rightTrigger().onTrue(new SetElevatorPosition(4.4));
+        operatorController.b().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.DefaultWristPosition))); 
+        operatorController.x().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L3.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.DefaultWristPosition)));
+        operatorController.y().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition)));
+        operatorController.rightTrigger().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L1.ElevatorPosition));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
-        operatorController.back().whileTrue(new SetElevatorPosition(31.7).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-19.4))));
+        operatorController.back().whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
         operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
-        operatorController.start().whileTrue(new SetElevatorPosition(16.6).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(-15.8))));
+        operatorController.start().whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L2.ElevatorPosition).andThen(new RunAlgaeIntake().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L2.WristPosition))));
         operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         
         // Note that X is defined as forward according to WPILib convention,

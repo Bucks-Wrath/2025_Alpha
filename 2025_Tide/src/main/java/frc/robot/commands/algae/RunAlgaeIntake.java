@@ -1,6 +1,7 @@
 package frc.robot.commands.algae;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class RunAlgaeIntake extends Command {
@@ -15,7 +16,7 @@ public class RunAlgaeIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.algaeIntake.setSpeed(0.4);
+        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Processor.IntakeSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -1,6 +1,7 @@
 package frc.robot.commands.coral;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ShootCoralIntakeTrough extends Command {
@@ -17,7 +18,7 @@ public class ShootCoralIntakeTrough extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-    		RobotContainer.coralIntake.setSpeed(1.0, 0.1);
+    		RobotContainer.coralIntake.setSpeed(Constants.Coral.Shoot.L1.ShooterMotorOneSpeed, Constants.Coral.Shoot.L1.ShooterMotorTwoSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
