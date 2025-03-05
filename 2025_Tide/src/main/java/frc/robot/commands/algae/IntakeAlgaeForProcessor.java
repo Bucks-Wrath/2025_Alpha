@@ -11,7 +11,7 @@ public class IntakeAlgaeForProcessor extends Command {
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
-
+		RobotContainer.algaeIntake.setIsProcessor(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -4,19 +4,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 
-public class HoldAlgaeForBarge extends Command {
+public class HoldAlgae extends Command {
     
-    public HoldAlgaeForBarge() {
+    public HoldAlgae() {
         addRequirements(RobotContainer.algaeIntake);
     }
+
+	private boolean isProcessor;
+
 	// Called just before this Command runs the first time
 	public void initialize() {
-
+		isProcessor = RobotContainer.algaeIntake.getIsProcessor();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Barge.HoldSpeed);
+		if (isProcessor == true) {
+        	RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Processor.HoldSpeed);
+		}
+		else if (isProcessor == false) {
+			RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Barge.HoldSpeed);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

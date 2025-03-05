@@ -14,6 +14,7 @@ public class AlgaeIntake extends SubsystemBase {
 
 	private TalonFX IntakeFalcon = new TalonFX(DeviceIds.AlgaeIntake.MotorId, "canivore");
     private TalonFXConfiguration IntakeFXConfig = new TalonFXConfiguration();
+    public boolean isProcessor;
 
 	public AlgaeIntake() {
         /** Shooter Motor Configuration */
@@ -63,6 +64,14 @@ public class AlgaeIntake extends SubsystemBase {
             DriverStation.reportError("Algae.resetShooterEncoders exception.  You're Screwed! : " + e.toString(), false);
         }
 	}
+
+    public void setIsProcessor(boolean isProcessor) {
+        this.isProcessor = isProcessor;
+    }
+
+    public boolean getIsProcessor() {
+        return isProcessor;
+    }
 
 	public void updateDashboard() {
 		SmartDashboard.putNumber("Intake Current", this.getCurrentDrawLeader());

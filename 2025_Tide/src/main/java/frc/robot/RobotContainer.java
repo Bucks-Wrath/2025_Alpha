@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.algae.ShootAlgaeForProcessor;
 import frc.robot.commands.algae.IntakeAlgaeForProcessor;
 import frc.robot.commands.algae.ShootAlgaeForBarge;
-import frc.robot.commands.algae.HoldAlgaeForProcessor;
+import frc.robot.commands.algae.HoldAlgae;
 import frc.robot.commands.algae.IntakeAlgaeForBarge;
 import frc.robot.commands.auto.AutoHome;
 import frc.robot.commands.auto.DoNothing;
@@ -31,7 +31,6 @@ import frc.robot.commands.CANdle.SetAqua;
 import frc.robot.commands.CANdle.WatchClock;
 import frc.robot.commands.climber.JoystickClimber;
 import frc.robot.commands.climber.SetClimberPosition;
-import frc.robot.commands.coral.ReverseCoralIntake;
 import frc.robot.commands.coral.RunCoralIntake;
 import frc.robot.commands.coral.ShootCoralIntake;
 import frc.robot.commands.coral.ShootCoralIntakeTrough;
@@ -117,7 +116,7 @@ public class RobotContainer {
         autoTab.add("Mode", autoChooser);
         candleSubsystem.setDefaultCommand(new WatchClock());
         coralIntake.setDefaultCommand(new StopCoralIntake());
-        algaeIntake.setDefaultCommand(new HoldAlgaeForProcessor());
+        algaeIntake.setDefaultCommand(new HoldAlgae());
         drivetrain.setDefaultCommand(
             new TeleopDrive(
                 drivetrain, 
@@ -147,7 +146,7 @@ public class RobotContainer {
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
         driverController.leftTrigger().whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
-        driverController.leftTrigger().onFalse(new HoldAlgaeForProcessor().alongWith(new SetWristPosition(0)));
+        driverController.leftTrigger().onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
         driverController.leftBumper().and(operatorController.leftTrigger()).onTrue(new ShootAlgaeForBarge().withTimeout(0.25));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
@@ -219,6 +218,6 @@ public class RobotContainer {
         NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
-        NamedCommands.registerCommand("DoNothing", new HoldAlgaeForProcessor().withTimeout(0.9));
+        NamedCommands.registerCommand("DoNothing", new HoldAlgae().withTimeout(0.9));
     }
 }
