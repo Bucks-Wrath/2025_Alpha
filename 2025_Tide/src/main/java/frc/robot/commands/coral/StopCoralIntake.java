@@ -1,9 +1,7 @@
 package frc.robot.commands.coral;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.commands.algae.StopAlgaeIntake;
 
 public class StopCoralIntake extends Command {
 	private boolean firstSensorSeesCoral = false;
