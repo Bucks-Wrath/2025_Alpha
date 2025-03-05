@@ -10,7 +10,7 @@ public class L3AutoScore extends SequentialCommandGroup {
     
     public L3AutoScore() {
         addCommands(
-            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.AutoDelay)
+            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.Default.AutoDelay)
             .andThen(new SetElevatorPosition(0).alongWith(new SetWristPosition(0))));
     }
 }

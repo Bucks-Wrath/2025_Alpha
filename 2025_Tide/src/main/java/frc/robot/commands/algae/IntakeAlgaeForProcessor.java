@@ -1,16 +1,13 @@
-package frc.robot.commands.coral;
+package frc.robot.commands.algae;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class ShootCoralIntake extends Command {
-    private double RangeThreshold = 0.14;
-	private double canRangeValue = 1;
-
-    public ShootCoralIntake() {
-        addRequirements(RobotContainer.coralIntake);
+public class IntakeAlgaeForProcessor extends Command {
+    
+    public IntakeAlgaeForProcessor() {
+        addRequirements(RobotContainer.algaeIntake);
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
@@ -19,10 +16,7 @@ public class ShootCoralIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		double elevatorHeight = RobotContainer.elevator.getCurrentPosition();
-		double speed = elevatorHeight > 35 ? Constants.Coral.Shoot.L4.ShooterSpeed : Constants.Coral.Shoot.Default.ShooterSpeed;
-    		RobotContainer.coralIntake.setSpeed(speed, speed);
-			RobotContainer.algaeIntake.setSpeed(-0.3);
+        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Processor.IntakeSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -32,7 +26,6 @@ public class ShootCoralIntake extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		RobotContainer.coralIntake.setSpeed(0, 0);
 		RobotContainer.algaeIntake.setSpeed(0);
 	}
 

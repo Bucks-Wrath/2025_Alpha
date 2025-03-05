@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class RunAlgaeIntake extends Command {
+public class ShootAlgaeForBarge extends Command {
     
-    public RunAlgaeIntake() {
+    public ShootAlgaeForBarge() {
         addRequirements(RobotContainer.algaeIntake);
     }
 	// Called just before this Command runs the first time
@@ -16,7 +16,7 @@ public class RunAlgaeIntake extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Processor.IntakeSpeed);
+        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Shoot.Barge.ShooterSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

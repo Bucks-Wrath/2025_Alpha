@@ -9,6 +9,6 @@ public class L2SetHeight extends SequentialCommandGroup {
     
     public L2SetHeight() {
         addCommands(
-            new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.DefaultWristPosition)));
+            new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition)));
     }
 }
