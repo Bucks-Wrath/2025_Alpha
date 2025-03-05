@@ -20,16 +20,17 @@ public final class Constants {
         
         public static class L2 {
           public static final double ElevatorPosition = 16.6;
-          public static final double WristPosition = -15.8;
+          public static final double WristPosition = -5.3; //-15.8;
         
         }
+
         public static class L3 {
           public static final double ElevatorPosition = 31.7;
-          public static final double WristPosition = -19.4;
+          public static final double WristPosition = -6.5; //-19.4;
         }
 
         public static class Floor {
-          public static final double WristPosition = -35.2;
+          public static final double WristPosition = -11.7; //-35.2;
         }
       }
       public static class Barge{
@@ -38,20 +39,26 @@ public final class Constants {
 
         public static class L2 {
           public static final double ElevatorPosition = 16.6;
-          public static final double WristPosition = -15.8;
+          public static final double WristPosition = -5.3; 
         
         }
+
         public static class L3 {
           public static final double ElevatorPosition = 31.7;
-          public static final double WristPosition = -19.4;
+          public static final double WristPosition = -6.5;
         }
+
+        public static class Floor {
+          public static final double WristPosition = -11.7;
+        }
+
       }
     }
 
     public static class Shoot {
       public static class Processor {
           public static final double ShooterSpeed = -1;
-          public static final double WristPosition = -10.3;
+          public static final double WristPosition = -3.4; //-10.3;
       }
 
       public static class Barge {
@@ -63,7 +70,7 @@ public final class Constants {
   public static class Coral { 
     public static class Shoot {
       public static class Default {
-        public static final double WristPosition = -9;
+        public static final double WristPosition = -3; //-9;
         public static final double ShooterSpeed = 0.3;
         public static final double AutoDelay = 0.25; // Use this to speed up auto.
       }
@@ -84,7 +91,7 @@ public final class Constants {
       }
       public static class L4 {
         public static final double ElevatorPosition = 50.5;
-        public static final double WristPosition = -16.4;
+        public static final double WristPosition = -5.5; //-16.4;
         public static final double WristDelay = 0.45;
         public static final double ShooterSpeed = 1; 
 
