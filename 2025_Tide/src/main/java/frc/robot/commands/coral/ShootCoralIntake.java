@@ -2,12 +2,9 @@ package frc.robot.commands.coral;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class ShootCoralIntake extends Command {
-    private double RangeThreshold = 0.14;
-	private double canRangeValue = 1;
 
     public ShootCoralIntake() {
         addRequirements(RobotContainer.coralIntake);

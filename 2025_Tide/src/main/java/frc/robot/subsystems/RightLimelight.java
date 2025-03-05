@@ -14,8 +14,6 @@ public class RightLimelight extends SubsystemBase {
    private double ta;
    private double tx;
    private double ty;
-   private double tl;
-   private double ts;
    private double[] tAng;
    private int tv;
 

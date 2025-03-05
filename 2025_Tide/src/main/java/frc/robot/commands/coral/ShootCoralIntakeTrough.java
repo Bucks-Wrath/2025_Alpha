@@ -5,8 +5,6 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ShootCoralIntakeTrough extends Command {
-    private double RangeThreshold = 0.14;
-	private double canRangeValue = 1;
 
     public ShootCoralIntakeTrough() {
         addRequirements(RobotContainer.coralIntake);
