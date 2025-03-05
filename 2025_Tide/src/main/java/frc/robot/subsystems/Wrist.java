@@ -23,13 +23,13 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
 	private double maxUpTravelPosition = 0;
 
 	public double upPositionLimit = maxUpTravelPosition;
-	public double downPositionLimit = -45;
+	public double downPositionLimit = -15;
 	private double targetPosition = 0;
     private MotionMagicDutyCycle targetPositionDutyCycle = new MotionMagicDutyCycle(0);
 	private double feedForward = 0.0;
 	public double shooterAddValue;
 
-	private final static double onTargetThreshold = 0.25;
+	private final static double onTargetThreshold = 0.1;  // was 0.25
 		
 	private TalonFX WristFalcon = new TalonFX(DeviceIds.Wrist.MotorId, "canivore");
 

@@ -15,8 +15,10 @@ public final class Constants {
   public static class Algae{
     public static class Intake{
       public static class Processor{
-        public static final double IntakeSpeed = 0.4;
-        public static final double HoldSpeed = 0.2;
+        public static final double IntakeSpeed = 0.8;
+        public static final double HoldSpeed = 0.1;
+        public static final double WristDelay = 0.45;     // total guess
+
         
         public static class L2 {
           public static final double ElevatorPosition = 16.6;
@@ -34,22 +36,24 @@ public final class Constants {
         }
       }
       public static class Barge{
-        public static final double IntakeSpeed = -0.4;
-        public static final double HoldSpeed = -0.2;
+        public static final double IntakeSpeed = -0.8;
+        public static final double HoldSpeed = -0.1;
+        public static final double WristDelay = 0.45;   // total guess
+
 
         public static class L2 {
-          public static final double ElevatorPosition = 16.6;
-          public static final double WristPosition = -5.3; 
+          public static final double ElevatorPosition = 16.6;   // total guesses
+          public static final double WristPosition = -5.3;      // total guesses
         
         }
 
         public static class L3 {
-          public static final double ElevatorPosition = 31.7;
-          public static final double WristPosition = -6.5;
+          public static final double ElevatorPosition = 31.7;   // total guesses
+          public static final double WristPosition = -6.5;      // total guesses
         }
 
         public static class Floor {
-          public static final double WristPosition = -11.7;
+          public static final double WristPosition = -11.7;     // total guesses
         }
 
       }
@@ -63,6 +67,8 @@ public final class Constants {
 
       public static class Barge {
         public static final double ShooterSpeed = 1;
+        public static final double ElevatorPosition = 0;
+        public static final double WristPosition = 0;
       }
     }
   }
@@ -92,7 +98,7 @@ public final class Constants {
       public static class L4 {
         public static final double ElevatorPosition = 50.5;
         public static final double WristPosition = -5.5; //-16.4;
-        public static final double WristDelay = 0.45;
+        public static final double WristDelay = 0.45;  // needs to be retuned
         public static final double ShooterSpeed = 1; 
 
       }

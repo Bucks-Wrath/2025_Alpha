@@ -18,7 +18,7 @@ public class AlgaeIntake extends SubsystemBase {
 	public AlgaeIntake() {
         /** Shooter Motor Configuration */
         /* Motor Inverts and Neutral Mode */
-		IntakeFXConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+		IntakeFXConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         IntakeFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */

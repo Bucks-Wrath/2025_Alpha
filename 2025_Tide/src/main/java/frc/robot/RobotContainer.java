@@ -12,12 +12,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.algae.ShootAlgaeForProcessor;
 import frc.robot.commands.algae.IntakeAlgaeForProcessor;
+import frc.robot.commands.algae.ShootAlgaeForBarge;
 import frc.robot.commands.algae.HoldAlgaeForProcessor;
 import frc.robot.commands.algae.IntakeAlgaeForBarge;
 import frc.robot.commands.auto.AutoHome;
@@ -134,7 +133,7 @@ public class RobotContainer {
         // ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
-        climber.setDefaultCommand(new JoystickClimber());
+        // climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
 
@@ -149,8 +148,10 @@ public class RobotContainer {
         driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
         driverController.leftTrigger().whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
         driverController.leftTrigger().onFalse(new HoldAlgaeForProcessor().alongWith(new SetWristPosition(0)));
-        driverController.leftBumper().whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
-        driverController.leftBumper().onFalse(new ShootAlgaeForProcessor().withTimeout(0.5).andThen(new SetWristPosition(0)));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
+        driverController.leftBumper().and(operatorController.leftTrigger()).onTrue(new ShootAlgaeForBarge().withTimeout(0.25));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
+        driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new ShootAlgaeForBarge().withTimeout(0.25));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));
@@ -159,15 +160,16 @@ public class RobotContainer {
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0).andThen(new RunCoralIntake())));
         operatorController.b().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition))); 
         operatorController.x().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L3.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition)));
-        operatorController.y().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition)));
+        operatorController.y().and(operatorController.leftTrigger().negate()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition)));
+        operatorController.y().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition));
         operatorController.rightTrigger().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L1.ElevatorPosition));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
-        operatorController.back().and(operatorController.leftBumper().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
-        operatorController.back().and(operatorController.leftBumper()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
+        operatorController.back().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
+        operatorController.back().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
         operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
-        operatorController.start().and(operatorController.leftBumper().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L2.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L2.WristPosition))));
-        operatorController.start().and(operatorController.leftBumper()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L2.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L2.WristPosition))));
+        operatorController.start().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L2.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L2.WristPosition))));
+        operatorController.start().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L2.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L2.WristPosition))));
         operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
         
         // Note that X is defined as forward according to WPILib convention,
