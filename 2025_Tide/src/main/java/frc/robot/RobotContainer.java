@@ -54,6 +54,7 @@ import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.swerve.AutoScoreLeft;
 import frc.robot.commands.swerve.AutoScoreRight;
+import frc.robot.commands.swerve.DoTheCrawl;
 import frc.robot.commands.swerve.TeleopDrive;
 import frc.robot.subsystems.LeftLimelight;
 import frc.robot.subsystems.RightLimelight;
@@ -65,6 +66,9 @@ public class RobotContainer {
     /* Setting up bindings for necessary control of the swerve drive platform */
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.01).withRotationalDeadband(MaxAngularRate * 0.03) // Add a 10% deadband
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
+
+    private final SwerveRequest.FieldCentricFacingAngle crawlDrive = new SwerveRequest.FieldCentricFacingAngle()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
     private final SwerveRequest.RobotCentric visionDrive = new SwerveRequest.RobotCentric()
@@ -127,12 +131,12 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-         wrist.setDefaultCommand(new JoystickWrist());
-         elevator.setDefaultCommand(new JoystickElevator());
+        // wrist.setDefaultCommand(new JoystickWrist());
+        // elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
-        // climber.setDefaultCommand(new JoystickClimber());
+        climber.setDefaultCommand(new JoystickClimber());
         // Always Last
         configureBindings();
 
@@ -147,10 +151,10 @@ public class RobotContainer {
         driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
         driverController.leftBumper().whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
         driverController.leftBumper().onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
-        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
-        driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.58).andThen(new ShootAlgaeForBarge().withTimeout(0.25))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())));
+        // add this back after testing driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
+        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new DoTheCrawl(drivetrain, crawlDrive));  // delete this after testing
+        driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.58).andThen(new ShootAlgaeForBarge().withTimeout(0.25))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive)));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
-        //driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new ShootAlgaeForBarge().withTimeout(0.25));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));
