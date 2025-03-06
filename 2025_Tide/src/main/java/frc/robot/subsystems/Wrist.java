@@ -23,7 +23,7 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
 	private double maxUpTravelPosition = 0;
 
 	public double upPositionLimit = maxUpTravelPosition;
-	public double downPositionLimit = -15;
+	public double downPositionLimit = -28;
 	private double targetPosition = 0;
     private MotionMagicDutyCycle targetPositionDutyCycle = new MotionMagicDutyCycle(0);
 	private double feedForward = 0.0;

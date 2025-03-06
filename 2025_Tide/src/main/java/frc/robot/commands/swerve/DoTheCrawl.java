@@ -27,10 +27,10 @@ public class DoTheCrawl extends Command {
 
         /* Drive */
             drivetrain.setControl(
-                    crawlDrive.withVelocityX(0.1) // Drive forward with negative Y (forward)
+                    crawlDrive.withVelocityX(0.5) // Drive forward with negative Y (forward)
                         .withVelocityY(0) // Drive left with negative X (left)
                         .withTargetDirection(Rotation2d.fromDegrees(0))
-                        .withHeadingPID(0.1, 0, 0)
+                        .withHeadingPID(2, 0, 0)
             );
         
     }
