@@ -127,8 +127,8 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-        // wrist.setDefaultCommand(new JoystickWrist());
-        // elevator.setDefaultCommand(new JoystickElevator());
+         wrist.setDefaultCommand(new JoystickWrist());
+         elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
@@ -145,12 +145,12 @@ public class RobotContainer {
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
-        driverController.leftTrigger().whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
-        driverController.leftTrigger().onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
-        driverController.leftBumper().and(operatorController.leftTrigger()).onTrue(new ShootAlgaeForBarge().withTimeout(0.25));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
-        driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new ShootAlgaeForBarge().withTimeout(0.25));
+        driverController.leftBumper().whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
+        driverController.leftBumper().onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
+        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
+        driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.58).andThen(new ShootAlgaeForBarge().withTimeout(0.25))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())));
+        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
+        //driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new ShootAlgaeForBarge().withTimeout(0.25));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.5).andThen(new SetRampPosition(1.63)));

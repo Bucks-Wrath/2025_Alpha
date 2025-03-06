@@ -67,6 +67,6 @@ public class CANdleSubsystem extends SubsystemBase {
             case "Strobe Yellow":
                 m_toAnimate = new StrobeAnimation(255, 255, 0, 0, 0.4, LedCount);
                 break;
-            }   
+            }  
     }
 }

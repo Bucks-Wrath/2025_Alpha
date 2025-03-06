@@ -21,7 +21,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 
     // Set Different Heights
 	private double homePosition = 0;
-	private double maxUpTravelPosition = 52.3;
+	private double maxUpTravelPosition = 52.4; //52.3
 
 	public double upPositionLimit = maxUpTravelPosition;
 	public double downPositionLimit = 0;

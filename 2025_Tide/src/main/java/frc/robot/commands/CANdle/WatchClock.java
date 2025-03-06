@@ -16,12 +16,14 @@ public class WatchClock extends Command {
     }
 
     public void execute() {
-        if (Timer.getMatchTime()<15 && DriverStation.isTeleop()){
-            RobotContainer.candleSubsystem.setAnimate("Strobe Yellow"); 
-           }
-         else if (Timer.getMatchTime()<30 && DriverStation.isTeleop()){
-            RobotContainer.candleSubsystem.setAnimate("Yellow"); 
-           }
+        // if (Timer.getMatchTime()<15 && DriverStation.isTeleop()){
+        //     RobotContainer.candleSubsystem.setAnimate("Strobe Yellow"); 
+        //    }
+        //  else if (Timer.getMatchTime()<30 && DriverStation.isTeleop()){
+        //     RobotContainer.candleSubsystem.setAnimate("Yellow"); 
+        //    }
+
+        end();
         
     }
 
