@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.algae.ShootAlgaeForProcessor;
 import frc.robot.commands.algae.IntakeAlgaeForProcessor;
+import frc.robot.commands.algae.PullAlgae;
 import frc.robot.commands.algae.ShootAlgaeForBarge;
 import frc.robot.commands.algae.HoldAlgae;
 import frc.robot.commands.algae.IntakeAlgaeForBarge;
@@ -109,11 +110,12 @@ public class RobotContainer {
 
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
-        autoChooser.addOption("Processor Three L4", new PathPlannerAuto("Processor Three L4"));
-        autoChooser.addOption("Processor Three Low", new PathPlannerAuto("Processor Three Low"));
-        autoChooser.addOption("Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4"));
-        autoChooser.addOption("Non-Processor Three Low", new PathPlannerAuto("Non-Processor Three Low"));
+        autoChooser.addOption("Blue Processor Three L4", new PathPlannerAuto("Processor Three L4 Blue"));
+        //autoChooser.addOption("Processor Three Low", new PathPlannerAuto("Processor Three Low"));
+        autoChooser.addOption("Blue Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Blue"));
+        //autoChooser.addOption("Non-Processor Three Low", new PathPlannerAuto("Non-Processor Three Low"));
         autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));
+        autoChooser.addOption("Processor Center", new PathPlannerAuto("Processor Center"));
         autoChooser.addOption("Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red"));
         autoChooser.addOption("Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red"));
 
@@ -171,10 +173,10 @@ public class RobotContainer {
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
         operatorController.back().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
-        operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
+        operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua().alongWith(new PullAlgae())));
         operatorController.start().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L2.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L2.WristPosition))));
         operatorController.start().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L2.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L2.WristPosition))));
-        operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua()));
+        operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua().alongWith(new PullAlgae())));
         operatorController.leftTrigger().whileTrue(new JoystickClimber());
         
         // Note that X is defined as forward according to WPILib convention,

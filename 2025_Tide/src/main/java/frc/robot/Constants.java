@@ -16,7 +16,8 @@ public final class Constants {
     public static class Intake{
       public static class Processor{
         public static final double IntakeSpeed = 0.8;
-        public static final double HoldSpeed = 0.03; //0.2;
+        public static final double HoldSpeed = 0.05;
+        public static final double Pullpeed = 0.2;
         public static final double WristDelay = 0.45;
 
         
@@ -38,6 +39,7 @@ public final class Constants {
       public static class Barge{
         public static final double IntakeSpeed = -0.8;
         public static final double HoldSpeed = -0.2;
+        public static final double PullSpeed = -0.2;
         public static final double WristDelay = 0.45;
 
 
@@ -78,7 +80,7 @@ public final class Constants {
       public static class Default {
         public static final double WristPosition = -5.76; //-9;
         public static final double ShooterSpeed = 0.3;
-        public static final double AutoDelay = 0.25; // Use this to speed up auto.
+        public static final double AutoDelay = 0.25; // This is time it takes to shoot coral
       }
 
       public static class L1 {
