@@ -16,7 +16,7 @@ public final class Constants {
     public static class Intake{
       public static class Processor{
         public static final double IntakeSpeed = 0.8;
-        public static final double HoldSpeed = 0.05;
+        public static final double HoldSpeed = 0.04;
         public static final double Pullpeed = 0.2;
         public static final double WristDelay = 0.45;
 
@@ -33,7 +33,7 @@ public final class Constants {
         }
 
         public static class Floor {
-          public static final double WristPosition = -22.5; //-35.2;
+          public static final double WristPosition = -20; //-35.2;  // fixed -22.5
         }
       }
       public static class Barge{

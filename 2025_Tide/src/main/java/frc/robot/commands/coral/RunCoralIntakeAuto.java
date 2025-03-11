@@ -3,21 +3,22 @@ package frc.robot.commands.coral;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class StopCoralIntake extends Command {
+public class RunCoralIntakeAuto extends Command {
 	private boolean firstSensorSeesCoral = false;
 	private boolean secondSensorSeesCoral = false;
 	private boolean thirdSensorSeesCoral = false;
+	private boolean done = false;
 
 
-    public StopCoralIntake() {
+    public RunCoralIntakeAuto() {
         addRequirements(RobotContainer.coralIntake);
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
 		RobotContainer.candleSubsystem.setAnimate("Color Flow");
+		done = false;
 		firstSensorSeesCoral = false;
 		secondSensorSeesCoral = false;
-		thirdSensorSeesCoral = false;
 
 	}
 
@@ -26,20 +27,25 @@ public class StopCoralIntake extends Command {
 		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 		thirdSensorSeesCoral = RobotContainer.coralIntake.ThirdSensorSeesCoral();
+		
 
 		if (thirdSensorSeesCoral)  {
 			RobotContainer.coralIntake.setSpeed( 0.2, 0.2);
 		}
 
-	    else if (firstSensorSeesCoral){
-			if (secondSensorSeesCoral)  {
-				RobotContainer.coralIntake.setSpeed( 0, 0);
-			}
-
-			else if (!secondSensorSeesCoral){
-				RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
-			}
+		else if (secondSensorSeesCoral){
+			done = true;
 		}
+
+	    //else if (firstSensorSeesCoral){
+		//	if (secondSensorSeesCoral)  {
+		//		RobotContainer.coralIntake.setSpeed( 0, 0);
+		//	}
+		//
+		//	else if (!secondSensorSeesCoral){
+		//		RobotContainer.coralIntake.setSpeed(-0.125, -0.125);
+		//	}
+		//}
 
 		else if (!firstSensorSeesCoral && !secondSensorSeesCoral && !thirdSensorSeesCoral){
 			RobotContainer.coralIntake.setSpeed(0, 0);
@@ -49,12 +55,12 @@ public class StopCoralIntake extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-		return false;
+		return done == true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		RobotContainer.coralIntake.setSpeed(0, 0);
+
 	}
 
 	// Called when another command which requires one or more of the same
@@ -63,5 +69,3 @@ public class StopCoralIntake extends Command {
 		end();
 	}
 }
-
-
