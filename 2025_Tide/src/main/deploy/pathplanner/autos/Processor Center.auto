@@ -180,13 +180,19 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Processor Center Pt 4"
+                        "pathName": "Proc Cent Algae Slide"
                       }
                     }
                   ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AlgaeL3Intake"
           }
         }
       ]

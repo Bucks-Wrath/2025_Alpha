@@ -154,10 +154,10 @@ public class RobotContainer {
         //driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.rightBumper().onTrue(new TeleAutoScore());
         driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition).alongWith(new SetAqua())));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)).raceWith(new SetAqua()));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));
-        driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)).raceWith(new SetAqua()));
+        driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
         driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.58).andThen(new ShootAlgaeForBarge().withTimeout(0.25))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive).withTimeout(1.3)));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0)));
@@ -176,10 +176,10 @@ public class RobotContainer {
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
         operatorController.back().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
-        operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua().alongWith(new PullAlgae())));
+        operatorController.back().onFalse(new SetWristPosition(0).deadlineFor(new PullAlgae()));
         operatorController.start().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L2.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L2.WristPosition))));
         operatorController.start().and(operatorController.leftTrigger()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Barge.L2.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L2.WristPosition))));
-        operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new SetAqua().alongWith(new PullAlgae())));
+        operatorController.start().onFalse(new SetWristPosition(0).deadlineFor(new PullAlgae()));
         operatorController.rightTrigger().and(operatorController.leftTrigger()).whileTrue(new JoystickClimber());
         
         // Note that X is defined as forward according to WPILib convention,
@@ -230,5 +230,6 @@ public class RobotContainer {
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
         NamedCommands.registerCommand("DoNothing", new HoldAlgae().withTimeout(0.8));  // was 0.9
+        NamedCommands.registerCommand("AlgaeL3Intake", new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
     }
 }
