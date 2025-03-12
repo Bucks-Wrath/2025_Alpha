@@ -5,6 +5,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class IntakeAlgaeForBarge extends Command {
+	private double gotAlgae = 0;
     
     public IntakeAlgaeForBarge() {
         addRequirements(RobotContainer.algaeIntake);
@@ -17,6 +18,14 @@ public class IntakeAlgaeForBarge extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
         RobotContainer.algaeIntake.setSpeed(Constants.Algae.Intake.Barge.IntakeSpeed);
+
+		gotAlgae = RobotContainer.algaeIntake.getCurrentDrawLeader();
+
+		if (gotAlgae <3 && gotAlgae > 1)
+			RobotContainer.candleSubsystem.setAnimate("Strobe Aqua");
+		else {
+			RobotContainer.candleSubsystem.setAnimate("Aqua");
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

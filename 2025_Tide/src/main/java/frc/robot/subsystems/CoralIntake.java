@@ -30,16 +30,13 @@ public class CoralIntake extends SubsystemBase {
         IntakeFXConfig2.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         IntakeFXConfig1.MotorOutput.NeutralMode = NeutralModeValue.Brake;
         IntakeFXConfig2.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+        
         /* Current Limiting */
-        // IntakeFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        // IntakeFXConfig.CurrentLimits.SupplyCurrentLimit = 20;
-        // IntakeFXConfig.CurrentLimits.SupplyCurrentThreshold = 30;
-        // IntakeFXConfig.CurrentLimits.SupplyTimeThreshold = 0.01;
-
         IntakeFXConfig1.CurrentLimits.StatorCurrentLimitEnable = true;
         IntakeFXConfig2.CurrentLimits.StatorCurrentLimitEnable = true;
         IntakeFXConfig1.CurrentLimits.StatorCurrentLimit = 40;
         IntakeFXConfig2.CurrentLimits.StatorCurrentLimit = 40;
+        
         /* PID Config */
         IntakeFXConfig1.Slot0.kP = 0.2;
         IntakeFXConfig1.Slot0.kI = 0;
@@ -48,16 +45,17 @@ public class CoralIntake extends SubsystemBase {
         IntakeFXConfig2.Slot0.kP = 0.2;
         IntakeFXConfig2.Slot0.kI = 0;
         IntakeFXConfig2.Slot0.kD = 0;
+        
         /* Open and Closed Loop Ramping */
-        IntakeFXConfig1.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.1;
-        IntakeFXConfig2.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.1;
-        IntakeFXConfig1.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.1;
-        IntakeFXConfig2.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.1;
+        IntakeFXConfig1.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.05;
+        IntakeFXConfig2.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.05;
+        IntakeFXConfig1.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.05;
+        IntakeFXConfig2.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.05;
 
-        IntakeFXConfig1.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.1;
-        IntakeFXConfig2.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.1;
-        IntakeFXConfig1.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.1;
-        IntakeFXConfig2.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.1;
+        IntakeFXConfig1.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+        IntakeFXConfig2.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+        IntakeFXConfig1.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.05;
+        IntakeFXConfig2.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0.05;
 
         // Config Motor
         IntakeFalconOne.getConfigurator().apply(IntakeFXConfig1);

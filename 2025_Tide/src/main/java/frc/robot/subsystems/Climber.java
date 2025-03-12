@@ -63,11 +63,6 @@ public class Climber extends SubsystemBase implements IPositionControlledSubsyst
         PivotFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
-        //ClimberFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        //ClimberFXConfig.CurrentLimits.SupplyCurrentLimit = 35;
-        //ClimberFXConfig.CurrentLimits.SupplyCurrentThreshold = 60;
-        //ClimberFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
-
 		PivotFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
         PivotFXConfig.CurrentLimits.StatorCurrentLimit = 35;
 

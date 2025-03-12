@@ -14,7 +14,6 @@ public class StopCoralIntake extends Command {
     }
 	// Called just before this Command runs the first time
 	public void initialize() {
-		RobotContainer.candleSubsystem.setAnimate("Color Flow");
 		firstSensorSeesCoral = false;
 		secondSensorSeesCoral = false;
 		thirdSensorSeesCoral = false;
@@ -28,12 +27,13 @@ public class StopCoralIntake extends Command {
 		thirdSensorSeesCoral = RobotContainer.coralIntake.ThirdSensorSeesCoral();
 
 		if (thirdSensorSeesCoral)  {
-			RobotContainer.coralIntake.setSpeed( 0.2, 0.2);
+			RobotContainer.coralIntake.setSpeed( 0.25, 0.25);
 		}
 
 	    else if (firstSensorSeesCoral){
 			if (secondSensorSeesCoral)  {
 				RobotContainer.coralIntake.setSpeed( 0, 0);
+				RobotContainer.candleSubsystem.setAnimate("Color Flow");
 			}
 
 			else if (!secondSensorSeesCoral){

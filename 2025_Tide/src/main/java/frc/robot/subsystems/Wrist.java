@@ -23,13 +23,13 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
 	private double maxUpTravelPosition = 0;
 
 	public double upPositionLimit = maxUpTravelPosition;
-	public double downPositionLimit = -28;
+	public double downPositionLimit = -32;
 	private double targetPosition = 0;
     private MotionMagicDutyCycle targetPositionDutyCycle = new MotionMagicDutyCycle(0);
 	private double feedForward = 0.0;
 	public double shooterAddValue;
 
-	private final static double onTargetThreshold = 0.1;  // was 0.25
+	private final static double onTargetThreshold = 0.1;
 		
 	private TalonFX WristFalcon = new TalonFX(DeviceIds.Wrist.MotorId, "canivore");
 
@@ -45,11 +45,6 @@ public class Wrist extends SubsystemBase implements IPositionControlledSubsystem
         WristFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
-        //WristFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        //WristFXConfig.CurrentLimits.SupplyCurrentLimit = 35;
-        //WristFXConfig.CurrentLimits.SupplyCurrentThreshold = 60;
-        //WristFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
-
 		WristFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
         WristFXConfig.CurrentLimits.StatorCurrentLimit = 35;
 

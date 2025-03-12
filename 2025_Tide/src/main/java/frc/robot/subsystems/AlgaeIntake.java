@@ -23,11 +23,6 @@ public class AlgaeIntake extends SubsystemBase {
         IntakeFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
-        //IntakeFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        //IntakeFXConfig.CurrentLimits.SupplyCurrentLimit = 20;
-        //IntakeFXConfig.CurrentLimits.SupplyCurrentThreshold = 30;
-        //IntakeFXConfig.CurrentLimits.SupplyTimeThreshold = 0.01;
-
         IntakeFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
         IntakeFXConfig.CurrentLimits.StatorCurrentLimit = 25;
 

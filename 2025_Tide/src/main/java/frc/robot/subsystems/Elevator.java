@@ -21,7 +21,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 
     // Set Different Heights
 	private double homePosition = 0;
-	private double maxUpTravelPosition = 52.4; //52.3
+	private double maxUpTravelPosition = 52.3;
 
 	public double upPositionLimit = maxUpTravelPosition;
 	public double downPositionLimit = 0;
@@ -51,11 +51,6 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
         ElevatorFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
-        //ElevatorFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        //ElevatorFXConfig.CurrentLimits.SupplyCurrentLimit = 35;
-        //ElevatorFXConfig.CurrentLimits.SupplyCurrentThreshold = 60;
-        //ElevatorFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
-
 		ElevatorFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
         ElevatorFXConfig.CurrentLimits.StatorCurrentLimit = 35;
 

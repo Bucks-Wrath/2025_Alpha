@@ -61,6 +61,9 @@ public class CANdleSubsystem extends SubsystemBase {
             case "ColorFlow":
                 m_toAnimate = new ColorFlowAnimation(128, 128, 0, 0, 0.7, LedCount, Direction.Forward, 7);
                 break;
+            case "Strobe Aqua":
+                m_toAnimate = new StrobeAnimation(0, 200, 40, 0, 0.4, LedCount);
+                break;
             case "Strobe Purple":
                 m_toAnimate = new StrobeAnimation(128, 0, 128, 0, 0.4, LedCount);
                 break;

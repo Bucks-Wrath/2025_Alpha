@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
     RobotContainer.climber.updateDashboard();
     RobotContainer.leftLimelight.updateDashboard();
     RobotContainer.rightLimelight.updateDashboard();
+    RobotContainer.algaeIntake.updateDashboard();
 
     AutoScoreLeftDashboard.syncDashboard();
     AutoScoreRightDashboard.syncDashboard();

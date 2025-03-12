@@ -45,11 +45,6 @@ public class Ramp extends SubsystemBase implements IPositionControlledSubsystem 
         RampFXConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         /* Current Limiting */
-        //RampFXConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-        //RampFXConfig.CurrentLimits.SupplyCurrentLimit = 35;
-        //RampFXConfig.CurrentLimits.SupplyCurrentThreshold = 60;
-        //RampFXConfig.CurrentLimits.SupplyTimeThreshold = 0.05;
-
 		RampFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
         RampFXConfig.CurrentLimits.StatorCurrentLimit = 50;
 
