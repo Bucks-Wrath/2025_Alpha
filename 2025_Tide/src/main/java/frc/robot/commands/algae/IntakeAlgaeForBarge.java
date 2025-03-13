@@ -21,8 +21,9 @@ public class IntakeAlgaeForBarge extends Command {
 
 		gotAlgae = RobotContainer.algaeIntake.getCurrentDrawLeader();
 
-		if (gotAlgae <3 && gotAlgae > 1)
+		if (gotAlgae <3 && gotAlgae > 1) {
 			RobotContainer.candleSubsystem.setAnimate("Strobe Aqua");
+		}
 		else {
 			RobotContainer.candleSubsystem.setAnimate("Aqua");
 		}

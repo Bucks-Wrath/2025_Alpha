@@ -14,7 +14,7 @@ public class SetRainbow extends Command {
     }
 
     public void execute() {
-
+        RobotContainer.candleSubsystem.setAnimate("Rainbow");
         
     }
 

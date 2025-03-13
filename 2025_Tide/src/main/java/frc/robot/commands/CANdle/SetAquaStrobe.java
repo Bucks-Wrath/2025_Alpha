@@ -3,18 +3,18 @@ package frc.robot.commands.CANdle;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class SetPurple extends Command {
+public class SetAquaStrobe extends Command {
     
-    public SetPurple() {
+    public SetAquaStrobe() {
         addRequirements(RobotContainer.candleSubsystem);
     }
 
     public void initialize() {
-        RobotContainer.candleSubsystem.setAnimate("Purple");
+        RobotContainer.candleSubsystem.setAnimate("Strobe Aqua");
     }
 
     public void execute() {
-        RobotContainer.candleSubsystem.setAnimate("Purple");
+        RobotContainer.candleSubsystem.setAnimate("Strobe Aqua");
         
     }
 

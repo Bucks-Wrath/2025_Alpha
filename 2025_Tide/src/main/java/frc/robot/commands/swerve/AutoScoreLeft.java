@@ -75,8 +75,8 @@ public class AutoScoreLeft extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-        RobotContainer.candleSubsystem.setAnimate("Rainbow");
-	}
+
+    }
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run

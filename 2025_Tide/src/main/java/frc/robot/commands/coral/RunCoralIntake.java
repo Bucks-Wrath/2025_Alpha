@@ -16,12 +16,13 @@ public class RunCoralIntake extends Command {
 	public void initialize() {
 		done = false;
 		firstSensorSeesCoral = false;
-		secondSensorSeesCoral = false;
-		RobotContainer.candleSubsystem.setAnimate("Purple");
+		secondSensorSeesCoral = false;		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
+		RobotContainer.candleSubsystem.setAnimate("Purple");
+
 		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 

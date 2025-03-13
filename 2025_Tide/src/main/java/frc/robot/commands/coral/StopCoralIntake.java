@@ -33,7 +33,7 @@ public class StopCoralIntake extends Command {
 	    else if (firstSensorSeesCoral){
 			if (secondSensorSeesCoral)  {
 				RobotContainer.coralIntake.setSpeed( 0, 0);
-				RobotContainer.candleSubsystem.setAnimate("Color Flow");
+				RobotContainer.candleSubsystem.setAnimate("Purple");
 			}
 
 			else if (!secondSensorSeesCoral){

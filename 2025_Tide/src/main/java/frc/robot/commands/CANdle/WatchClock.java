@@ -25,7 +25,7 @@ public class WatchClock extends Command {
         }
         else if (Timer.getMatchTime()<30 && DriverStation.isTeleop()){
             RobotContainer.candleSubsystem.setAnimate("Yellow"); 
-        }        
+        }    
     }
 
     public boolean isFinished() {

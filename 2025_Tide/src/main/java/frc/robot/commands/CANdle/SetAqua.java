@@ -14,7 +14,7 @@ public class SetAqua extends Command {
     }
 
     public void execute() {
-
+        RobotContainer.candleSubsystem.setAnimate("Aqua");
         
     }
 
