@@ -55,6 +55,9 @@ public class CANdleSubsystem extends SubsystemBase {
             case "Aqua":
                 m_toAnimate = new SingleFadeAnimation(0, 200, 40, 0, 0.7, LedCount);
                 break;
+            case "Red":
+                m_toAnimate = new SingleFadeAnimation(255, 0, 0, 0, 0.7, LedCount);
+                break;
             case "Rainbow":
                 m_toAnimate = new RainbowAnimation(0.8, 0.7, LedCount);
                 break;
@@ -69,6 +72,9 @@ public class CANdleSubsystem extends SubsystemBase {
                 break;
             case "Strobe Yellow":
                 m_toAnimate = new StrobeAnimation(255, 255, 0, 0, 0.4, LedCount);
+                break;
+            case "Strobe Red":
+                m_toAnimate = new StrobeAnimation(255, 0, 0, 0, 0.4, LedCount);
                 break;
             }  
     }

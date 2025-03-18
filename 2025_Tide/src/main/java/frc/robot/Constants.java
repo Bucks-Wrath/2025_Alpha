@@ -79,7 +79,7 @@ public final class Constants {
     public static class Shoot {
       public static class Default {
         public static final double WristPosition = -9;
-        public static final double ShooterSpeed = 0.3;
+        public static final double ShooterSpeed = 0.25; //0.3; // slowing down to reduce coral pop
         public static final double AutoDelay = 0.125; // This is time it takes to shoot coral
       }
 
