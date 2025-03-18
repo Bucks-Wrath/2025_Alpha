@@ -6,11 +6,15 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.LeftLimelight;
 
 import com.ctre.phoenix6.swerve.SwerveRequest;
+
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class AutoScoreRight extends Command {    
     private CommandSwerveDrivetrain drivetrain; 
-    private SwerveRequest.RobotCentric visionDrive;   
+    private SwerveRequest.RobotCentric visionDrive;
+    private CommandXboxController driverController;
 
     private double tx;
     private double ta;
@@ -20,12 +24,14 @@ public class AutoScoreRight extends Command {
     private double distanceVal;
 
     LeftLimelight limelight;
-    public AutoScoreRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive) {
+    public AutoScoreRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric visionDrive, CommandXboxController driverController) {
         this.drivetrain = drivetrain;
         this.visionDrive = visionDrive;
+        this.driverController = driverController;
         this.limelight = RobotContainer.leftLimelight;
         addRequirements(drivetrain);
         addRequirements(RobotContainer.leftLimelight);
+        addRequirements(RobotContainer.candleSubsystem);
     }
 
     public void initialize() {
@@ -36,7 +42,15 @@ public class AutoScoreRight extends Command {
     
     @Override
     public void execute() {
-        if(!limelight.ifValidTag()) return; 
+        // If we don't see a valid tag, flash red lights and return
+        if (!limelight.ifValidTag()) {
+            RobotContainer.candleSubsystem.setAnimate("Strobe Red");
+            return;
+        }
+
+        // if we do see a valid tag, flash purple lights, rumble driver controller, and align
+        RobotContainer.candleSubsystem.setAnimate("Strobe Purple");
+        driverController.setRumble(RumbleType.kBothRumble, 1.0);
 
         // find target location
         tx = limelight.gettx();
@@ -66,9 +80,17 @@ public class AutoScoreRight extends Command {
       // Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
         // If all 3 PIDs are at their target, we're done
-		return !limelight.ifValidTag() || (limelight.distanceController.atSetpoint() 
-            && limelight.strafeController.atSetpoint() 
-            && limelight.angleController.atSetpoint());
+        Boolean done = !limelight.ifValidTag() || (limelight.distanceController.atSetpoint() 
+                        && limelight.strafeController.atSetpoint() 
+                        && limelight.angleController.atSetpoint());
+
+        if (done) {
+            // if we're done, turn off the controller rumble
+            driverController.setRumble(RumbleType.kBothRumble, 0.0);
+        }
+
+        // return if we're done or not
+        return done;
     }
 
 	// Called once after isFinished returns true
