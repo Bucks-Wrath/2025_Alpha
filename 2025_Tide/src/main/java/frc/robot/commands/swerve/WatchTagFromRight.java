@@ -9,10 +9,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class WatchTagFromRight extends Command {    
     private CommandXboxController driverController;
+    private CommandXboxController operatorController;
     private RightLimelight limelight; 
 
-    public WatchTagFromRight(CommandXboxController driverController) {
+    public WatchTagFromRight(CommandXboxController driverController, CommandXboxController operatorController) {
         this.driverController = driverController;
+        this.operatorController = operatorController;
         this.limelight = RobotContainer.rightLimelight;
     }
 
@@ -25,12 +27,14 @@ public class WatchTagFromRight extends Command {
         if (!limelight.ifValidTag()) {
             RobotContainer.candleSubsystem.setAnimate("Strobe Red");
             driverController.setRumble(RumbleType.kBothRumble, 1.0);
+            operatorController.setRumble(RumbleType.kBothRumble, 0);
             return;
         }
 
         // if we do see a valid tag, flash purple lights, rumble driver controller, and align
         RobotContainer.candleSubsystem.setAnimate("Strobe Purple");
         driverController.setRumble(RumbleType.kBothRumble, 0.0);
+        operatorController.setRumble(RumbleType.kBothRumble, 0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +45,7 @@ public class WatchTagFromRight extends Command {
 	// Called once after isFinished returns true
     @Override public void end(boolean interrupted) {
         driverController.setRumble(RumbleType.kBothRumble, 0.0); 
+        operatorController.setRumble(RumbleType.kBothRumble, 0);
     }
 
 	// Called when another command which requires one or more of the same
