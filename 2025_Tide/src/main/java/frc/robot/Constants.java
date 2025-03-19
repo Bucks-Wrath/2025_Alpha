@@ -114,7 +114,7 @@ public final class Constants {
       public static class L4 {
         public static final double ElevatorPosition = 50.5 * GearingFactor;
         public static final double WristPosition = -16.4;
-        public static final double WristDelay = 0.45;
+        public static final double WristDelay = 0.25; // 0.45
         public static final double ShooterSpeed = 1; 
 
       }

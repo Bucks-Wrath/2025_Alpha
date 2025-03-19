@@ -53,12 +53,12 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 
         /* Current Limiting */
 		ElevatorFXConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-        ElevatorFXConfig.CurrentLimits.StatorCurrentLimit = 35;
+        ElevatorFXConfig.CurrentLimits.StatorCurrentLimit = 60;// 35 // 50
 
         /* PID Config */
-        ElevatorFXConfig.Slot0.kP = 0.2;
+        ElevatorFXConfig.Slot0.kP = 0.15; // 2
         ElevatorFXConfig.Slot0.kI = 0;
-        ElevatorFXConfig.Slot0.kD = 0.01;
+        ElevatorFXConfig.Slot0.kD = 0.01; // 0.01 // 0.005
 
         /* Open and Closed Loop Ramping */
         ElevatorFXConfig.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.25;
@@ -68,8 +68,8 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
         ElevatorFXConfig.ClosedLoopRamps.VoltageClosedLoopRampPeriod = 0;
 
         //Config Acceleration and Velocity
-        ElevatorFXConfig.MotionMagic.withMotionMagicAcceleration(300);
-        ElevatorFXConfig.MotionMagic.withMotionMagicCruiseVelocity(300);
+        ElevatorFXConfig.MotionMagic.withMotionMagicAcceleration(450); //300
+        ElevatorFXConfig.MotionMagic.withMotionMagicCruiseVelocity(450); //300
 
         // Config Motor
         ElevatorFalcon.getConfigurator().apply(ElevatorFXConfig);
