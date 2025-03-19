@@ -1,21 +1,21 @@
 package frc.robot.commands.swerve;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.RightLimelight;
+import frc.robot.subsystems.LeftLimelight;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
-public class WatchTagFromRight extends Command {    
+public class WatchTagFromLeft extends Command {    
     private CommandXboxController driverController;
     private CommandXboxController operatorController;
-    private RightLimelight limelight; 
+    private LeftLimelight limelight; 
 
-    public WatchTagFromRight(CommandXboxController driverController, CommandXboxController operatorController) {
+    public WatchTagFromLeft(CommandXboxController driverController, CommandXboxController operatorController) {
         this.driverController = driverController;
         this.operatorController = operatorController;
-        this.limelight = RobotContainer.rightLimelight;
+        this.limelight = RobotContainer.leftLimelight;
     }
 
     public void initialize() {
