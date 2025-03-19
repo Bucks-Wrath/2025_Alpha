@@ -58,6 +58,7 @@ import frc.robot.commands.swerve.AutoScoreLeft;
 import frc.robot.commands.swerve.AutoScoreRight;
 import frc.robot.commands.swerve.DoTheCrawl;
 import frc.robot.commands.swerve.TeleopDrive;
+import frc.robot.commands.swerve.WatchTagFromLeft;
 import frc.robot.commands.swerve.WatchTagFromRight;
 import frc.robot.subsystems.LeftLimelight;
 import frc.robot.subsystems.RightLimelight;
@@ -161,8 +162,8 @@ public class RobotContainer {
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPosition(Constants.Algae.Shoot.Processor.WristPosition));
         driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.58).andThen(new ShootAlgaeForBarge().withTimeout(0.25))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive).withTimeout(1.3).alongWith(new SetRainbow().withTimeout(0.1))));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0).alongWith(new SetRainbow().withTimeout(0.1))));
-        driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive, driverController).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController)));
-        driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive, driverController).alongWith(new SetRainbow().withTimeout(0.1)));
+        driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController)));
+        driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromLeft(driverController)));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.75).andThen(new SetRampPosition(1.63)));
 
         // Operator Buttons
@@ -218,8 +219,8 @@ public class RobotContainer {
 
     public void registerNamedCommands() {
         /* Command registration for PathPlanner */     
-        NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive, driverController).withTimeout(1.25));
-        NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive, driverController).withTimeout(1.25));
+        NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1.25));
+        NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1.25));
         NamedCommands.registerCommand("L2AutoScore", new L2AutoScore());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());
         NamedCommands.registerCommand("L4AutoScore", new L4AutoScore());
