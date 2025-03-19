@@ -17,7 +17,7 @@ public class ShootCoralIntake extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
 		double elevatorHeight = RobotContainer.elevator.getCurrentPosition();
-		double speed = elevatorHeight > 35 ? Constants.Coral.Shoot.L4.ShooterSpeed : Constants.Coral.Shoot.Default.ShooterSpeed;
+		double speed = elevatorHeight > (35 * Constants.GearingFactor) ? Constants.Coral.Shoot.L4.ShooterSpeed : Constants.Coral.Shoot.Default.ShooterSpeed;
     		RobotContainer.coralIntake.setSpeed(speed, speed);
 			RobotContainer.algaeIntake.setSpeed(-0.3);
 	}

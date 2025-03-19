@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.lib.models.*;
+import frc.robot.Constants;
 import frc.robot.DeviceIds;
 import frc.robot.Robot;
 
@@ -21,7 +22,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 
     // Set Different Heights
 	private double homePosition = 0;
-	private double maxUpTravelPosition = 52.3;
+	private double maxUpTravelPosition = Constants.Maximums.MaxElevatorHeight;
 
 	public double upPositionLimit = maxUpTravelPosition;
 	public double downPositionLimit = 0;
