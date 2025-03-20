@@ -2,15 +2,17 @@ package frc.robot.commands.vision;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LeftLimelight;
-
+import frc.robot.subsystems.RightLimelight;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class WaitForGoSignal extends Command {    
-    private LeftLimelight limelight; 
+    private LeftLimelight leftLimelight; 
+    private RightLimelight rightLimelight;
     private double proximityTarget;
 
     public WaitForGoSignal(double proximityTarget) {
-        this.limelight = RobotContainer.leftLimelight;
+        this.leftLimelight = RobotContainer.leftLimelight;
+        this.rightLimelight = RobotContainer.rightLimelight;
         this.proximityTarget = proximityTarget;
     }
 
@@ -23,7 +25,9 @@ public class WaitForGoSignal extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-        return limelight.gettz() < this.proximityTarget;
+        boolean leftLimelightAligned = leftLimelight.ifValidTag() && (leftLimelight.gettz() < this.proximityTarget);
+        boolean rightLimelightAligned = rightLimelight.ifValidTag() && (rightLimelight.gettz() < this.proximityTarget);
+        return leftLimelightAligned || rightLimelightAligned;
     }
 
 	// Called once after isFinished returns true
