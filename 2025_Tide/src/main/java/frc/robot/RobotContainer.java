@@ -60,6 +60,7 @@ import frc.robot.commands.swerve.DoTheCrawl;
 import frc.robot.commands.swerve.TeleopDrive;
 import frc.robot.commands.swerve.WatchTagFromLeft;
 import frc.robot.commands.swerve.WatchTagFromRight;
+import frc.robot.commands.vision.WaitForGoSignal;
 import frc.robot.subsystems.LeftLimelight;
 import frc.robot.subsystems.RightLimelight;
 
@@ -165,9 +166,9 @@ public class RobotContainer {
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController,operatorController)));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromLeft(driverController,operatorController)));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.75).andThen(new SetRampPosition(1.63)));
-
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0)));
+        operatorController.leftTrigger().and(operatorController.a()).whileTrue(new WaitForGoSignal(Constants.OperatorConstants.SafeReefProximity.L4).andThen(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition))));
         operatorController.b().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition))); 
         operatorController.x().onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L3.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition)));
         operatorController.y().and(operatorController.leftTrigger().negate()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition)));
