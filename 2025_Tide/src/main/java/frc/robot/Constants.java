@@ -18,6 +18,11 @@ public final class Constants {
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static class SafeReefProximity {
+      public static final double L4 = 55;
+      public static final double L3 = 55;
+      public static final double L2 = 55;
+    }
   }
 
   public static class Maximums {

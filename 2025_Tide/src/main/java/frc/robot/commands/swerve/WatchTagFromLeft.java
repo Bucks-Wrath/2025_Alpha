@@ -1,5 +1,6 @@
 package frc.robot.commands.swerve;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LeftLimelight;
 
@@ -34,7 +35,12 @@ public class WatchTagFromLeft extends Command {
         // if we do see a valid tag, flash purple lights, rumble driver controller, and align
         RobotContainer.candleSubsystem.setAnimate("Strobe Purple");
         driverController.setRumble(RumbleType.kBothRumble, 0.0);
-        operatorController.setRumble(RumbleType.kBothRumble, 0.5);
+        if (limelight.gettz() < Constants.OperatorConstants.SafeReefProximity.L4) {
+            operatorController.setRumble(RumbleType.kBothRumble, 0.7);
+        }
+        else {
+            operatorController.setRumble(RumbleType.kBothRumble, 0.1);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
