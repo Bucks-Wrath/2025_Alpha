@@ -27,6 +27,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 	public double upPositionLimit = maxUpTravelPosition;
 	public double downPositionLimit = 0;
 	private double targetPosition = 0;
+	private int gainSlot = 0;
     private MotionMagicDutyCycle targetPositionDutyCycle = new MotionMagicDutyCycle(0);
 	private double feedForward = 0.0;
 	public double shooterAddValue;
@@ -56,11 +57,17 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
         ElevatorFXConfig.CurrentLimits.StatorCurrentLimit = 60;// 35 // 50
 
         /* PID Config */
+		// Slot 0 is the "Going Up" slot
         ElevatorFXConfig.Slot0.kP = 0.15; // 2
         ElevatorFXConfig.Slot0.kI = 0;
         ElevatorFXConfig.Slot0.kD = 0.01; // 0.01 // 0.005
 
-        /* Open and Closed Loop Ramping */
+		// Slot 1 is the "Going Down" slot
+        ElevatorFXConfig.Slot1.kP = 0.15; // 2
+        ElevatorFXConfig.Slot1.kI = 0;
+        ElevatorFXConfig.Slot1.kD = 0.01; // 0.01 // 0.005
+
+		/* Open and Closed Loop Ramping */
         ElevatorFXConfig.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.25;
         ElevatorFXConfig.OpenLoopRamps.VoltageOpenLoopRampPeriod = 0.25;
 
@@ -81,6 +88,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 		this.manageMotion(targetPosition);
         targetPositionDutyCycle.withPosition(targetPosition);
         targetPositionDutyCycle.withFeedForward(feedForward);
+		targetPositionDutyCycle.Slot = this.gainSlot;
 		this.ElevatorFalcon.setControl(targetPositionDutyCycle);
 	}
 
@@ -109,6 +117,12 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 			return false;
 		} else {
 			this.targetPosition = position;
+			if (this.targetPosition > getCurrentPosition()){
+				this.gainSlot = 0; // this is the "Going Up" slot
+			}
+			else {
+				this.gainSlot = 1; // this is the "Going Down" slot
+			}
 			return true;
 		}
 	}
