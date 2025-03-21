@@ -16,7 +16,12 @@ public class ShootAlgaeForProcessor extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-        RobotContainer.algaeIntake.setSpeed(Constants.Algae.Shoot.Processor.ShooterSpeed);
+		if(RobotContainer.algaeIntake.isProcessor){
+        	RobotContainer.algaeIntake.setSpeed(Constants.Algae.Shoot.Processor.ShooterSpeed);
+		}
+		else {
+			RobotContainer.algaeIntake.setSpeed(Constants.Algae.Shoot.Processor.ShooterSpeedFromHorns);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -25,14 +30,14 @@ public class ShootAlgaeForProcessor extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {
+	@Override public void end(boolean interrupted) {
 		RobotContainer.algaeIntake.setSpeed(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		end();
+		end(true);
 	}
 }
 

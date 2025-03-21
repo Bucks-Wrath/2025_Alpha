@@ -10,6 +10,6 @@ public class TeleAutoScore extends SequentialCommandGroup {
     
     public TeleAutoScore() {
         addCommands(
-            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.Default.AutoDelay).andThen(new SetWristPosition(0).alongWith(new DoNothing().withTimeout(0.25).andThen(new SetElevatorPosition(0)))));
+            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.Default.AutoDelay).andThen(new SetWristPosition(0).alongWith(new DoNothing().withTimeout(0.125).andThen(new SetElevatorPosition(0)))));
         }
 }

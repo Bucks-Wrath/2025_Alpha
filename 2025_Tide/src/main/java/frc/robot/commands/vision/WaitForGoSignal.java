@@ -27,7 +27,9 @@ public class WaitForGoSignal extends Command {
 	public boolean isFinished() {
         boolean leftLimelightAligned = leftLimelight.ifValidTag() && (leftLimelight.gettz() < this.proximityTarget);
         boolean rightLimelightAligned = rightLimelight.ifValidTag() && (rightLimelight.gettz() < this.proximityTarget);
-        return leftLimelightAligned || rightLimelightAligned;
+        boolean driverBPressed = RobotContainer.driverController.b().getAsBoolean();
+        boolean driverApressed = RobotContainer.driverController.a().getAsBoolean();
+        return (leftLimelightAligned || rightLimelightAligned) && (driverApressed || driverBPressed);
     }
 
 	// Called once after isFinished returns true

@@ -19,10 +19,11 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static class SafeReefProximity {
-      public static final double L4 = 55;
-      public static final double L3 = 55;
-      public static final double L2 = 55;
+      public static final double L4 = 1;
+      public static final double L3 = 1.5;
+      public static final double L2 = 1.5;
     }
+
   }
 
   public static class Maximums {
@@ -83,12 +84,14 @@ public final class Constants {
     public static class Shoot {
       public static class Processor {
           public static final double ShooterSpeed = -1;
+          public static final double ShooterSpeedFromHorns = 1;
           public static final double WristPosition = -10.2;
+          public static final double WristPositionHorns = -31.3;
       }
 
       public static class Barge {
         public static final double ShooterSpeed = 1;
-        public static final double ElevatorPosition = 52.3 * GearingFactor;
+        public static final double ElevatorPosition = 51.3 * GearingFactor;
         public static final double WristPosition = 0;
       }
     }
@@ -119,7 +122,7 @@ public final class Constants {
       public static class L4 {
         public static final double ElevatorPosition = 50.5 * GearingFactor;
         public static final double WristPosition = -16.4;
-        public static final double WristDelay = 0.25; // 0.45
+        public static final double WristDelay = 0.3; // 0.45
         public static final double ShooterSpeed = 1; 
 
       }

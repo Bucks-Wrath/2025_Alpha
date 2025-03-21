@@ -26,12 +26,7 @@ public class RunCoralIntake extends Command {
 		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 
-		// when the first sensor sees the coral, run the intake
-		if(secondSensorSeesCoral) {
-			RobotContainer.coralIntake.setSpeed(0.1, 0.1);
-		}
-
-		else if (firstSensorSeesCoral) {
+		if (firstSensorSeesCoral || secondSensorSeesCoral) {
 			done = true;
 		}
 
@@ -49,14 +44,14 @@ public class RunCoralIntake extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {
+	@Override public void end(boolean interrupted) {
 		RobotContainer.coralIntake.setSpeed(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		end();
+		end(true);
 	}
 }
 
