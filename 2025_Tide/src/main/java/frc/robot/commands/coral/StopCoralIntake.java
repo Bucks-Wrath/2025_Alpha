@@ -27,7 +27,7 @@ public class StopCoralIntake extends Command {
 		thirdSensorSeesCoral = RobotContainer.coralIntake.ThirdSensorSeesCoral();
 
 		if (thirdSensorSeesCoral)  {
-			RobotContainer.coralIntake.setSpeed( 0.25, 0.25);
+			RobotContainer.coralIntake.setSpeed( 0.35, 0.35);  // 0.25
 		}
 
 	    else if (firstSensorSeesCoral){

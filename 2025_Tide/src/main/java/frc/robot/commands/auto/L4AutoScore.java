@@ -11,6 +11,6 @@ public class L4AutoScore extends SequentialCommandGroup {
     
     public L4AutoScore() {
         addCommands(
-            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.Default.AutoDelay).andThen(new SetWristPosition(0).alongWith(new DoNothing().withTimeout(0.25).andThen(new SetElevatorPosition(0).alongWith(new SetRainbow().withTimeout(0.1))))));
+            new ShootCoralIntake().withTimeout(Constants.Coral.Shoot.Default.AutoDelay).andThen(new SetWristPosition(0).alongWith(new DoNothing().withTimeout(0.25).andThen(new SetElevatorPosition(0.25).alongWith(new SetRainbow().withTimeout(0.1))))));
         }
 }

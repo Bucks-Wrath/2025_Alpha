@@ -26,7 +26,11 @@ public class RunCoralIntake extends Command {
 		firstSensorSeesCoral = RobotContainer.coralIntake.FirstSensorSeesCoral();
 		secondSensorSeesCoral = RobotContainer.coralIntake.SecondSensorSeesCoral();
 
-		if (firstSensorSeesCoral || secondSensorSeesCoral) {
+		if (secondSensorSeesCoral) {
+			RobotContainer.coralIntake.setSpeed(0.2, 0.2);
+		}
+
+		else if (firstSensorSeesCoral){
 			done = true;
 		}
 

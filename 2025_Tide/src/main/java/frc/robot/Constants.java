@@ -107,8 +107,8 @@ public final class Constants {
 
       public static class L1 {
         public static final double ElevatorPosition = 4.4 * GearingFactor;
-        public static final double ShooterMotorOneSpeed = 1;
-        public static final double ShooterMotorTwoSpeed = 0;
+        public static final double ShooterMotorOneSpeed = .4;
+        public static final double ShooterMotorTwoSpeed = .4;
 
       }
       public static class L2 {

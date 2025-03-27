@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.403,
-        "y": 0.519
+        "x": 1.594,
+        "y": 0.746362704918032
       },
       "prevControl": {
-        "x": 1.6512260624772441,
-        "y": 0.7506284902558057
+        "x": 1.8422260624772442,
+        "y": 0.9779911951738377
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 6.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 55.0
+    "rotation": 54.0
   },
   "reversed": false,
   "folder": "Processor Three (L4) Red",

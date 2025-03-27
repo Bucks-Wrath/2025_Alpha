@@ -13,7 +13,7 @@ public class SetWristPositionProcessor extends Command {
 	}
 
 	// Called just before this Command runs the first time
-	public void initialize() {
+	public void initialize() {  
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -30,7 +30,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "AutoScoreLeft"
+                  "name": "AutoScoreLeft_hometest"
                 }
               },
               {
@@ -43,7 +43,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -78,7 +78,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Red Left 3 Pt 2 "
+                        "pathName": "Crawl Red Left 3 Pt 2 "
                       }
                     }
                   ]
@@ -139,7 +139,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -174,7 +174,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Red Left 3 Pt 4"
+                        "pathName": "Crawl Red Left 3 Pt 4"
                       }
                     }
                   ]
@@ -235,7 +235,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -270,7 +270,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Red Left 3 Pt 6"
+                        "pathName": "Crawl Red Left 3 Pt 6"
                       }
                     }
                   ]
@@ -309,6 +309,31 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoScoreRight"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "L4SetHeight"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4AutoScore"
           }
         }
       ]

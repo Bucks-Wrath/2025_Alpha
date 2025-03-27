@@ -58,7 +58,7 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
 
         /* PID Config */
 		// Slot 0 is the "Going Up" slot
-        ElevatorFXConfig.Slot0.kP = 0.17;
+        ElevatorFXConfig.Slot0.kP = 0.2;
         ElevatorFXConfig.Slot0.kI = 0;
         ElevatorFXConfig.Slot0.kD = 0.005;
 
