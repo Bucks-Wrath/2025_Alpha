@@ -28,6 +28,7 @@ import frc.robot.commands.auto.L3SetHeight;
 import frc.robot.commands.auto.L2AutoScore;
 import frc.robot.commands.auto.L2SetHeight;
 import frc.robot.commands.auto.L4SetHeight;
+import frc.robot.commands.auto.L4orL2SetHeight;
 import frc.robot.commands.auto.TeleAutoScore;
 import frc.robot.commands.CANdle.SetRainbow;
 import frc.robot.commands.CANdle.WatchClock;
@@ -234,6 +235,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("L2SetHeight", new L2SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L3SetHeight", new L3SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
+        NamedCommands.registerCommand("L4OrL2SetHeight", new L4orL2SetHeight());
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
         NamedCommands.registerCommand("DoNothing", new HoldAlgae().withTimeout(0.8));  // was 0.8 // was 0.9
