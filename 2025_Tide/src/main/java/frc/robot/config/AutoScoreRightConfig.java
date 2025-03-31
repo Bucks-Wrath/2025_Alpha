@@ -4,7 +4,7 @@ public class AutoScoreRightConfig {
 
     //Configurations for DISTANCE component of left auto-positioning at the Reef
     public static class DistancePID{
-        public static double P = 0.4;
+        public static double P = 0.40;
         public static double I = 0.0;
         public static double D = 0.0;
     }
