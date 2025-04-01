@@ -43,7 +43,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -78,7 +78,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Right Three Pt 2"
+                        "pathName": "Blue Right 3 Pt 2"
                       }
                     }
                   ]
@@ -94,7 +94,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 3"
+                  "pathName": "Blue Right 3 Pt 3"
                 }
               },
               {
@@ -133,7 +133,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -168,7 +168,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Right Three Pt 4"
+                        "pathName": "Blue Right 3 Pt 4"
                       }
                     }
                   ]
@@ -184,7 +184,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right Three Pt 5"
+                  "pathName": "Blue Right 3 Pt 5"
                 }
               },
               {
@@ -223,7 +223,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -240,12 +240,6 @@
                       "type": "named",
                       "data": {
                         "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
                       }
                     }
                   ]
@@ -264,13 +258,70 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Right Three Pt 6"
+                        "pathName": "Blue Right 3 Pt 6"
                       }
                     }
                   ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Blue Right 3 Pt 7"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoScoreLeft"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "L4OrL2SetHeight"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4AutoScore"
           }
         }
       ]

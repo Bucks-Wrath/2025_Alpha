@@ -16,12 +16,28 @@
     },
     {
       "anchor": {
-        "x": 1.51,
-        "y": 7.399538934426229
+        "x": 1.618,
+        "y": 7.296
       },
       "prevControl": {
-        "x": 2.1144999999999996,
-        "y": 6.676038934426228
+        "x": 2.205785252292473,
+        "y": 6.486983005625053
+      },
+      "nextControl": {
+        "x": 1.4710536869268815,
+        "y": 7.498254248593737
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.476,
+        "y": 7.506178358458543
+      },
+      "prevControl": {
+        "x": 1.6157982258676866,
+        "y": 7.298918965319783
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,12 +45,26 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.0017953321364426,
+      "maxWaypointRelativePos": 2.0,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 6.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 6.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,7 +72,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -55.0
+    "rotation": -54.0
   },
   "reversed": false,
   "folder": "Non-Processor Three (L4) Red",

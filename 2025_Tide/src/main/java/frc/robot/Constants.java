@@ -19,7 +19,7 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static class SafeReefProximity {
-      public static final double L4 = 1;
+      public static final double L4 = 1.2;
       public static final double L3 = 1.5;
       public static final double L2 = 1.5;
     }

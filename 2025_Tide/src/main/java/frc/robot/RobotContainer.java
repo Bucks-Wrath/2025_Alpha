@@ -119,9 +119,7 @@ public class RobotContainer {
         ShuffleboardTab autoTab = Shuffleboard.getTab("Auto settings");
         autoChooser.addOption("Drive Three Feet", new PathPlannerAuto("Drive Three Feet"));
         autoChooser.addOption("Blue Processor Three L4", new PathPlannerAuto("Processor Three L4 Blue"));
-        //autoChooser.addOption("Processor Three Low", new PathPlannerAuto("Processor Three Low"));
         autoChooser.addOption("Blue Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Blue"));
-        //autoChooser.addOption("Non-Processor Three Low", new PathPlannerAuto("Non-Processor Three Low"));
         autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));
         autoChooser.addOption("Processor Center", new PathPlannerAuto("Processor Center"));
         autoChooser.addOption("Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red"));
@@ -235,10 +233,11 @@ public class RobotContainer {
         NamedCommands.registerCommand("L2SetHeight", new L2SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L3SetHeight", new L3SetHeight().withTimeout(2));
         NamedCommands.registerCommand("L4SetHeight", new L4SetHeight().withTimeout(2));
-        NamedCommands.registerCommand("L4OrL2SetHeight", new L4orL2SetHeight());
+        NamedCommands.registerCommand("L4SetHeightEventually", new WaitForGoSignal(1.7,true).andThen(new L4SetHeight()));
+        NamedCommands.registerCommand("L4OrL2SetHeight", new L4orL2SetHeight());                                                            
         NamedCommands.registerCommand("RunCoralIntake", new RunCoralIntake());
         NamedCommands.registerCommand("StopCoralIntake", new StopCoralIntake());
-        NamedCommands.registerCommand("DoNothing", new HoldAlgae().withTimeout(0.8));  // was 0.8 // was 0.9
+        NamedCommands.registerCommand("DoNothing", new HoldAlgae().withTimeout(0.8));
         NamedCommands.registerCommand("AlgaeL3Intake", new SetElevatorPosition(Constants.Algae.Intake.Barge.L3.ElevatorPosition).andThen(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.L3.WristPosition))));
     }
 }

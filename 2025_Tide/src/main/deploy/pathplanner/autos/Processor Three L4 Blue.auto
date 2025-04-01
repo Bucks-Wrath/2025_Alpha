@@ -78,7 +78,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Crawl Blue Left Three Pt 2"
+                        "pathName": "Blue Left 3 Pt 2 "
                       }
                     }
                   ]
@@ -94,7 +94,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Left Three Pt 3"
+                  "pathName": "Blue Left 3 Pt 3"
                 }
               },
               {
@@ -174,7 +174,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Crawl Blue Left Three Pt 4"
+                        "pathName": "Blue Left 3 Pt 4"
                       }
                     }
                   ]
@@ -190,7 +190,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Left Three Pt 5"
+                  "pathName": "Blue Left 3 Pt 5"
                 }
               },
               {
@@ -270,7 +270,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Crawl Blue Left Three Pt 6"
+                        "pathName": "Blue Left 3 Pt 6"
                       }
                     }
                   ]
@@ -286,7 +286,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red Left 3 Pt 7"
+                  "pathName": "Blue Left 3 Pt 7"
                 }
               },
               {
@@ -324,7 +324,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L4SetHeight"
+                  "name": "L4OrL2SetHeight"
                 }
               }
             ]

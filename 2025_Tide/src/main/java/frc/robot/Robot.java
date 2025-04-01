@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -11,11 +12,16 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static RobotContainer m_robotContainer;
-  public static UsbCamera camera;
+  public static UsbCamera climberCamera;
 
   public Robot() {
 
     m_robotContainer = new RobotContainer();
+
+    // Turn on Climber Stream
+    climberCamera = CameraServer.startAutomaticCapture("Climber camera",0);
+    climberCamera.setResolution(640,480);
+    climberCamera.setFPS(30);
        
   }
 

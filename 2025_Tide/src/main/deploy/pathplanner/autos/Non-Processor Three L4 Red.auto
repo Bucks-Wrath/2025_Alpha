@@ -36,14 +36,14 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L4SetHeight"
+                  "name": "L4SetHeightEventually"
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -126,14 +126,14 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L4SetHeight"
+                  "name": "L4SetHeightEventually"
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -216,14 +216,14 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "L4SetHeight"
+                  "name": "L4SetHeightEventually"
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -240,12 +240,6 @@
                       "type": "named",
                       "data": {
                         "name": "RunCoralIntake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "StopCoralIntake"
                       }
                     }
                   ]
@@ -271,6 +265,63 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Red Right 3 Pt 7"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunCoralIntake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "StopCoralIntake"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoScoreLeft"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "L4OrL2SetHeight"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4AutoScore"
           }
         }
       ]

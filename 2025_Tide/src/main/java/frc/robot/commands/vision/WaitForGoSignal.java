@@ -3,17 +3,23 @@ package frc.robot.commands.vision;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LeftLimelight;
 import frc.robot.subsystems.RightLimelight;
+import edu.wpi.first.util.function.BooleanConsumer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class WaitForGoSignal extends Command {    
     private LeftLimelight leftLimelight; 
     private RightLimelight rightLimelight;
     private double proximityTarget;
+    private boolean isAuto;
 
     public WaitForGoSignal(double proximityTarget) {
+        this(proximityTarget, false);
+    }
+    public WaitForGoSignal(double proximityTarget, boolean isAuto) {
         this.leftLimelight = RobotContainer.leftLimelight;
         this.rightLimelight = RobotContainer.rightLimelight;
         this.proximityTarget = proximityTarget;
+        this.isAuto = isAuto;
     }
 
     public void initialize() {
@@ -29,7 +35,7 @@ public class WaitForGoSignal extends Command {
         boolean rightLimelightAligned = rightLimelight.ifValidTag() && (rightLimelight.gettz() < this.proximityTarget);
         boolean driverBPressed = RobotContainer.driverController.b().getAsBoolean();
         boolean driverApressed = RobotContainer.driverController.a().getAsBoolean();
-        return (leftLimelightAligned || rightLimelightAligned) && (driverApressed || driverBPressed);
+        return (leftLimelightAligned || rightLimelightAligned) && (driverApressed || driverBPressed || this.isAuto);
     }
 
 	// Called once after isFinished returns true
