@@ -63,9 +63,9 @@ public class Elevator extends SubsystemBase implements IPositionControlledSubsys
         ElevatorFXConfig.Slot0.kD = 0.005;
 
 		// Slot 1 is the "Going Down" slot
-        ElevatorFXConfig.Slot1.kP = 0.15;
+        ElevatorFXConfig.Slot1.kP = 0.12;
         ElevatorFXConfig.Slot1.kI = 0;
-        ElevatorFXConfig.Slot1.kD = 0.01;
+        ElevatorFXConfig.Slot1.kD = 0.015;
 
 		/* Open and Closed Loop Ramping */
         ElevatorFXConfig.OpenLoopRamps.DutyCycleOpenLoopRampPeriod = 0.25;

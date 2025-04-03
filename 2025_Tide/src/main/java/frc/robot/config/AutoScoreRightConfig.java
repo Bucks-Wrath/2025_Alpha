@@ -9,7 +9,7 @@ public class AutoScoreRightConfig {
         public static double D = 0.0;
     }
 
-    public static double DistanceTarget = 0.41;  //0.39  // was 0.41 home
+    public static double DistanceTarget = 0.39;  //0.39  // was 0.41 home
     public static double DistanceTolerance = 0.04; //0.02;  // was 0.01
 
     //Configurations for STRAFE component of left auto-positioning at the Reef

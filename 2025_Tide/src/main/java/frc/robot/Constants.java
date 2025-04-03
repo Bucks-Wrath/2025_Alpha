@@ -43,13 +43,13 @@ public final class Constants {
         
         public static class L2 {
           public static final double ElevatorPosition = 16.0 * GearingFactor;
-          public static final double WristPosition = -15.9;
+          public static final double WristPosition = -16.9;
         
         }
 
         public static class L3 {
           public static final double ElevatorPosition = 30.1 * GearingFactor;
-          public static final double WristPosition = -12.8;
+          public static final double WristPosition = -13.8;
         }
 
         public static class Floor {
@@ -83,7 +83,7 @@ public final class Constants {
 
     public static class Shoot {
       public static class Processor {
-          public static final double ShooterSpeed = -1;
+          public static final double ShooterSpeed = -0.5;
           public static final double ShooterSpeedFromHorns = 1;
           public static final double WristPosition = -10.2;
           public static final double WristPositionHorns = -31.3;
@@ -102,7 +102,7 @@ public final class Constants {
       public static class Default {
         public static final double WristPosition = -9;
         public static final double ShooterSpeed = 0.25; //0.3; // slowing down to reduce coral pop
-        public static final double AutoDelay = 0.125; // This is time it takes to shoot coral
+        public static final double AutoDelay = 0.25; // This is time it takes to shoot coral
       }
 
       public static class L1 {
@@ -120,7 +120,7 @@ public final class Constants {
 
       }
       public static class L4 {
-        public static final double ElevatorPosition = 50.5 * GearingFactor;
+        public static final double ElevatorPosition = 51 * GearingFactor;
         public static final double WristPosition = -16.4;
         public static final double WristDelay = 0.3; // 0.45
         public static final double ShooterSpeed = 1; 
