@@ -70,8 +70,8 @@ public final class Constants {
         }
 
         public static class L3 {
-          public static final double ElevatorPosition = 18.2 * GearingFactor;  // 17.8
-          public static final double WristPosition = -12.7;
+          public static final double ElevatorPosition = 18.1 * GearingFactor;  // 17.8
+          public static final double WristPosition = -12.4;//-12.7
         }
 
         public static class Floor {
@@ -120,9 +120,9 @@ public final class Constants {
 
       }
       public static class L4 {
-        public static final double ElevatorPosition = 51 * GearingFactor;
-        public static final double WristPosition = -16.4;
-        public static final double WristDelay = 0.3; // 0.45
+        public static final double ElevatorPosition = 50.8 * GearingFactor;
+        public static final double WristPosition = -17.6; //-16.4
+        public static final double WristDelay = 0.35; // 0.45
         public static final double ShooterSpeed = 1; 
 
       }

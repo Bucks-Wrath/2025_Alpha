@@ -142,8 +142,8 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-        // wrist.setDefaultCommand(new JoystickWrist());
-        // elevator.setDefaultCommand(new JoystickElevator());
+        //wrist.setDefaultCommand(new JoystickWrist());
+         //elevator.setDefaultCommand(new JoystickElevator());
         // ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
@@ -226,9 +226,9 @@ public class RobotContainer {
 
     public void registerNamedCommands() {
         /* Command registration for PathPlanner */     
-        NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1.5));// was 1.25
+        NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1.25));// was 1.25
         NamedCommands.registerCommand("AutoScoreLeft_hometest", new AutoScoreLeft_hometest(drivetrain, visionDrive).withTimeout(1.5));
-        NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1.5));// was 1.25
+        NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1.25));// was 1.25
         NamedCommands.registerCommand("L2AutoScore", new L2AutoScore());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());
         NamedCommands.registerCommand("L4AutoScore", new L4AutoScore());
