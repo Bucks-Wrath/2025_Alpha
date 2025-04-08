@@ -165,7 +165,7 @@ public class RobotContainer {
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         //driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.rightBumper().onTrue(new TeleAutoScore().alongWith(new SetRainbow().withTimeout(0.1)));
-        driverController.x().onTrue(new ShootCoralIntakeTrough().alongWith(new SlideLeft(drivetrain, algaeDrive)).withTimeout(0.375));
+        driverController.x().whileTrue(new ShootCoralIntakeTrough().alongWith(new SlideLeft(drivetrain, algaeDrive)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));

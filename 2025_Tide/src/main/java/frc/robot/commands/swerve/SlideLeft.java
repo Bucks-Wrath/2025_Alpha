@@ -28,7 +28,7 @@ public class SlideLeft extends Command {
         // it also assumes it will be called with a timeout or will turn off when the button is no longer held
             drivetrain.setControl(
                 algaeDrive.withVelocityX(0.0) // Drive forward with X
-                        .withVelocityY(0.1) // Drive left with positive Y
+                        .withVelocityY(1.0) // Drive left with positive Y
             );
         
     }
