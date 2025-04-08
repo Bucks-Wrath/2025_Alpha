@@ -75,7 +75,7 @@ public final class Constants {
         }
 
         public static class Floor {
-          public static final double WristPosition = -31.3;
+          public static final double WristPosition = -32.0;
         }
 
       }
@@ -106,9 +106,10 @@ public final class Constants {
       }
 
       public static class L1 {
-        public static final double ElevatorPosition = 4.4 * GearingFactor;
-        public static final double ShooterMotorOneSpeed = .4;
-        public static final double ShooterMotorTwoSpeed = .4;
+        public static final double ElevatorPosition = 5.6 * GearingFactor;
+        public static final double WristPosition = -5.51;
+        public static final double ShooterMotorOneSpeed = 0;
+        public static final double ShooterMotorTwoSpeed = 1;
 
       }
       public static class L2 {

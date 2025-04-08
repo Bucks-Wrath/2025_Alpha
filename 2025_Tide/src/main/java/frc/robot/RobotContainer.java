@@ -142,9 +142,9 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-        //wrist.setDefaultCommand(new JoystickWrist());
-         //elevator.setDefaultCommand(new JoystickElevator());
-        // ramp.setDefaultCommand(new JoystickRamp());
+        wrist.setDefaultCommand(new JoystickWrist());
+         elevator.setDefaultCommand(new JoystickElevator());
+         //ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
         // climber.setDefaultCommand(new JoystickClimber());
@@ -179,7 +179,7 @@ public class RobotContainer {
         operatorController.leftTrigger().negate().and(operatorController.x()).whileTrue(new WaitForGoSignal(Constants.OperatorConstants.SafeReefProximity.L3).andThen(new SetElevatorPosition(Constants.Coral.Shoot.L3.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition))));
         operatorController.leftTrigger().and(operatorController.y()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition)));
         operatorController.leftTrigger().negate().and(operatorController.y()).whileTrue(new WaitForGoSignal(Constants.OperatorConstants.SafeReefProximity.L4).andThen(new SetElevatorPosition(Constants.Coral.Shoot.L4.ElevatorPosition).alongWith(new DoNothing()).withTimeout(Constants.Coral.Shoot.L4.WristDelay).andThen(new SetWristPosition(Constants.Coral.Shoot.L4.WristPosition))));
-        operatorController.rightTrigger().and(operatorController.leftTrigger().negate()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L1.ElevatorPosition));
+        operatorController.rightTrigger().and(operatorController.leftTrigger().negate()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L1.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.L1.WristPosition)));
         operatorController.leftBumper().onTrue(new SetRampPosition(0));
         operatorController.rightBumper().onTrue(new SetRampPosition(1.63));
         operatorController.back().and(operatorController.leftTrigger().negate()).whileTrue(new SetElevatorPosition(Constants.Algae.Intake.Processor.L3.ElevatorPosition).andThen(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.L3.WristPosition))));
