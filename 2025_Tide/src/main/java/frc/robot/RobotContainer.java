@@ -56,6 +56,7 @@ import frc.robot.subsystems.Wrist;
 import frc.robot.subsystems.AlgaeIntake;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.Climber;
+import frc.robot.commands.swerve.AlgaeAlign;
 import frc.robot.commands.swerve.AutoScoreLeft;
 import frc.robot.commands.swerve.AutoScoreLeft_hometest;
 import frc.robot.commands.swerve.AutoScoreRight;
@@ -167,6 +168,7 @@ public class RobotContainer {
         driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPositionProcessor());
         driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.4).andThen(new ShootAlgaeForBarge().withTimeout(0.125))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive).withTimeout(1.3).alongWith(new SetRainbow().withTimeout(0.1))));
+        driverController.y().whileTrue(new AlgaeAlign(drivetrain, visionDrive));
         driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0).alongWith(new SetRainbow().withTimeout(0.1))));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController,operatorController)));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromLeft(driverController,operatorController)));
