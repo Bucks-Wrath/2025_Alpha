@@ -57,6 +57,8 @@ import frc.robot.subsystems.AlgaeIntake;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.swerve.AutoScoreLeft;
+import frc.robot.commands.swerve.SlideRight;
+import frc.robot.commands.swerve.SlideLeft;
 import frc.robot.commands.swerve.AutoScoreLeft_hometest;
 import frc.robot.commands.swerve.AutoScoreRight;
 import frc.robot.commands.swerve.DoTheCrawl;
@@ -81,6 +83,9 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
     private final SwerveRequest.RobotCentric visionDrive = new SwerveRequest.RobotCentric()
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+
+    private final SwerveRequest.RobotCentric algaeDrive = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
 
     //private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
@@ -160,7 +165,7 @@ public class RobotContainer {
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         //driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.rightBumper().onTrue(new TeleAutoScore().alongWith(new SetRainbow().withTimeout(0.1)));
-        driverController.x().onTrue(new ShootCoralIntakeTrough().withTimeout(0.375));
+        driverController.x().onTrue(new ShootCoralIntakeTrough().alongWith(new SlideLeft(drivetrain, algaeDrive)).withTimeout(0.375));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));
