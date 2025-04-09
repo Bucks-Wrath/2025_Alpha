@@ -6,11 +6,11 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class SlideRight extends Command {    
+public class AlgaeSlideLeft extends Command {    
     private CommandSwerveDrivetrain drivetrain; 
     private SwerveRequest.RobotCentric algaeDrive;
 
-    public SlideRight(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric algaeDrive) {
+    public AlgaeSlideLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric algaeDrive) {
         this.drivetrain = drivetrain;
         this.algaeDrive = algaeDrive;
         addRequirements(drivetrain);
@@ -28,7 +28,7 @@ public class SlideRight extends Command {
         // it also assumes it will be called with a timeout or will turn off when the button is no longer held
             drivetrain.setControl(
                 algaeDrive.withVelocityX(0.1) // Drive forward with X
-                        .withVelocityY(-0.5) // Drive right with negative Y
+                        .withVelocityY(0.5) // Drive left with positive Y
             );
         
     }

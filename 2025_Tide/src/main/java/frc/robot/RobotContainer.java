@@ -56,9 +56,10 @@ import frc.robot.subsystems.Wrist;
 import frc.robot.subsystems.AlgaeIntake;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.Climber;
+import frc.robot.commands.swerve.AlgaeSlideLeft;
 import frc.robot.commands.swerve.AutoScoreLeft;
 import frc.robot.commands.swerve.SlideRight;
-import frc.robot.commands.swerve.SlideLeft;
+import frc.robot.commands.swerve.CoralSlideLeft;
 import frc.robot.commands.swerve.AutoScoreLeft_hometest;
 import frc.robot.commands.swerve.AutoScoreRight;
 import frc.robot.commands.swerve.DoTheCrawl;
@@ -131,6 +132,7 @@ public class RobotContainer {
         autoChooser.addOption("Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red"));
         autoChooser.addOption("Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red"));
         autoChooser.addOption("Red Non-Processor Three L4 Alt", new PathPlannerAuto("Non-Processor Three L4 Red Alt"));
+        autoChooser.addOption("Polite Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red Polite"));
 
 
         autoTab.add("Mode", autoChooser);
@@ -147,8 +149,8 @@ public class RobotContainer {
             )
         );
         // Only Used For Testing
-        wrist.setDefaultCommand(new JoystickWrist());
-         elevator.setDefaultCommand(new JoystickElevator());
+        //wrist.setDefaultCommand(new JoystickWrist());
+         //elevator.setDefaultCommand(new JoystickElevator());
          //ramp.setDefaultCommand(new JoystickRamp());
 
         // Turn on for comp
@@ -165,7 +167,7 @@ public class RobotContainer {
         driverController.rightTrigger().onTrue(new RunCoralIntake());
         //driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.rightBumper().onTrue(new TeleAutoScore().alongWith(new SetRainbow().withTimeout(0.1)));
-        driverController.x().whileTrue(new ShootCoralIntakeTrough().alongWith(new SlideLeft(drivetrain, algaeDrive)));
+        driverController.x().whileTrue(new ShootCoralIntakeTrough().alongWith(new CoralSlideLeft(drivetrain, algaeDrive)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
         driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
         driverController.leftBumper().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));
@@ -176,6 +178,7 @@ public class RobotContainer {
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController,operatorController)));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromLeft(driverController,operatorController)));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.75).andThen(new SetRampPosition(1.63)));
+        driverController.y().whileTrue(new AlgaeSlideLeft(drivetrain, algaeDrive));
         // Operator Buttons
         operatorController.a().onTrue(new SetWristPosition(0).alongWith(new SetElevatorPosition(0)));
         operatorController.leftTrigger().and(operatorController.b()).onTrue(new SetElevatorPosition(Constants.Coral.Shoot.L2.ElevatorPosition).alongWith(new SetWristPosition(Constants.Coral.Shoot.Default.WristPosition))); 
@@ -232,7 +235,7 @@ public class RobotContainer {
     public void registerNamedCommands() {
         /* Command registration for PathPlanner */     
         NamedCommands.registerCommand("AutoScoreLeft", new AutoScoreLeft(drivetrain, visionDrive).withTimeout(1.25));// was 1.25
-        NamedCommands.registerCommand("AutoScoreLeft_hometest", new AutoScoreLeft_hometest(drivetrain, visionDrive).withTimeout(1.5));
+        NamedCommands.registerCommand("AutoScoreLeft_hometest", new AutoScoreLeft_hometest(drivetrain, visionDrive).withTimeout(1.25));
         NamedCommands.registerCommand("AutoScoreRight", new AutoScoreRight(drivetrain, visionDrive).withTimeout(1.25));// was 1.25
         NamedCommands.registerCommand("L2AutoScore", new L2AutoScore());
         NamedCommands.registerCommand("L3AutoScore", new L3AutoScore());

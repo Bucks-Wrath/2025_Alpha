@@ -6,11 +6,11 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class SlideLeft extends Command {    
+public class CoralSlideLeft extends Command {    
     private CommandSwerveDrivetrain drivetrain; 
     private SwerveRequest.RobotCentric algaeDrive;
 
-    public SlideLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric algaeDrive) {
+    public CoralSlideLeft(CommandSwerveDrivetrain drivetrain, SwerveRequest.RobotCentric algaeDrive) {
         this.drivetrain = drivetrain;
         this.algaeDrive = algaeDrive;
         addRequirements(drivetrain);
@@ -27,7 +27,7 @@ public class SlideLeft extends Command {
         // this assumes AutoScoreLeft was used to align the robot to the reef
         // it also assumes it will be called with a timeout or will turn off when the button is no longer held
             drivetrain.setControl(
-                algaeDrive.withVelocityX(0.0) // Drive forward with X
+                algaeDrive.withVelocityX(0.1) // Drive forward with X
                         .withVelocityY(1.0) // Drive left with positive Y
             );
         
