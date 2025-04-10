@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 1.55,
-        "y": 0.729
+        "y": 7.271
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9857461022433198,
-        "y": 1.1947950735942987
+        "x": 3.0808401639344254,
+        "y": 7.243698770491803
       },
       "isLocked": false,
       "linkedName": null
@@ -17,15 +17,15 @@
     {
       "anchor": {
         "x": 4.459426229508197,
-        "y": 0.5785348360655734
+        "y": 7.421
       },
       "prevControl": {
         "x": 3.475146487125113,
-        "y": 0.5785348360655735
+        "y": 7.420999999999999
       },
       "nextControl": {
         "x": 4.962909836065573,
-        "y": 0.5785348360655734
+        "y": 7.420999999999999
       },
       "isLocked": false,
       "linkedName": null
@@ -33,11 +33,11 @@
     {
       "anchor": {
         "x": 5.694159836065573,
-        "y": 1.4296618852459004
+        "y": 6.57
       },
       "prevControl": {
         "x": 6.04146124362512,
-        "y": 0.8281182018125799
+        "y": 5.968456316566679
       },
       "nextControl": null,
       "isLocked": false,
@@ -58,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 2.0,
-    "rotation": 122.735
+    "rotation": -125.17150222275139
   },
   "reversed": false,
-  "folder": "Processor Three (L4) Red",
+  "folder": "Non-Processor Three (L4) Red",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 54.0
+    "rotation": -45.0
   },
   "useDefaultConstraints": false
 }

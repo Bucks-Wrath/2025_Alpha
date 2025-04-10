@@ -133,7 +133,9 @@ public class RobotContainer {
         autoChooser.addOption("Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red"));
         autoChooser.addOption("Red Non-Processor Three L4 Alt", new PathPlannerAuto("Non-Processor Three L4 Red Alt"));
         autoChooser.addOption("Polite Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red Polite"));
-
+        autoChooser.addOption("Polite Blue Processor Three L4", new PathPlannerAuto("Processor Three L4 Blue Polite"));
+        autoChooser.addOption("Polite Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red Polite"));
+        autoChooser.addOption("Polite Blue Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Blue Polite"));
 
         autoTab.add("Mode", autoChooser);
         candleSubsystem.setDefaultCommand(new WatchClock());
