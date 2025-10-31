@@ -3,6 +3,7 @@
   "robotLength": 0.840232,
   "holonomicMode": true,
   "pathFolders": [
+    "Center One L4",
     "Non-Processor Center",
     "Non-Processor Three (L4) Blue",
     "Non-Processor Three (L4) Red",

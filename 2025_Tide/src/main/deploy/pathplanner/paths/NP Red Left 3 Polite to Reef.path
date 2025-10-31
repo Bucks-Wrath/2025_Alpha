@@ -36,8 +36,8 @@
         "y": 6.57
       },
       "prevControl": {
-        "x": 6.04146124362512,
-        "y": 5.968456316566679
+        "x": 6.06577868852459,
+        "y": 7.09984631147541
       },
       "nextControl": null,
       "isLocked": false,
@@ -57,14 +57,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 2.0,
+    "velocity": 1.0,
     "rotation": -125.17150222275139
   },
   "reversed": false,
   "folder": "Non-Processor Three (L4) Red",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -45.0
+    "rotation": -54.0
   },
   "useDefaultConstraints": false
 }

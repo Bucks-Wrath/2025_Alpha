@@ -12,16 +12,16 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static RobotContainer m_robotContainer;
-  public static UsbCamera climberCamera;
+  // public static UsbCamera climberCamera;
 
   public Robot() {
 
     m_robotContainer = new RobotContainer();
 
     // Turn on Climber Stream
-    climberCamera = CameraServer.startAutomaticCapture("Climber camera",0);
-    climberCamera.setResolution(640,480);
-    climberCamera.setFPS(30);
+    // climberCamera = CameraServer.startAutomaticCapture("Climber camera",0);
+    // climberCamera.setResolution(640,480);
+    // climberCamera.setFPS(30);
        
   }
 

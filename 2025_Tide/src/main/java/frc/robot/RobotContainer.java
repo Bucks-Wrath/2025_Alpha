@@ -128,14 +128,15 @@ public class RobotContainer {
         autoChooser.addOption("Blue Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Blue"));
         autoChooser.addOption("Non-Processor Center", new PathPlannerAuto("Non-Processor Center"));
         autoChooser.addOption("Processor Center", new PathPlannerAuto("Processor Center"));
-        autoChooser.addOption("Red Processor Three L4 Alt", new PathPlannerAuto("Processor Three L4 Red Alt"));
         autoChooser.addOption("Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red"));
         autoChooser.addOption("Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red"));
-        autoChooser.addOption("Red Non-Processor Three L4 Alt", new PathPlannerAuto("Non-Processor Three L4 Red Alt"));
         autoChooser.addOption("Polite Red Processor Three L4", new PathPlannerAuto("Processor Three L4 Red Polite"));
         autoChooser.addOption("Polite Blue Processor Three L4", new PathPlannerAuto("Processor Three L4 Blue Polite"));
         autoChooser.addOption("Polite Red Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Red Polite"));
         autoChooser.addOption("Polite Blue Non-Processor Three L4", new PathPlannerAuto("Non-Processor Three L4 Blue Polite"));
+        autoChooser.addOption("Center One L4 Blue", new PathPlannerAuto("Center One L4 Blue"));
+        autoChooser.addOption("Center One L4 Red", new PathPlannerAuto("Center One L4 Red"));
+
 
         autoTab.add("Mode", autoChooser);
         candleSubsystem.setDefaultCommand(new WatchClock());
@@ -170,13 +171,13 @@ public class RobotContainer {
         //driverController.rightBumper().onTrue(new ShootCoralIntake().withTimeout(0.375).andThen(new SetWristPosition(0).alongWith(new ShootCoralIntake()).withTimeout(0.375))); 
         driverController.rightBumper().onTrue(new TeleAutoScore().alongWith(new SetRainbow().withTimeout(0.1)));
         driverController.x().whileTrue(new ShootCoralIntakeTrough().alongWith(new CoralSlideLeft(drivetrain, algaeDrive)));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
-        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
-        driverController.leftBumper().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));
-        driverController.leftBumper().and(operatorController.leftTrigger()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
-        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPositionProcessor());
-        driverController.leftTrigger().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.4).andThen(new ShootAlgaeForBarge().withTimeout(0.125))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive).withTimeout(1.3).alongWith(new SetRainbow().withTimeout(0.1))));
-        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0).alongWith(new SetRainbow().withTimeout(0.1))));
+        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).whileTrue(new IntakeAlgaeForProcessor().alongWith(new SetWristPosition(Constants.Algae.Intake.Processor.Floor.WristPosition)));
+        driverController.leftTrigger().and(operatorController.leftTrigger().negate()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
+        driverController.leftTrigger().and(operatorController.leftTrigger()).whileTrue(new IntakeAlgaeForBarge().alongWith(new SetWristPosition(Constants.Algae.Intake.Barge.Floor.WristPosition)));
+        driverController.leftTrigger().and(operatorController.leftTrigger()).onFalse(new HoldAlgae().alongWith(new SetWristPosition(0)));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).whileTrue(new SetWristPositionProcessor());
+        driverController.leftBumper().and(operatorController.leftTrigger()).onTrue(new SetElevatorPosition(Constants.Algae.Shoot.Barge.ElevatorPosition).alongWith(new DoNothing().withTimeout(0.4).andThen(new ShootAlgaeForBarge().withTimeout(0.125))).andThen(new SetElevatorPosition(0).alongWith(new HoldAlgae())).raceWith(new DoTheCrawl(drivetrain, crawlDrive).withTimeout(1.3).alongWith(new SetRainbow().withTimeout(0.1))));
+        driverController.leftBumper().and(operatorController.leftTrigger().negate()).onFalse(new ShootAlgaeForProcessor().withTimeout(0.25).andThen(new SetWristPosition(0).alongWith(new SetRainbow().withTimeout(0.1))));
         driverController.a().whileTrue(new AutoScoreLeft(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromRight(driverController,operatorController)));
         driverController.b().whileTrue(new AutoScoreRight(drivetrain, visionDrive).alongWith(new SetRainbow().withTimeout(0.1)).alongWith(new WatchTagFromLeft(driverController,operatorController)));
         driverController.start().onTrue(new SetClimberPosition(215).alongWith(new DoNothing()).withTimeout(1.75).andThen(new SetRampPosition(1.63)));

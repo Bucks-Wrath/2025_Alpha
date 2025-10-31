@@ -120,7 +120,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "AutoScoreRight"
+                  "name": "AutoScoreLeft"
                 }
               },
               {
@@ -168,7 +168,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Red Right 3 Pt 4"
+                        "pathName": "Red Right 3 Pt 4 Polite"
                       }
                     }
                   ]
